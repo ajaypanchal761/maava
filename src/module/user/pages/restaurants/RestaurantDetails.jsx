@@ -132,7 +132,7 @@ export default function RestaurantDetails() {
               } catch (directLookupError) {
                 // If direct lookup fails, try searching by name (requires zoneId)
                 console.log('⚠️ Direct lookup failed, trying search by name...')
-                
+
                 // Only search if zoneId is available (zoneId is required by backend for search)
                 if (!zoneId) {
                   console.warn('⚠️ User zone not available, cannot search restaurants. Restaurant may not be found.')
@@ -142,15 +142,15 @@ export default function RestaurantDetails() {
                   const searchParams = { limit: 100, zoneId: zoneId }
                   const searchResponse = await restaurantAPI.getRestaurants(searchParams)
                   const restaurants = searchResponse?.data?.data?.restaurants || searchResponse?.data?.data || []
-                  
+
                   // Try to find by slug match or name match
                   const restaurantName = slug.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())
-                  const matchingRestaurant = restaurants.find(r => 
-                    r.slug === slug || 
+                  const matchingRestaurant = restaurants.find(r =>
+                    r.slug === slug ||
                     r.name?.toLowerCase().replace(/\s+/g, '-') === slug.toLowerCase() ||
                     r.name?.toLowerCase() === restaurantName.toLowerCase()
                   )
-                  
+
                   if (matchingRestaurant) {
                     // Get full restaurant details by ID
                     const fullResponse = await restaurantAPI.getRestaurantById(matchingRestaurant._id || matchingRestaurant.restaurantId)
@@ -183,16 +183,16 @@ export default function RestaurantDetails() {
 
           // Check if this is a dining restaurant with nested restaurant data
           const actualRestaurant = apiRestaurant?.restaurant || apiRestaurant
-          
+
           // Helper function to format address with zone and pin code
           const formatRestaurantAddress = (locationObj) => {
             if (!locationObj) return "Location"
-            
+
             // If location is a string, return it as is
             if (typeof locationObj === 'string') {
               return locationObj
             }
-            
+
             // PRIORITY 1: Use formattedAddress if it's complete and has pin code
             // formattedAddress usually has the most complete information from Google Maps
             if (locationObj.formattedAddress && locationObj.formattedAddress.trim() !== "" && locationObj.formattedAddress !== "Select location") {
@@ -214,52 +214,52 @@ export default function RestaurantDetails() {
                 }
               }
             }
-            
+
             // PRIORITY 2: Build address from location object components (with zone and pin code)
             // This ensures we always show zone and pin code if available
             const addressParts = []
-            
+
             // Add addressLine1 if available
             if (locationObj.addressLine1 && locationObj.addressLine1.trim() !== "") {
               addressParts.push(locationObj.addressLine1.trim())
             }
-            
+
             // Add addressLine2 if available
             if (locationObj.addressLine2 && locationObj.addressLine2.trim() !== "") {
               addressParts.push(locationObj.addressLine2.trim())
             }
-            
+
             // Add area (zone) if available
             if (locationObj.area && locationObj.area.trim() !== "") {
               addressParts.push(locationObj.area.trim())
             }
-            
+
             // Add city if available
             if (locationObj.city && locationObj.city.trim() !== "") {
               addressParts.push(locationObj.city.trim())
             }
-            
+
             // Add state if available
             if (locationObj.state && locationObj.state.trim() !== "") {
               addressParts.push(locationObj.state.trim())
             }
-            
+
             // Add pin code (priority: pincode > zipCode > postalCode)
             const pinCode = locationObj.pincode || locationObj.zipCode || locationObj.postalCode
             if (pinCode && pinCode.toString().trim() !== "") {
               addressParts.push(pinCode.toString().trim())
             }
-            
+
             // If we have at least 3 parts (complete address), use it
             if (addressParts.length >= 3) {
               return addressParts.join(', ')
             }
-            
+
             // If we have at least 2 parts, use it
             if (addressParts.length >= 2) {
               return addressParts.join(', ')
             }
-            
+
             // PRIORITY 3: Fallback to formattedAddress (even if incomplete)
             if (locationObj.formattedAddress && locationObj.formattedAddress.trim() !== "" && locationObj.formattedAddress !== "Select location") {
               const isCoordinates = /^-?\d+\.\d+,\s*-?\d+\.\d+$/.test(locationObj.formattedAddress.trim())
@@ -268,53 +268,53 @@ export default function RestaurantDetails() {
                 return cleanedAddr
               }
             }
-            
+
             // PRIORITY 4: Fallback to address field
             if (locationObj.address && locationObj.address.trim() !== "") {
               return locationObj.address.trim()
             }
-            
+
             // PRIORITY 5: Last fallback - use area or city
             return locationObj.area || locationObj.city || "Location"
           }
-          
+
           // Get location object for address formatting
           const locationObj = actualRestaurant?.location || apiRestaurant?.location
           console.log('📍 Location Object for formatting:', locationObj)
           console.log('📍 formattedAddress field:', locationObj?.formattedAddress)
           const formattedAddress = formatRestaurantAddress(locationObj)
           console.log('📍 Final Formatted Address:', formattedAddress)
-          
+
           // Calculate distance from user to restaurant
           const calculateDistance = (lat1, lng1, lat2, lng2) => {
             const R = 6371 // Earth's radius in kilometers
             const dLat = (lat2 - lat1) * Math.PI / 180
             const dLng = (lng2 - lng1) * Math.PI / 180
-            const a = 
+            const a =
               Math.sin(dLat / 2) * Math.sin(dLat / 2) +
               Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
               Math.sin(dLng / 2) * Math.sin(dLng / 2)
             const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
             return R * c // Distance in kilometers
           }
-          
+
           // Get restaurant coordinates
           // Priority: latitude/longitude fields > coordinates array (GeoJSON format: [lng, lat])
           const restaurantLat = locationObj?.latitude || (locationObj?.coordinates && Array.isArray(locationObj.coordinates) ? locationObj.coordinates[1] : null)
           const restaurantLng = locationObj?.longitude || (locationObj?.coordinates && Array.isArray(locationObj.coordinates) ? locationObj.coordinates[0] : null)
-          
+
           console.log('📍 Restaurant coordinates:', { restaurantLat, restaurantLng, locationObj })
-          
+
           // Get user coordinates
           const userLat = userLocation?.latitude
           const userLng = userLocation?.longitude
-          
+
           console.log('📍 User location:', { userLat, userLng, userLocation })
-          
+
           // Calculate distance if both coordinates are available
           let calculatedDistance = null
-          if (userLat && userLng && restaurantLat && restaurantLng && 
-              !isNaN(userLat) && !isNaN(userLng) && !isNaN(restaurantLat) && !isNaN(restaurantLng)) {
+          if (userLat && userLng && restaurantLat && restaurantLng &&
+            !isNaN(userLat) && !isNaN(userLng) && !isNaN(restaurantLat) && !isNaN(restaurantLng)) {
             const distanceInKm = calculateDistance(userLat, userLng, restaurantLat, restaurantLng)
             // Format distance: show 1 decimal place if >= 1km, otherwise show in meters
             if (distanceInKm >= 1) {
@@ -334,7 +334,7 @@ export default function RestaurantDetails() {
               restaurantLng
             })
           }
-          
+
           // Transform API data to match expected format with comprehensive fallbacks
           // Handle both dining restaurant and regular restaurant data structures
           const transformedRestaurant = {
@@ -351,9 +351,9 @@ export default function RestaurantDetails() {
             distance: calculatedDistance || actualRestaurant?.distance || apiRestaurant?.distance || actualRestaurant?.distanceFromUser || apiRestaurant?.distanceFromUser || "1.2 km",
             location: formattedAddress,
             locationObject: locationObj, // Store full location object for reference
-            image: actualRestaurant?.profileImage?.url 
+            image: actualRestaurant?.profileImage?.url
               || apiRestaurant?.profileImage?.url
-              || actualRestaurant?.profileImage 
+              || actualRestaurant?.profileImage
               || apiRestaurant?.profileImage
               || (Array.isArray(actualRestaurant?.menuImages) && actualRestaurant.menuImages.length > 0
                 ? (actualRestaurant.menuImages[0]?.url || actualRestaurant.menuImages[0])
@@ -405,18 +405,18 @@ export default function RestaurantDetails() {
 
           console.log('✅ Transformed restaurant:', transformedRestaurant)
           console.log('✅ Restaurant ID for menu fetch:', transformedRestaurant.id)
-          
+
           if (!transformedRestaurant.id) {
             console.error('❌ No restaurant ID found! Cannot fetch menu.')
           }
-          
+
           setRestaurant(transformedRestaurant)
           fetchedRestaurantRef.current = true // Mark as fetched
 
           // Fetch menu and inventory for this restaurant
           // If no restaurant ID, try to find matching restaurant by name
           let restaurantIdForMenu = transformedRestaurant.id
-          
+
           if (!restaurantIdForMenu) {
             console.warn('⚠️ No restaurant ID available, searching for restaurant by name...')
             try {
@@ -426,21 +426,21 @@ export default function RestaurantDetails() {
                 // Continue without menu - restaurant details are still available
                 return
               }
-              
+
               // Include zoneId for zone-based filtering
               const searchParams = { limit: 100, zoneId: zoneId }
               const searchResponse = await restaurantAPI.getRestaurants(searchParams)
               const restaurants = searchResponse?.data?.data?.restaurants || searchResponse?.data?.data || []
-              
+
               // Try to find by exact name match
-              const matchingRestaurant = restaurants.find(r => 
+              const matchingRestaurant = restaurants.find(r =>
                 r.name?.toLowerCase().trim() === transformedRestaurant.name?.toLowerCase().trim()
               )
-              
+
               if (matchingRestaurant) {
                 restaurantIdForMenu = matchingRestaurant._id || matchingRestaurant.restaurantId || matchingRestaurant.id
                 console.log('✅ Found matching restaurant by name, ID:', restaurantIdForMenu)
-                
+
                 // Update the restaurant ID in state
                 setRestaurant(prev => ({
                   ...prev,
@@ -454,7 +454,7 @@ export default function RestaurantDetails() {
               console.error('❌ Error searching for restaurant:', searchError)
             }
           }
-          
+
           if (restaurantIdForMenu) {
             try {
               console.log('📋 Fetching menu for restaurant ID:', restaurantIdForMenu)
@@ -499,7 +499,7 @@ export default function RestaurantDetails() {
                   isRecommendedType: typeof item.isRecommended,
                   preparationTime: item.preparationTime
                 })))
-                
+
                 // Debug log to check preparationTime in menu sections
                 console.log('Menu sections with preparationTime:', menuSections.map(section => ({
                   sectionName: section.name,
@@ -581,10 +581,10 @@ export default function RestaurantDetails() {
       } catch (error) {
         // Check if it's a network error (backend not running)
         const isNetworkError = error.code === 'ERR_NETWORK' || error.message === 'Network Error'
-        
+
         // Check if it's a 404 error (restaurant doesn't exist)
         const is404Error = error.response?.status === 404
-        
+
         if (isNetworkError) {
           // Network error - backend is not running
           // Don't show "Restaurant not found" for network errors
@@ -619,7 +619,7 @@ export default function RestaurantDetails() {
       console.log('⏳ Waiting for zone detection before fetching restaurant...')
       return
     }
-    
+
     fetchRestaurant()
   }, [slug, zoneId, loadingZone, restaurant?.slug])
 
@@ -628,13 +628,13 @@ export default function RestaurantDetails() {
   const prevDistanceRef = useRef(null)
 
   // Extract restaurant coordinates as stable values (not array references)
-  const restaurantLat = restaurant?.locationObject?.latitude || 
-    (restaurant?.locationObject?.coordinates && Array.isArray(restaurant.locationObject.coordinates) 
-      ? restaurant.locationObject.coordinates[1] 
+  const restaurantLat = restaurant?.locationObject?.latitude ||
+    (restaurant?.locationObject?.coordinates && Array.isArray(restaurant.locationObject.coordinates)
+      ? restaurant.locationObject.coordinates[1]
       : null)
-  const restaurantLng = restaurant?.locationObject?.longitude || 
-    (restaurant?.locationObject?.coordinates && Array.isArray(restaurant.locationObject.coordinates) 
-      ? restaurant.locationObject.coordinates[0] 
+  const restaurantLng = restaurant?.locationObject?.longitude ||
+    (restaurant?.locationObject?.coordinates && Array.isArray(restaurant.locationObject.coordinates)
+      ? restaurant.locationObject.coordinates[0]
       : null)
 
   // Recalculate distance when user location updates
@@ -646,7 +646,7 @@ export default function RestaurantDetails() {
     const userLng = userLocation.longitude
 
     // Check if coordinates have actually changed (with small threshold to avoid floating point issues)
-    const coordsChanged = 
+    const coordsChanged =
       Math.abs(prevCoordsRef.current.userLat - userLat) > 0.0001 ||
       Math.abs(prevCoordsRef.current.userLng - userLng) > 0.0001 ||
       Math.abs(prevCoordsRef.current.restaurantLat - restaurantLat) > 0.0001 ||
@@ -660,15 +660,15 @@ export default function RestaurantDetails() {
     // Update refs with current coordinates
     prevCoordsRef.current = { userLat, userLng, restaurantLat, restaurantLng }
 
-    if (userLat && userLng && restaurantLat && restaurantLng && 
-        !isNaN(userLat) && !isNaN(userLng) && !isNaN(restaurantLat) && !isNaN(restaurantLng)) {
-      
+    if (userLat && userLng && restaurantLat && restaurantLng &&
+      !isNaN(userLat) && !isNaN(userLng) && !isNaN(restaurantLat) && !isNaN(restaurantLng)) {
+
       // Calculate distance
       const calculateDistance = (lat1, lng1, lat2, lng2) => {
         const R = 6371 // Earth's radius in kilometers
         const dLat = (lat2 - lat1) * Math.PI / 180
         const dLng = (lng2 - lng1) * Math.PI / 180
-        const a = 
+        const a =
           Math.sin(dLat / 2) * Math.sin(dLat / 2) +
           Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
           Math.sin(dLng / 2) * Math.sin(dLng / 2)
@@ -678,7 +678,7 @@ export default function RestaurantDetails() {
 
       const distanceInKm = calculateDistance(userLat, userLng, restaurantLat, restaurantLng)
       let calculatedDistance = null
-      
+
       // Format distance: show 1 decimal place if >= 1km, otherwise show in meters
       if (distanceInKm >= 1) {
         calculatedDistance = `${distanceInKm.toFixed(1)} km`
@@ -686,12 +686,12 @@ export default function RestaurantDetails() {
         const distanceInMeters = Math.round(distanceInKm * 1000)
         calculatedDistance = `${distanceInMeters} m`
       }
-      
+
       // Only update if distance actually changed
       if (calculatedDistance !== prevDistanceRef.current) {
         console.log('🔄 Recalculated distance from user to restaurant:', calculatedDistance, 'km:', distanceInKm)
         prevDistanceRef.current = calculatedDistance
-        
+
         // Update restaurant distance
         setRestaurant(prev => {
           // Only update if distance actually changed to prevent infinite loop
@@ -922,7 +922,7 @@ export default function RestaurantDetails() {
     }
 
     const isFavorite = isDishFavorite(dishId, restaurantId)
-    
+
     if (isFavorite) {
       // If already bookmarked, remove it
       removeDishFavorite(dishId, restaurantId)
@@ -951,7 +951,7 @@ export default function RestaurantDetails() {
   // Handle add to collection
   const handleAddToCollection = () => {
     const restaurantSlug = restaurant?.slug || slug || ""
-    
+
     if (!restaurantSlug) {
       toast.error("Restaurant information is missing")
       return
@@ -963,7 +963,7 @@ export default function RestaurantDetails() {
     }
 
     const isAlreadyFavorite = isFavorite(restaurantSlug)
-    
+
     if (isAlreadyFavorite) {
       // Remove from collection
       removeFavorite(restaurantSlug)
@@ -982,7 +982,7 @@ export default function RestaurantDetails() {
       })
       toast.success("Restaurant added to collection")
     }
-    
+
     setShowMenuOptionsSheet(false)
   }
 
@@ -991,11 +991,11 @@ export default function RestaurantDetails() {
     const companyName = await getCompanyNameAsync()
     const restaurantSlug = restaurant?.slug || slug || ""
     const restaurantName = restaurant?.name || "this restaurant"
-    
+
     // Create share URL
     const shareUrl = `${window.location.origin}/user/restaurants/${restaurantSlug}`
     const shareText = `Check out ${restaurantName} on ${companyName}! ${shareUrl}`
-    
+
     // Try Web Share API first (mobile)
     if (navigator.share) {
       try {
@@ -1026,11 +1026,11 @@ export default function RestaurantDetails() {
     const restaurantId = restaurant?.restaurantId || restaurant?._id || restaurant?.id
     const dishId = item.id || item._id
     const restaurantSlug = restaurant?.slug || slug || ""
-    
+
     // Create share URL
     const shareUrl = `${window.location.origin}/user/restaurants/${restaurantSlug}?dish=${dishId}`
     const shareText = `Check out ${item.name} from ${restaurant?.name || "this restaurant"}! ${shareUrl}`
-    
+
     // Try Web Share API first (mobile)
     if (navigator.share) {
       try {
@@ -1241,7 +1241,7 @@ export default function RestaurantDetails() {
   if (restaurantError && !restaurant) {
     const isNetworkError = restaurantError.includes('Backend server is not connected')
     const isNotFoundError = restaurantError === 'Restaurant not found'
-    
+
     return (
       <AnimatedPage>
         <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4">
@@ -1288,11 +1288,10 @@ export default function RestaurantDetails() {
   const shouldShowGrayscale = isOutOfService
 
   return (
-    <AnimatedPage 
-      id="scrollingelement" 
-      className={`min-h-screen bg-white dark:bg-[#0a0a0a] flex flex-col transition-all duration-300 ${
-        shouldShowGrayscale ? 'grayscale opacity-75' : ''
-      }`}
+    <AnimatedPage
+      id="scrollingelement"
+      className={`min-h-screen bg-white dark:bg-[#0a0a0a] flex flex-col transition-all duration-300 ${shouldShowGrayscale ? 'grayscale opacity-75' : ''
+        }`}
     >
       {/* Header - Back, Search, Menu (like reference image) */}
       <div className="px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 pt-3 md:pt-4 lg:pt-5 pb-2 md:pb-3 bg-white dark:bg-[#1a1a1a]">
@@ -1576,7 +1575,7 @@ export default function RestaurantDetails() {
                         const quantity = quantities[item.id] || 0
                         // Determine veg/non-veg based on foodType
                         const isVeg = item.foodType === "Veg"
-                        
+
                         // Debug: Log preparationTime for troubleshooting
                         if (item.preparationTime) {
                           console.log(`[FRONTEND] Item "${item.name}" preparationTime:`, item.preparationTime, 'Type:', typeof item.preparationTime)
@@ -1681,11 +1680,10 @@ export default function RestaurantDetails() {
                                 <motion.div
                                   initial={{ opacity: 0, scale: 0.8 }}
                                   animate={{ opacity: 1, scale: 1 }}
-                                  className={`absolute -bottom-2 left-1/2 -translate-x-1/2 bg-white border font-bold px-4 py-1.5 rounded-lg shadow-md flex items-center gap-1 ${
-                                    shouldShowGrayscale 
-                                      ? 'border-gray-300 text-gray-400 cursor-not-allowed opacity-50' 
+                                  className={`absolute -bottom-2 left-1/2 -translate-x-1/2 bg-white border font-bold px-4 py-1.5 rounded-lg shadow-md flex items-center gap-1 ${shouldShowGrayscale
+                                      ? 'border-gray-300 text-gray-400 cursor-not-allowed opacity-50'
                                       : 'border-green-600 text-green-600 hover:bg-green-50'
-                                  }`}
+                                    }`}
                                 >
                                   <button
                                     onClick={(e) => {
@@ -1726,11 +1724,10 @@ export default function RestaurantDetails() {
                                     }
                                   }}
                                   disabled={shouldShowGrayscale}
-                                  className={`absolute -bottom-2 left-1/2 -translate-x-1/2 bg-white border font-bold px-6 py-1.5 rounded-lg shadow-md flex items-center gap-1 transition-colors ${
-                                    shouldShowGrayscale 
-                                      ? 'border-gray-300 text-gray-400 cursor-not-allowed opacity-50' 
+                                  className={`absolute -bottom-2 left-1/2 -translate-x-1/2 bg-white border font-bold px-6 py-1.5 rounded-lg shadow-md flex items-center gap-1 transition-colors ${shouldShowGrayscale
+                                      ? 'border-gray-300 text-gray-400 cursor-not-allowed opacity-50'
                                       : 'border-green-600 text-green-600 hover:bg-green-50'
-                                  }`}
+                                    }`}
                                 >
                                   ADD <Plus size={14} className="stroke-[3px]" />
                                 </motion.button>
@@ -1794,7 +1791,7 @@ export default function RestaurantDetails() {
                                   const quantity = quantities[item.id] || 0
                                   // Determine veg/non-veg based on foodType
                                   const isVeg = item.foodType === "Veg"
-                                  
+
                                   // Debug: Log preparationTime for troubleshooting
                                   if (item.preparationTime) {
                                     console.log(`[FRONTEND] Subsection item "${item.name}" preparationTime:`, item.preparationTime)
@@ -1895,11 +1892,10 @@ export default function RestaurantDetails() {
                                           <motion.div
                                             initial={{ opacity: 0, scale: 0.8 }}
                                             animate={{ opacity: 1, scale: 1 }}
-                                            className={`absolute -bottom-2 left-1/2 -translate-x-1/2 bg-white border font-bold px-4 py-1.5 rounded-lg shadow-md flex items-center gap-1 ${
-                                              shouldShowGrayscale 
-                                                ? 'border-gray-300 text-gray-400 cursor-not-allowed opacity-50' 
+                                            className={`absolute -bottom-2 left-1/2 -translate-x-1/2 bg-white border font-bold px-4 py-1.5 rounded-lg shadow-md flex items-center gap-1 ${shouldShowGrayscale
+                                                ? 'border-gray-300 text-gray-400 cursor-not-allowed opacity-50'
                                                 : 'border-green-600 text-green-600 hover:bg-green-50'
-                                            }`}
+                                              }`}
                                           >
                                             <button
                                               onClick={(e) => {
@@ -1940,11 +1936,10 @@ export default function RestaurantDetails() {
                                               }
                                             }}
                                             disabled={shouldShowGrayscale}
-                                            className={`absolute -bottom-2 left-1/2 -translate-x-1/2 bg-white border font-bold px-6 py-1.5 rounded-lg shadow-md flex items-center gap-1 transition-colors ${
-                                              shouldShowGrayscale 
-                                                ? 'border-gray-300 text-gray-400 cursor-not-allowed opacity-50' 
+                                            className={`absolute -bottom-2 left-1/2 -translate-x-1/2 bg-white border font-bold px-6 py-1.5 rounded-lg shadow-md flex items-center gap-1 transition-colors ${shouldShowGrayscale
+                                                ? 'border-gray-300 text-gray-400 cursor-not-allowed opacity-50'
                                                 : 'border-green-600 text-green-600 hover:bg-green-50'
-                                            }`}
+                                              }`}
                                           >
                                             ADD <Plus size={14} className="stroke-[3px]" />
                                           </motion.button>
@@ -2618,11 +2613,10 @@ export default function RestaurantDetails() {
                   <div className="border-t border-gray-200 dark:border-gray-800 px-4 py-4 bg-white dark:bg-[#1a1a1a]">
                     <div className="flex items-center gap-4">
                       {/* Quantity Selector */}
-                      <div className={`flex items-center gap-3 border-2 rounded-lg px-3 h-[44px] bg-white dark:bg-[#2a2a2a] ${
-                        shouldShowGrayscale 
-                          ? 'border-gray-300 dark:border-gray-700 opacity-50' 
+                      <div className={`flex items-center gap-3 border-2 rounded-lg px-3 h-[44px] bg-white dark:bg-[#2a2a2a] ${shouldShowGrayscale
+                          ? 'border-gray-300 dark:border-gray-700 opacity-50'
                           : 'border-gray-300 dark:border-gray-700'
-                      }`}>
+                        }`}>
                         <button
                           onClick={(e) => {
                             if (!shouldShowGrayscale) {
@@ -2630,19 +2624,17 @@ export default function RestaurantDetails() {
                             }
                           }}
                           disabled={(quantities[selectedItem.id] || 0) === 0 || shouldShowGrayscale}
-                          className={`${
-                            shouldShowGrayscale 
-                              ? 'text-gray-300 dark:text-gray-600 cursor-not-allowed' 
+                          className={`${shouldShowGrayscale
+                              ? 'text-gray-300 dark:text-gray-600 cursor-not-allowed'
                               : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white disabled:text-gray-300 dark:disabled:text-gray-600 disabled:cursor-not-allowed'
-                          }`}
+                            }`}
                         >
                           <Minus className="h-5 w-5" />
                         </button>
-                        <span className={`text-lg font-semibold min-w-[2rem] text-center ${
-                          shouldShowGrayscale 
-                            ? 'text-gray-400 dark:text-gray-600' 
+                        <span className={`text-lg font-semibold min-w-[2rem] text-center ${shouldShowGrayscale
+                            ? 'text-gray-400 dark:text-gray-600'
                             : 'text-gray-900 dark:text-white'
-                        }`}>
+                          }`}>
                           {quantities[selectedItem.id] || 0}
                         </span>
                         <button
@@ -2652,8 +2644,8 @@ export default function RestaurantDetails() {
                             }
                           }}
                           disabled={shouldShowGrayscale}
-                          className={shouldShowGrayscale 
-                            ? 'text-gray-300 dark:text-gray-600 cursor-not-allowed' 
+                          className={shouldShowGrayscale
+                            ? 'text-gray-300 dark:text-gray-600 cursor-not-allowed'
                             : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
                           }
                         >
@@ -2663,11 +2655,10 @@ export default function RestaurantDetails() {
 
                       {/* Add Item Button */}
                       <Button
-                        className={`flex-1 h-[44px] rounded-lg font-semibold flex items-center justify-center gap-2 ${
-                          shouldShowGrayscale 
-                            ? 'bg-gray-300 dark:bg-gray-700 text-gray-500 dark:text-gray-600 cursor-not-allowed opacity-50' 
+                        className={`flex-1 h-[44px] rounded-lg font-semibold flex items-center justify-center gap-2 ${shouldShowGrayscale
+                            ? 'bg-gray-300 dark:bg-gray-700 text-gray-500 dark:text-gray-600 cursor-not-allowed opacity-50'
                             : 'bg-red-500 hover:bg-red-600 text-white'
-                        }`}
+                          }`}
                         onClick={(e) => {
                           if (!shouldShowGrayscale) {
                             updateItemQuantity(selectedItem, (quantities[selectedItem.id] || 0) + 1, e)

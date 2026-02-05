@@ -8,6 +8,7 @@ import SearchOverlay from "./SearchOverlay"
 import LocationSelectorOverlay from "./LocationSelectorOverlay"
 import BottomNavigation from "./BottomNavigation"
 import DesktopNavbar from "./DesktopNavbar"
+import CartSummaryBar from "./CartSummaryBar"
 
 // Create SearchOverlay context with default value
 const SearchOverlayContext = createContext({
@@ -119,7 +120,9 @@ export default function UserLayout() {
     location.pathname === "/user/under-250" ||
     location.pathname === "/profile" ||
     location.pathname === "/user/profile" ||
-    location.pathname.startsWith("/user/profile")
+    location.pathname.startsWith("/user/profile") ||
+    location.pathname === "/search" ||
+    location.pathname === "/user/search"
 
   return (
     <div className="min-h-screen bg-[#f5f5f5] dark:bg-[#0a0a0a] transition-colors duration-200">
@@ -132,7 +135,12 @@ export default function UserLayout() {
                 {showBottomNav && <DesktopNavbar />}
                 <LocationPrompt />
                 <Outlet />
-                {showBottomNav && <BottomNavigation />}
+                {showBottomNav && (
+                  <>
+                    <CartSummaryBar />
+                    <BottomNavigation />
+                  </>
+                )}
               </LocationSelectorProvider>
             </SearchOverlayProvider>
           </OrdersProvider>

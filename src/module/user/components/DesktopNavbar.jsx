@@ -131,8 +131,8 @@ export default function DesktopNavbar() {
               <Link
                 to="/user"
                 className={`px-6 py-2.5 text-sm font-medium transition-all duration-200 relative ${isDelivery
-                    ? "text-green-600 dark:text-green-500"
-                    : "text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-500"
+                  ? "text-green-600 dark:text-green-500"
+                  : "text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-500"
                   }`}
               >
                 <span className="relative z-10">Delivery</span>
@@ -148,8 +148,8 @@ export default function DesktopNavbar() {
               <Link
                 to="/user/under-250"
                 className={`px-6 py-2.5 text-sm font-medium transition-all duration-200 relative ${isUnder250
-                    ? "text-green-600 dark:text-green-500"
-                    : "text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-500"
+                  ? "text-green-600 dark:text-green-500"
+                  : "text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-500"
                   }`}
               >
                 <span className="relative z-10">Under 250</span>
@@ -165,11 +165,11 @@ export default function DesktopNavbar() {
               <Link
                 to="/user/in-mart"
                 className={`px-6 py-2.5 text-sm font-medium transition-all duration-200 relative ${isInMart
-                    ? "text-green-600 dark:text-green-500"
-                    : "text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-500"
+                  ? "text-green-600 dark:text-green-500"
+                  : "text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-500"
                   }`}
               >
-                <span className="relative z-10">In Mart</span>
+                <span className="relative z-10">Hibermart</span>
                 {isInMart && (
                   <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-green-600 dark:bg-green-500 rounded-t-full" />
                 )}
@@ -182,8 +182,8 @@ export default function DesktopNavbar() {
               <Link
                 to="/user/profile"
                 className={`px-6 py-2.5 text-sm font-medium transition-all duration-200 relative ${isProfile
-                    ? "text-green-600 dark:text-green-500"
-                    : "text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-500"
+                  ? "text-green-600 dark:text-green-500"
+                  : "text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-500"
                   }`}
               >
                 <span className="relative z-10">Profile</span>

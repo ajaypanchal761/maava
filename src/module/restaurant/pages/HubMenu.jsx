@@ -1029,8 +1029,8 @@ export default function HubMenu() {
                 key={filter.id}
                 onClick={() => handleFilterSelect(filter.id)}
                 className={`flex items-center gap-2 px-2 py-1 text-semibold border-2 rounded-md text-sm font-medium whitespace-nowrap shrink-0 ${activeFilter === filter.id
-                    ? "bg-gray-900 text-white border-gray-900"
-                    : "bg-white border-gray-200 text-gray-900"
+                  ? "bg-gray-900 text-white border-gray-900"
+                  : "bg-white border-gray-200 text-gray-900"
                   }`}
               >
                 <span>{filter.label}</span>
@@ -1057,8 +1057,8 @@ export default function HubMenu() {
         <button
           onClick={() => setActiveTab("all")}
           className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-colors ${activeTab === "all"
-              ? "bg-white text-black"
-              : " text-gray-600"
+            ? "bg-white text-black"
+            : " text-gray-600"
             }`}
         >
           All items
@@ -1066,8 +1066,8 @@ export default function HubMenu() {
         <button
           onClick={() => setActiveTab("add-ons")}
           className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-colors ${activeTab === "add-ons"
-              ? "bg-white text-black"
-              : " text-gray-600"
+            ? "bg-white text-black"
+            : " text-gray-600"
             }`}
         >
           Add-ons
@@ -1228,13 +1228,13 @@ export default function HubMenu() {
                                 <div className="flex items-center gap-2 mb-2">
                                   <div
                                     className={`w-4 h-4 rounded-sm border-2 shrink-0 flex items-center justify-center ${item.foodType === "Veg"
-                                        ? "bg-green-50 border-green-600"
-                                        : "bg-red-50 border-red-600"
+                                      ? "bg-green-50 border-green-600"
+                                      : "bg-red-50 border-red-600"
                                       }`}
                                   >
                                     <div className={`w-2 h-2 rounded-full ${item.foodType === "Veg"
-                                        ? "bg-green-600"
-                                        : "bg-red-600"
+                                      ? "bg-green-600"
+                                      : "bg-red-600"
                                       }`} />
                                   </div>
                                 </div>
@@ -1244,10 +1244,10 @@ export default function HubMenu() {
                                   {item.approvalStatus && (
                                     <span
                                       className={`px-2 py-0.5 rounded-full text-xs font-medium ${item.approvalStatus === 'approved'
-                                          ? 'bg-green-100 text-green-700 border border-green-300'
-                                          : item.approvalStatus === 'rejected'
-                                            ? 'bg-red-100 text-red-700 border border-red-300'
-                                            : 'bg-yellow-100 text-yellow-700 border border-yellow-300'
+                                        ? 'bg-green-100 text-green-700 border border-green-300'
+                                        : item.approvalStatus === 'rejected'
+                                          ? 'bg-red-100 text-red-700 border border-red-300'
+                                          : 'bg-yellow-100 text-yellow-700 border border-yellow-300'
                                         }`}
                                     >
                                       {item.approvalStatus === 'approved'
@@ -1516,8 +1516,8 @@ export default function HubMenu() {
                   onClick={handleAvailabilityConfirm}
                   disabled={!availabilityReason || isScheduling || (availabilityReason === 'custom' && !customDateTime)}
                   className={`w-full py-3 rounded-lg font-semibold text-sm transition-colors ${availabilityReason && !isScheduling && (availabilityReason !== 'custom' || customDateTime)
-                      ? "bg-gray-900 text-white hover:bg-gray-800"
-                      : "bg-gray-300 text-gray-500 cursor-not-allowed"
+                    ? "bg-gray-900 text-white hover:bg-gray-800"
+                    : "bg-gray-300 text-gray-500 cursor-not-allowed"
                     }`}
                 >
                   {isScheduling ? 'Scheduling...' : 'Confirm'}
@@ -1536,7 +1536,7 @@ export default function HubMenu() {
           <motion.button
             whileTap={{ scale: 0.96 }}
             onClick={() => setIsAddPopupOpen(true)}
-            className="px-4 py-2 border bg-black text-white border-gray-800 rounded-lg text-sm font-bold"
+            className="px-4 py-2 border border-green-600 bg-white text-green-600 rounded-lg text-sm font-bold hover:bg-green-50 transition-colors"
           >
             + ADD
           </motion.button>)}
@@ -1738,8 +1738,8 @@ export default function HubMenu() {
                       onClick={handleSaveCategoryName}
                       disabled={!editCategoryName.trim()}
                       className={`flex-1 py-3 px-4 rounded-lg text-sm font-semibold transition-colors ${editCategoryName.trim()
-                          ? "bg-black text-white hover:bg-gray-800"
-                          : "bg-gray-300 text-gray-500 cursor-not-allowed"
+                        ? "bg-black text-white hover:bg-gray-800"
+                        : "bg-gray-300 text-gray-500 cursor-not-allowed"
                         }`}
                     >
                       Save
@@ -1817,8 +1817,8 @@ export default function HubMenu() {
                     onClick={handleContinueSubCategory}
                     disabled={!subCategoryName.trim()}
                     className={`w-full py-3 px-4 rounded-lg text-sm font-semibold transition-colors ${subCategoryName.trim()
-                        ? "bg-black text-white hover:bg-gray-800"
-                        : "bg-gray-300 text-gray-500 cursor-not-allowed"
+                      ? "bg-black text-white hover:bg-gray-800"
+                      : "bg-gray-300 text-gray-500 cursor-not-allowed"
                       }`}
                   >
                     Continue
@@ -1888,8 +1888,8 @@ export default function HubMenu() {
                     onClick={handleContinueAddCategory}
                     disabled={!newCategoryName.trim()}
                     className={`w-full py-3 px-4 rounded-lg text-sm font-semibold transition-colors ${newCategoryName.trim()
-                        ? "bg-black text-white hover:bg-gray-800"
-                        : "bg-gray-300 text-gray-500 cursor-not-allowed"
+                      ? "bg-black text-white hover:bg-gray-800"
+                      : "bg-gray-300 text-gray-500 cursor-not-allowed"
                       }`}
                   >
                     Continue
@@ -1986,13 +1986,13 @@ export default function HubMenu() {
                                   <div className="flex items-center gap-2 mb-1">
                                     <div
                                       className={`w-4 h-4 rounded-sm border-2 shrink-0 flex items-center justify-center ${item.foodType === "Veg"
-                                          ? "bg-green-50 border-green-600"
-                                          : "bg-red-50 border-red-600"
+                                        ? "bg-green-50 border-green-600"
+                                        : "bg-red-50 border-red-600"
                                         }`}
                                     >
                                       <div className={`w-2 h-2 rounded-full ${item.foodType === "Veg"
-                                          ? "bg-green-600"
-                                          : "bg-red-600"
+                                        ? "bg-green-600"
+                                        : "bg-red-600"
                                         }`} />
                                     </div>
                                     <h4 className="text-sm font-bold text-gray-900 truncate">
