@@ -266,7 +266,7 @@ export default function BottomNavOrders() {
           {isHubMode && (
             <button
               onClick={handleToggleMode}
-              className="flex flex-col items-center gap-1 bg-white text-purple-700 pr-3 py-3 rounded-r-full rounded-l-[12px] shadow-md border border-purple-100 active:scale-95"
+              className="flex flex-col items-center gap-1 bg-white text-black pr-3 py-3 rounded-r-full rounded-l-[12px] shadow-md border border-gray-100 active:scale-95"
             >
               <Repeat className="w-4 h-4" />
               <span className="text-[11px] font-bold">To Orders</span>
@@ -274,7 +274,7 @@ export default function BottomNavOrders() {
           )}
 
           <div className="flex-1">
-            <div className={`bg-white border border-purple-100/50 rounded-full py-1.5 px-1 shadow-xl relative ${isHubMode ? "mr-1" : "ml-1"}`}>
+            <div className={`bg-white border border-gray-100 rounded-full py-1.5 px-1 shadow-xl relative ${isHubMode ? "mr-1" : "ml-1"}`}>
               <div className="flex items-center justify-around relative">
                 {tabs.map(tab => {
                   const Icon = tab.icon
@@ -291,7 +291,7 @@ export default function BottomNavOrders() {
                       {isActive && (
                         <motion.div
                           layoutId="bottomNavActive"
-                          className="absolute inset-0 bg-purple-100/80 rounded-full -z-10"
+                          className="absolute inset-0 bg-black rounded-full -z-10"
                           initial={false}
                           transition={{
                             type: "spring",
@@ -300,8 +300,8 @@ export default function BottomNavOrders() {
                           }}
                         />
                       )}
-                      <Icon className={`w-5 h-4 relative z-10 transition-colors duration-300 ease-in-out ${isActive ? "text-purple-700 shadow-sm" : "text-gray-400"}`} />
-                      <span className={`text-[11px] relative z-10 transition-colors duration-300 ease-in-out ${isActive ? "text-purple-700 font-bold" : "text-gray-500"}`}>
+                      <Icon className={`w-5 h-4 relative z-10 transition-colors duration-300 ease-in-out ${isActive ? "text-white shadow-sm" : "text-gray-400"}`} />
+                      <span className={`text-[11px] relative z-10 transition-colors duration-300 ease-in-out ${isActive ? "text-white font-bold" : "text-gray-500"}`}>
                         {tab.label}
                       </span>
                     </motion.button>
@@ -315,7 +315,7 @@ export default function BottomNavOrders() {
           {!isHubMode && (
             <button
               onClick={handleToggleMode}
-              className="flex flex-col items-center gap-1 bg-white text-purple-700 pl-3 py-3 rounded-l-full rounded-r-[12px] shadow-md border border-purple-100 active:scale-95"
+              className="flex flex-col items-center gap-1 bg-white text-black pl-3 py-3 rounded-l-full rounded-r-[12px] shadow-md border border-gray-100 active:scale-95"
             >
               <Repeat className="w-4 h-4" />
               <span className="text-[11px] font-bold">To Hub</span>

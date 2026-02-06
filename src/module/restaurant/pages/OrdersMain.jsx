@@ -1137,7 +1137,7 @@ export default function OrdersMain() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-purple-50 flex flex-col">
+    <div className="min-h-screen bg-[#FAFAFA] flex flex-col">
       {/* Restaurant Navbar - Sticky at top */}
       <div className="sticky top-0 z-50 bg-white">
         <RestaurantNavbar showNotifications={false} />
@@ -1190,7 +1190,7 @@ export default function OrdersMain() {
                 {isActive && (
                   <motion.div
                     layoutId="activeFilterBackground"
-                    className="absolute inset-0 bg-purple-500 rounded-full -z-10 shadow-md"
+                    className="absolute inset-0 bg-black rounded-full -z-10 shadow-md"
                     initial={false}
                     transition={{
                       type: "spring",
@@ -1323,7 +1323,7 @@ export default function OrdersMain() {
                   <button
                     onClick={handleReverify}
                     disabled={isReverifying}
-                    className="w-full px-6 py-2.5 bg-blue-600 text-white rounded-lg font-semibold text-sm hover:bg-blue-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                    className="w-full px-6 py-2.5 bg-black text-white rounded-lg font-semibold text-sm hover:bg-black/90 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                   >
                     {isReverifying ? (
                       <>
@@ -1547,11 +1547,11 @@ export default function OrdersMain() {
                     <div className="relative">
                       <button
                         onClick={handleAcceptOrder}
-                        className="w-full bg-purple-600 text-white py-3.5 rounded-lg font-semibold text-sm hover:bg-purple-700 transition-colors relative overflow-hidden shadow-lg shadow-purple-200"
+                        className="w-full bg-black text-white py-3.5 rounded-lg font-semibold text-sm hover:bg-black/90 transition-colors relative overflow-hidden shadow-lg shadow-black/5"
                       >
                         {/* Loading background */}
                         <motion.div
-                          className="absolute inset-0 bg-purple-700"
+                          className="absolute inset-0 bg-gray-900"
                           initial={{ width: "100%" }}
                           animate={{ width: `${(countdown / 240) * 100}%` }}
                           transition={{ duration: 1, ease: "linear" }}

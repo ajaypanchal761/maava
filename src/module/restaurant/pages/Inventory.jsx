@@ -1236,7 +1236,7 @@ export default function Inventory() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-purple-50 flex flex-col">
+    <div className="min-h-screen bg-[#FAFAFA] flex flex-col">
       {/* Navbar */}
       <div className="sticky top-0 z-50 bg-white">
         <RestaurantNavbar
@@ -1252,7 +1252,7 @@ export default function Inventory() {
             onClick={() => setActiveTab("all-items")}
             className={`px-6 py-3.5 rounded-full font-medium text-sm whitespace-nowrap relative overflow-hidden ${activeTab === "all-items"
               ? 'text-white'
-              : 'bg-white text-gray-600 border border-purple-100/50 shadow-sm'
+              : 'bg-white text-gray-600 border border-gray-100 shadow-sm'
               }`}
             animate={{
               scale: activeTab === "all-items" ? 1.05 : 1,
@@ -1262,7 +1262,7 @@ export default function Inventory() {
             {activeTab === "all-items" && (
               <motion.div
                 layoutId="activeTabBackground"
-                className="absolute inset-0 bg-purple-600 rounded-full -z-10"
+                className="absolute inset-0 bg-black rounded-full -z-10"
                 initial={false}
                 transition={{
                   type: "spring",
@@ -1274,7 +1274,7 @@ export default function Inventory() {
             <span className="relative z-10 flex items-center gap-2">
               All items
               {activeTab === "all-items" && (
-                <span className="bg-white text-purple-700 px-2 py-0.5 rounded-full text-xs font-bold">
+                <span className="bg-white text-black px-2 py-0.5 rounded-full text-xs font-bold">
                   {totalItems}
                 </span>
               )}
@@ -1285,7 +1285,7 @@ export default function Inventory() {
             onClick={() => setActiveTab("add-ons")}
             className={`px-6 py-3.5 rounded-full font-medium text-sm whitespace-nowrap relative overflow-hidden ${activeTab === "add-ons"
               ? 'text-white'
-              : 'bg-white text-gray-600 border border-purple-100/50 shadow-sm'
+              : 'bg-white text-gray-600 border border-gray-100 shadow-sm'
               }`}
             animate={{
               scale: activeTab === "add-ons" ? 1.05 : 1,
@@ -1295,7 +1295,7 @@ export default function Inventory() {
             {activeTab === "add-ons" && (
               <motion.div
                 layoutId="activeTabBackground"
-                className="absolute inset-0 bg-purple-600 rounded-full -z-10"
+                className="absolute inset-0 bg-black rounded-full -z-10"
                 initial={false}
                 transition={{
                   type: "spring",
@@ -1379,13 +1379,13 @@ export default function Inventory() {
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           onClick={() => navigate("/restaurant/hub-menu")}
-          className="bg-purple-100/40 backdrop-blur-md border border-purple-200/30 rounded-2xl p-5 mt-4 mb-4 flex items-center justify-between shadow-sm"
+          className="bg-gray-100 border border-gray-200 rounded-2xl p-5 mt-4 mb-4 flex items-center justify-between shadow-sm"
         >
           <div className="flex flex-col">
-            <span className="text-sm font-bold text-purple-900">Want to edit your menu?</span>
-            <span className="text-[11px] text-purple-600 font-medium">Add, remove or update items</span>
+            <span className="text-sm font-bold text-black">Want to edit your menu?</span>
+            <span className="text-[11px] text-gray-500 font-medium">Add, remove or update items</span>
           </div>
-          <button className="bg-purple-600 hover:bg-purple-700 text-white px-5 py-2 rounded-xl text-xs font-bold transition-all shadow-md active:scale-95">
+          <button className="bg-black hover:bg-black/90 text-white px-5 py-2 rounded-xl text-xs font-bold transition-all shadow-md active:scale-95">
             Edit now
           </button>
         </motion.div>
@@ -1393,26 +1393,26 @@ export default function Inventory() {
         {/* Search and Filter */}
         <div className="flex sticky top-[50px] gap-2 mb-4">
           {/* Search Bar */}
-          <div className="flex-1 z-40 bg-white rounded-xl border border-purple-100/50 shadow-sm overflow-hidden flex items-center">
-            <Search className="ml-4 w-4 h-4 text-purple-400" />
+          <div className="flex-1 z-40 bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden flex items-center">
+            <Search className="ml-4 w-4 h-4 text-gray-400" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search menu"
-              className="w-full px-4 py-3 text-sm text-gray-900 placeholder-purple-300 focus:outline-none bg-transparent"
+              className="w-full px-4 py-3 text-sm text-gray-900 placeholder-gray-300 focus:outline-none bg-transparent"
             />
           </div>
 
           {/* Filter Button */}
           <button
             onClick={() => setFilterOpen(true)}
-            className="px-4 py-3 bg-white border border-purple-100/50 rounded-xl flex items-center justify-center hover:bg-purple-50 transition-all shadow-sm active:scale-95"
+            className="px-4 py-3 bg-white border border-gray-100 rounded-xl flex items-center justify-center hover:bg-gray-50 transition-all shadow-sm active:scale-95"
           >
-            <SlidersHorizontal className="w-5 h-5 text-purple-600" />
-            {/* Purple dot indicator when filter is applied */}
+            <SlidersHorizontal className="w-5 h-5 text-black" />
+            {/* Black dot indicator when filter is applied */}
             {selectedFilter && (
-              <span className="absolute top-2.5 right-2.5 w-2.5 h-2.5 bg-purple-600 border-2 border-white rounded-full" />
+              <span className="absolute top-2.5 right-2.5 w-2.5 h-2.5 bg-black border-2 border-white rounded-full" />
             )}
           </button>
         </div>
@@ -1469,7 +1469,7 @@ export default function Inventory() {
                               onCheckedChange={(checked) =>
                                 handleAddonToggle(addon.id, checked)
                               }
-                              className="data-[state=checked]:bg-purple-600"
+                              className="data-[state=checked]:bg-black"
                             />
                           </div>
                         </div>
@@ -1516,10 +1516,10 @@ export default function Inventory() {
                   <div className="flex items-start justify-between">
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-1">
-                        <h3 className="text-base font-extrabold text-purple-700">
+                        <h3 className="text-base font-extrabold text-black">
                           {category.name}
                         </h3>
-                        <span className="bg-purple-50 text-purple-600 px-2.5 py-0.5 rounded-full text-[10px] font-bold">
+                        <span className="bg-gray-100 text-black px-2.5 py-0.5 rounded-full text-[10px] font-bold">
                           {category.itemCount} items
                         </span>
                       </div>
@@ -1548,7 +1548,7 @@ export default function Inventory() {
                           onCheckedChange={(checked) =>
                             handleToggleChange("category", category.id, null, checked)
                           }
-                          className="data-[state=checked]:bg-purple-600"
+                          className="data-[state=checked]:bg-black"
                         />
                       </div>
 
@@ -1632,7 +1632,7 @@ export default function Inventory() {
                                       onCheckedChange={(checked) =>
                                         handleToggleChange("item", category.id, item.id, checked)
                                       }
-                                      className="data-[state=checked]:bg-purple-600 shadow-sm"
+                                      className="data-[state=checked]:bg-black shadow-sm"
                                     />
                                   </div>
 
@@ -1641,11 +1641,11 @@ export default function Inventory() {
                                     <button
                                       onClick={() => handleRecommendToggle(category.id, item.id)}
                                       className={`p-1.5 rounded-full transition-all active:scale-90 ${item.isRecommended
-                                        ? "bg-purple-100 text-purple-600"
+                                        ? "bg-black text-white"
                                         : "bg-gray-100 text-gray-400"
                                         }`}
                                     >
-                                      <ThumbsUp className={`w-4 h-4 ${item.isRecommended ? "fill-purple-600" : ""}`} />
+                                      <ThumbsUp className={`w-4 h-4 ${item.isRecommended ? "fill-white" : ""}`} />
                                     </button>
                                   </div>
                                 </div>
@@ -1927,7 +1927,7 @@ export default function Inventory() {
             type="button"
             whileTap={{ scale: 0.96 }}
             onClick={() => setIsMenuOpen((prev) => !prev)}
-            className="flex items-center gap-2 px-5 py-3 rounded-2xl bg-purple-600 text-white text-sm font-bold shadow-xl border-2 border-white/20 active:scale-95"
+            className="flex items-center gap-2 px-5 py-3 rounded-2xl bg-black text-white text-sm font-bold shadow-xl border-2 border-white/20 active:scale-95"
           >
             <span className="w-5 h-5 flex items-center justify-center">
               {isMenuOpen ? (
@@ -1961,7 +1961,7 @@ export default function Inventory() {
                 >
                   <div className="h-full flex flex-col">
                     <div className="px-5 pt-5 pb-2">
-                      <p className="text-xs font-bold text-purple-800 uppercase tracking-widest">Menu Categories</p>
+                      <p className="text-xs font-bold text-gray-900 uppercase tracking-widest">Menu Categories</p>
                     </div>
                     <div className="h-px bg-gray-200 mx-4" />
                     <div className="flex-1 overflow-y-auto px-4 py-2 space-y-1">
@@ -1981,10 +1981,10 @@ export default function Inventory() {
                             className="w-full text-left py-3 focus:outline-none"
                           >
                             <div className="flex items-center justify-between">
-                              <span className="text-sm font-extrabold text-purple-900">
+                              <span className="text-sm font-extrabold text-black">
                                 {category.name}
                               </span>
-                              <span className="min-w-[28px] h-7 px-2 rounded-full bg-purple-50 border border-purple-100 flex items-center justify-center text-[10px] font-bold text-purple-700">
+                              <span className="min-w-[28px] h-7 px-2 rounded-full bg-gray-50 border border-gray-100 flex items-center justify-center text-[10px] font-bold text-black">
                                 {itemCount}
                               </span>
                             </div>

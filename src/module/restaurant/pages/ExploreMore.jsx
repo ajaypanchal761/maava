@@ -226,8 +226,8 @@ function TimePickerWheel({
                   >
                     <span
                       className={`text-lg transition-all duration-200 ${selectedHour === hour
-                        ? "font-extrabold text-purple-600 text-xl"
-                        : "font-medium text-purple-200 text-base"
+                        ? "font-extrabold text-black text-xl"
+                        : "font-medium text-gray-300 text-base"
                         }`}
                     >
                       {hour}
@@ -239,7 +239,7 @@ function TimePickerWheel({
             </div>
 
             <div className="px-2">
-              <span className="text-2xl font-extrabold text-purple-600 animate-pulse">:</span>
+              <span className="text-2xl font-extrabold text-black animate-pulse">:</span>
             </div>
 
             <div className="flex-1 flex flex-col items-center">
@@ -263,8 +263,8 @@ function TimePickerWheel({
                   >
                     <span
                       className={`text-lg transition-all duration-200 ${selectedMinute === minute
-                        ? "font-extrabold text-purple-600 text-xl"
-                        : "font-medium text-purple-200 text-base"
+                        ? "font-extrabold text-black text-xl"
+                        : "font-medium text-gray-300 text-base"
                         }`}
                     >
                       {minute.toString().padStart(2, "0")}
@@ -296,8 +296,8 @@ function TimePickerWheel({
                   >
                     <span
                       className={`text-lg transition-all duration-200 ${selectedPeriod === period
-                        ? "font-extrabold text-purple-600 text-xl"
-                        : "font-medium text-purple-200 text-base"
+                        ? "font-extrabold text-black text-xl"
+                        : "font-medium text-gray-300 text-base"
                         }`}
                     >
                       {period.toUpperCase()}
@@ -309,15 +309,15 @@ function TimePickerWheel({
             </div>
 
             <div className="absolute left-0 right-0 top-1/2 -translate-y-1/2 pointer-events-none">
-              <div className="border-t-2 border-purple-100 mx-4"></div>
-              <div className="border-b-2 border-purple-100 mx-4 mt-10"></div>
+              <div className="border-t-2 border-gray-100 mx-4"></div>
+              <div className="border-b-2 border-gray-100 mx-4 mt-10"></div>
             </div>
           </div>
 
-          <div className="border-t border-purple-50 px-4 py-8 flex justify-center">
+          <div className="border-t border-gray-50 px-4 py-8 flex justify-center">
             <button
               onClick={handleConfirm}
-              className="w-[80%] bg-purple-600 hover:bg-purple-700 text-white font-extrabold py-3 px-4 rounded-2xl transition-all shadow-md shadow-purple-100 active:scale-95"
+              className="w-[80%] bg-black hover:bg-black/90 text-white font-extrabold py-3 px-4 rounded-2xl transition-all shadow-md active:scale-95"
             >
               Confirm
             </button>
@@ -740,9 +740,9 @@ export default function ExploreMore() {
         initial={{ opacity: 0, x: -10 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.4, delay: delay + 0.1 }}
-        className="text-[11px] font-black text-purple-400 uppercase tracking-[0.2em] mb-5 px-1 flex items-center gap-2"
+        className="text-[11px] font-black text-gray-400 uppercase tracking-[0.2em] mb-5 px-1 flex items-center gap-2"
       >
-        <span className="w-8 h-[2px] bg-purple-200 rounded-full" />
+        <span className="w-8 h-[2px] bg-gray-200 rounded-full" />
         {title}
       </motion.h2>
       <div className="grid grid-cols-3 gap-4">
@@ -770,21 +770,22 @@ export default function ExploreMore() {
                     navigate(item.route)
                   }
                 }}
-                className="group relative w-full aspect-square flex flex-col items-center justify-center p-5 bg-white rounded-[2rem] border border-purple-100/50 shadow-[0_8px_20px_-12px_rgba(107,33,168,0.15)] hover:shadow-[0_20px_40px_-12px_rgba(107,33,168,0.25)] transition-all duration-500 overflow-hidden"
+                className="group relative w-full aspect-square flex flex-col items-center justify-center p-5 bg-white rounded-[2rem] border border-gray-100 shadow-[0_8px_20px_-12px_rgba(0,0,0,0.08)] hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.12)] transition-all duration-500 overflow-hidden"
               >
                 {/* Background Decoration */}
-                <div className="absolute top-0 right-0 w-20 h-20 bg-purple-50/50 rounded-full -mr-10 -mt-10 group-hover:scale-150 transition-transform duration-700 ease-out pointer-events-none" />
+                <div className="absolute top-0 right-0 w-20 h-20 bg-gray-50/50 rounded-full -mr-10 -mt-10 group-hover:scale-150 transition-transform duration-700 ease-out pointer-events-none" />
 
                 <div className="relative z-10 w-full flex flex-col items-center">
-                  <div className="w-14 h-14 mb-3 rounded-2xl bg-gradient-to-br from-purple-50/80 to-purple-100/30 flex items-center justify-center group-hover:from-purple-600 group-hover:to-purple-700 transition-all duration-500 shadow-sm border border-purple-100/30">
+                  <div className="w-14 h-14 mb-3 rounded-2xl bg-gray-50 flex items-center justify-center group-hover:bg-black transition-all duration-500 shadow-sm border border-gray-100">
                     {item.customIcon ? (
-                      <span className="text-lg font-black text-purple-900 group-hover:text-white transition-colors duration-500">hp</span>
+                      <span className="text-lg font-black text-black group-hover:text-white transition-colors duration-500">hp</span>
                     ) : (
-                      <IconComponent className="w-7 h-7 text-purple-600 group-hover:text-white transition-all duration-500 group-hover:scale-110" strokeWidth={1.8} />
+                      <IconComponent className="w-7 h-7 text-black group-hover:text-white transition-all duration-500 group-hover:scale-110" strokeWidth={1.8} />
                     )}
                   </div>
-                  <span className="text-[11px] text-purple-900 text-center leading-tight font-black tracking-tight group-hover:text-purple-600 transition-colors duration-500">
-                    {item.label}
+                  <span className="text-[11px] text-black text-center leading-tight font-black tracking-tight group-hover:text-purple-600 transition-colors duration-500">
+                    {item.label
+                    }
                   </span>
 
                   {item.badge && (
@@ -815,7 +816,7 @@ export default function ExploreMore() {
         duration: 0.2,
         ease: [0.25, 0.1, 0.25, 1]
       }}
-      className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-purple-50 overflow-x-hidden"
+      className="min-h-screen bg-[#FAFAFA] overflow-x-hidden"
     >
       {/* Header */}
       <motion.div
@@ -825,7 +826,7 @@ export default function ExploreMore() {
           duration: 0.25,
           ease: [0.25, 0.1, 0.25, 1]
         }}
-        className="bg-white/80 backdrop-blur-md border-b border-purple-100/50 px-4 py-3 sticky top-0 z-50 shadow-sm"
+        className="bg-white/80 backdrop-blur-md border-b border-gray-100 px-4 py-3 sticky top-0 z-50 shadow-sm"
       >
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3 flex-1">
@@ -833,34 +834,34 @@ export default function ExploreMore() {
               onClick={() => navigate(-1)}
               whileHover={{ scale: 1.1, x: -2 }}
               whileTap={{ scale: 0.9 }}
-              className="p-1.5 hover:bg-purple-50 rounded-xl transition-all"
+              className="p-1.5 hover:bg-gray-100 rounded-xl transition-all"
               aria-label="Go back"
             >
-              <ArrowLeft className="w-6 h-6 text-purple-700" />
+              <ArrowLeft className="w-6 h-6 text-black" />
             </motion.button>
-            <h1 className="text-base font-extrabold text-purple-900">Explore</h1>
+            <h1 className="text-base font-extrabold text-black">Explore</h1>
           </div>
           <div className="flex items-center gap-2">
             <motion.button
               onClick={() => setSearchOpen(true)}
               whileHover={{ scale: 1.1, rotate: 10 }}
               whileTap={{ scale: 0.9 }}
-              className="p-2.5 hover:bg-purple-50 rounded-xl transition-all"
+              className="p-2.5 hover:bg-gray-100 rounded-xl transition-all"
               aria-label="Search"
             >
-              <Search className="w-5 h-5 text-purple-600" />
+              <Search className="w-5 h-5 text-black" />
             </motion.button>
             <motion.button
               onClick={() => setProfileOpen(true)}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="w-10 h-10 bg-purple-100 rounded-xl flex items-center justify-center transition-all overflow-hidden border border-purple-200/50"
+              className="w-10 h-10 bg-gray-100 rounded-xl flex items-center justify-center transition-all overflow-hidden border border-gray-200"
               aria-label="Profile"
             >
               {userData.profileImage?.url ? (
                 <img src={userData.profileImage.url} alt="Profile" className="w-full h-full object-cover" />
               ) : (
-                <UserRound className="w-5 h-5 text-purple-600" />
+                <UserRound className="w-5 h-5 text-black" />
               )}
             </motion.button>
           </div>
@@ -879,35 +880,35 @@ export default function ExploreMore() {
             ease: [0.25, 0.1, 0.25, 1]
           }}
         >
-          <Card className="overflow-hidden bg-white border-purple-100/50 mb-8 rounded-[2rem] shadow-[0_15px_40px_-15px_rgba(107,33,168,0.12)] border-0">
+          <Card className="overflow-hidden bg-white mb-8 rounded-[2rem] shadow-[0_15px_40px_-15px_rgba(0,0,0,0.08)] border-0">
             <CardContent className="p-0">
               <button
                 onClick={() => navigate("/restaurant/switch-outlet")}
-                className="group w-full flex items-center justify-between p-5 hover:bg-purple-50/30 transition-all duration-500"
+                className="group w-full flex items-center justify-between p-5 hover:bg-gray-50 transition-all duration-500"
               >
                 <div className="flex items-center gap-4 flex-1 min-w-0">
                   <div className="relative">
-                    <div className="absolute inset-0 bg-purple-600 blur-[8px] opacity-20 group-hover:opacity-40 transition-opacity" />
-                    <div className="relative p-4 bg-gradient-to-br from-purple-600 to-purple-800 rounded-2xl shadow-lg transform group-hover:rotate-6 transition-transform duration-500">
+                    <div className="absolute inset-0 bg-black blur-[8px] opacity-10 group-hover:opacity-20 transition-opacity" />
+                    <div className="relative p-4 bg-black rounded-2xl shadow-lg transform group-hover:rotate-6 transition-transform duration-500">
                       <Store className="w-6 h-6 text-white" />
                     </div>
                   </div>
                   <div className="flex-1 min-w-0 text-left">
-                    <h2 className="text-lg font-black text-purple-900 mb-0.5 truncate tracking-tight">
+                    <h2 className="text-lg font-black text-black mb-0.5 truncate tracking-tight">
                       {restaurantDisplayName}
                     </h2>
                     {restaurantDisplayAddress && (
                       <div className="flex items-center gap-1.5 opacity-70">
-                        <MapPin className="w-3 h-3 text-purple-400" />
-                        <p className="text-[10px] text-purple-400 font-bold uppercase tracking-widest truncate">
+                        <MapPin className="w-3 h-3 text-gray-400" />
+                        <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest truncate">
                           {restaurantDisplayAddress}
                         </p>
                       </div>
                     )}
                   </div>
                 </div>
-                <div className="w-10 h-10 rounded-2xl bg-purple-50 flex items-center justify-center ml-2 border border-purple-100 transition-all duration-300 group-hover:bg-purple-600 group-hover:border-purple-600">
-                  <ChevronRight className="w-5 h-5 text-purple-600 group-hover:text-white transition-colors" />
+                <div className="w-10 h-10 rounded-2xl bg-gray-50 flex items-center justify-center ml-2 border border-gray-100 transition-all duration-300 group-hover:bg-black group-hover:border-black">
+                  <ChevronRight className="w-5 h-5 text-black group-hover:text-white transition-colors" />
                 </div>
               </button>
             </CardContent>
@@ -980,16 +981,16 @@ export default function ExploreMore() {
               onClick={(e) => e.stopPropagation()}
             >
               {/* Search Header */}
-              <div className="flex items-center gap-3 px-4 py-3 border-b border-purple-100">
+              <div className="flex items-center gap-3 px-4 py-3 border-b border-gray-100">
                 <button
                   onClick={() => {
                     setSearchOpen(false)
                     setSearchQuery("")
                   }}
-                  className="p-1.5 hover:bg-purple-50 rounded-xl transition-all"
+                  className="p-1.5 hover:bg-gray-100 rounded-xl transition-all"
                   aria-label="Close search"
                 >
-                  <ArrowLeft className="w-6 h-6 text-purple-700" />
+                  <ArrowLeft className="w-6 h-6 text-black" />
                 </button>
                 <div className="flex-1 relative">
                   <input
@@ -998,18 +999,18 @@ export default function ExploreMore() {
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     autoFocus
-                    className="w-full px-5 py-3 pr-12 bg-purple-50 text-gray-900 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-400 placeholder-purple-300 text-sm font-medium"
+                    className="w-full px-5 py-3 pr-12 bg-gray-50 text-gray-900 rounded-xl focus:outline-none focus:ring-2 focus:ring-black/5 placeholder-gray-400 text-sm font-medium"
                   />
                   {searchQuery && (
                     <button
                       onClick={() => setSearchQuery("")}
-                      className="absolute right-8 top-1/2 -translate-y-1/2 p-1 hover:bg-purple-100 rounded-full transition-colors"
+                      className="absolute right-8 top-1/2 -translate-y-1/2 p-1 hover:bg-gray-200 rounded-full transition-colors"
                       aria-label="Clear search"
                     >
-                      <X className="w-4 h-4 text-purple-400" />
+                      <X className="w-4 h-4 text-gray-400" />
                     </button>
                   )}
-                  <Search className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-purple-400 pointer-events-none" />
+                  <Search className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
                 </div>
               </div>
 
@@ -1020,7 +1021,7 @@ export default function ExploreMore() {
                     <div className="px-4 py-4">
                       {getFilteredSections().map((section) => (
                         <div key={section.key} className="mb-8 last:mb-0">
-                          <h3 className="text-[10px] font-extrabold text-purple-400 mb-4 px-1 uppercase tracking-[0.15em]">
+                          <h3 className="text-[10px] font-extrabold text-gray-400 mb-4 px-1 uppercase tracking-[0.15em]">
                             {section.title}
                           </h3>
                           <div className="space-y-2">
@@ -1038,18 +1039,18 @@ export default function ExploreMore() {
                                     setSearchOpen(false)
                                     setSearchQuery("")
                                   }}
-                                  className="w-full flex items-center gap-4 px-4 py-3.5 hover:bg-purple-50 rounded-2xl transition-all border border-transparent hover:border-purple-100 text-left mb-2"
+                                  className="w-full flex items-center gap-4 px-4 py-3.5 hover:bg-gray-50 rounded-2xl transition-all border border-transparent hover:border-gray-100 text-left mb-2"
                                 >
-                                  <div className="p-2.5 bg-purple-50 rounded-xl">
-                                    <IconComponent className="w-5 h-5 text-purple-600" />
+                                  <div className="p-2.5 bg-gray-50 rounded-xl">
+                                    <IconComponent className="w-5 h-5 text-black" />
                                   </div>
-                                  <span className="flex-1 text-base font-extrabold text-purple-900">{item.label}</span>
+                                  <span className="flex-1 text-base font-extrabold text-black">{item.label}</span>
                                   {item.badge && (
                                     <span className="bg-red-600 text-white text-[10px] font-bold px-2 py-1 rounded shadow-sm shadow-red-200">
                                       {item.badge}
                                     </span>
                                   )}
-                                  <ChevronRight className="w-5 h-5 text-purple-300" />
+                                  <ChevronRight className="w-5 h-5 text-gray-300" />
                                 </button>
                               )
                             })}
@@ -1105,14 +1106,14 @@ export default function ExploreMore() {
               onClick={(e) => e.stopPropagation()}
             >
               {/* Header */}
-              <div className="flex items-center justify-between px-6 py-5 border-b border-purple-100 sticky top-0 bg-white z-10">
-                <h2 className="text-lg font-extrabold text-purple-900">Account</h2>
+              <div className="flex items-center justify-between px-6 py-5 border-b border-gray-100 sticky top-0 bg-white z-10">
+                <h2 className="text-lg font-extrabold text-black">Account</h2>
                 <button
                   onClick={() => setProfileOpen(false)}
-                  className="p-2 hover:bg-purple-50 rounded-xl transition-all"
+                  className="p-2 hover:bg-gray-100 rounded-xl transition-all"
                   aria-label="Close"
                 >
-                  <X className="w-5 h-5 text-purple-600" />
+                  <X className="w-5 h-5 text-black" />
                 </button>
               </div>
 
@@ -1120,7 +1121,7 @@ export default function ExploreMore() {
               <div className="px-6 py-6">
                 <div className="flex items-start gap-4">
                   {/* Avatar */}
-                  <div className="w-20 h-20 bg-purple-50 rounded-3xl flex items-center justify-center shrink-0 overflow-hidden border-2 border-purple-100 shadow-sm">
+                  <div className="w-20 h-20 bg-gray-50 rounded-3xl flex items-center justify-center shrink-0 overflow-hidden border-2 border-gray-100 shadow-sm">
                     {userData.profileImage?.url ? (
                       <img
                         src={userData.profileImage.url}
@@ -1128,28 +1129,28 @@ export default function ExploreMore() {
                         className="w-full h-full object-cover"
                       />
                     ) : (
-                      <User className="w-10 h-10 text-purple-600" />
+                      <User className="w-10 h-10 text-black" />
                     )}
                   </div>
 
                   {/* User Details */}
                   <div className="flex-1 min-w-0 pt-1">
-                    <h3 className="text-lg font-extrabold text-purple-900 mb-1 leading-tight">
+                    <h3 className="text-lg font-extrabold text-black mb-1 leading-tight">
                       {loadingRestaurant ? "Loading..." : userData.name}
                     </h3>
                     <div className="space-y-1">
                       {userData.phone && (
-                        <p className="text-sm text-purple-600 font-bold tracking-tight">
+                        <p className="text-sm text-black font-bold tracking-tight">
                           {userData.phone}
                         </p>
                       )}
                       {userData.email && (
-                        <p className="text-sm text-purple-400 font-medium truncate">
+                        <p className="text-sm text-gray-400 font-medium truncate">
                           {userData.email}
                         </p>
                       )}
                     </div>
-                    <div className="mt-3 inline-flex px-3 py-1 rounded-full bg-purple-600 text-white text-[10px] font-extrabold tracking-widest uppercase shadow-sm">
+                    <div className="mt-3 inline-flex px-3 py-1 rounded-full bg-black text-white text-[10px] font-extrabold tracking-widest uppercase shadow-sm">
                       {userData.role}
                     </div>
                   </div>
@@ -1161,11 +1162,11 @@ export default function ExploreMore() {
                 <button
                   onClick={handleLogout}
                   disabled={isLoggingOut}
-                  className="group relative w-full overflow-hidden bg-white border-2 border-purple-100 hover:border-red-100 py-4 px-6 rounded-2xl transition-all duration-300 active:scale-[0.98]"
+                  className="group relative w-full overflow-hidden bg-white border-2 border-gray-200 hover:border-red-100 py-4 px-6 rounded-2xl transition-all duration-300 active:scale-[0.98]"
                 >
                   <div className="absolute inset-0 bg-red-50 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
                   <div className="relative flex items-center justify-center gap-2">
-                    <span className="text-sm font-black text-purple-900 group-hover:text-red-600 transition-colors uppercase tracking-widest">
+                    <span className="text-sm font-black text-black group-hover:text-red-600 transition-colors uppercase tracking-widest">
                       {isLoggingOut ? "Logging out..." : "Log out"}
                     </span>
                   </div>
@@ -1181,11 +1182,11 @@ export default function ExploreMore() {
               </div>
 
               {/* Footer Links */}
-              <div className="px-6 py-6 border-t border-purple-50 bg-purple-50/30">
-                <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-[10px] text-purple-400 font-bold uppercase tracking-widest">
+              <div className="px-6 py-6 border-t border-gray-100 bg-gray-50/30">
+                <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-[10px] text-gray-400 font-bold uppercase tracking-widest">
                   <a
                     href="#"
-                    className="hover:text-purple-600 transition-colors"
+                    className="hover:text-black transition-colors"
                     onClick={(e) => {
                       e.preventDefault()
                       console.log("Terms of Service clicked")
@@ -1193,7 +1194,7 @@ export default function ExploreMore() {
                   >
                     Terms
                   </a>
-                  <span className="w-1 h-1 rounded-full bg-purple-200" />
+                  <span className="w-1 h-1 rounded-full bg-gray-200" />
                   <a
                     href="#"
                     className="hover:text-purple-600 transition-colors"
@@ -1250,14 +1251,14 @@ export default function ExploreMore() {
               onClick={(e) => e.stopPropagation()}
             >
               {/* Header */}
-              <div className="flex items-center justify-between px-6 py-5 border-b border-purple-100 sticky top-0 bg-white z-10">
-                <h2 className="text-lg font-extrabold text-purple-900">Select reason</h2>
+              <div className="flex items-center justify-between px-6 py-5 border-b border-gray-100 sticky top-0 bg-white z-10">
+                <h2 className="text-lg font-extrabold text-black">Select reason</h2>
                 <button
                   onClick={() => setScheduleOffOpen(false)}
-                  className="p-2 hover:bg-purple-50 rounded-xl transition-all"
+                  className="p-2 hover:bg-gray-100 rounded-xl transition-all"
                   aria-label="Close"
                 >
-                  <X className="w-5 h-5 text-purple-600" />
+                  <X className="w-5 h-5 text-black" />
                 </button>
               </div>
 
@@ -1266,9 +1267,9 @@ export default function ExploreMore() {
                   <button
                     key={index}
                     onClick={() => handleReasonSelect(reason)}
-                    className="w-full text-left py-4 px-5 rounded-2xl hover:bg-purple-50 transition-all border border-transparent hover:border-purple-100/50"
+                    className="w-full text-left py-4 px-5 rounded-2xl hover:bg-gray-50 transition-all border border-transparent hover:border-gray-100"
                   >
-                    <span className="text-sm font-bold text-purple-900">{reason}</span>
+                    <span className="text-sm font-bold text-black">{reason}</span>
                   </button>
                 ))}
               </div>
@@ -1305,14 +1306,14 @@ export default function ExploreMore() {
               onClick={(e) => e.stopPropagation()}
             >
               {/* Header */}
-              <div className="flex items-center justify-between px-6 py-5 border-b border-purple-100 sticky top-0 bg-white z-10">
-                <h2 className="text-lg font-extrabold text-purple-900">Schedule off</h2>
+              <div className="flex items-center justify-between px-6 py-5 border-b border-gray-100 sticky top-0 bg-white z-10">
+                <h2 className="text-lg font-extrabold text-black">Schedule off</h2>
                 <button
                   onClick={() => setDateTimePickerOpen(false)}
-                  className="p-2 hover:bg-purple-50 rounded-xl transition-all"
+                  className="p-2 hover:bg-gray-100 rounded-xl transition-all"
                   aria-label="Close"
                 >
-                  <X className="w-5 h-5 text-purple-600" />
+                  <X className="w-5 h-5 text-black" />
                 </button>
               </div>
 
@@ -1320,33 +1321,33 @@ export default function ExploreMore() {
               <div className="px-6 py-6 space-y-6">
                 {/* Selected Reason */}
                 {selectedReason && (
-                  <div className="pb-4 border-b border-purple-50">
-                    <p className="text-[10px] text-purple-400 font-bold uppercase tracking-wider mb-1">Reason</p>
-                    <p className="text-base font-extrabold text-purple-900">{selectedReason}</p>
+                  <div className="pb-4 border-b border-gray-100">
+                    <p className="text-[10px] text-gray-400 font-bold uppercase tracking-wider mb-1">Reason</p>
+                    <p className="text-base font-extrabold text-black">{selectedReason}</p>
                   </div>
                 )}
 
                 <div>
-                  <p className="text-xs font-extrabold text-purple-900 mb-3 uppercase tracking-wider">Select dates</p>
+                  <p className="text-xs font-extrabold text-black mb-3 uppercase tracking-wider">Select dates</p>
                   <div className="space-y-3">
                     <div>
-                      <label className="text-[10px] text-purple-400 font-bold uppercase tracking-tight mb-1 block">Start date</label>
+                      <label className="text-[10px] text-gray-400 font-bold uppercase tracking-tight mb-1 block">Start date</label>
                       <button
                         onClick={() => setShowCalendar(true)}
-                        className="w-full flex items-center justify-between px-4 py-3.5 border border-purple-100 rounded-xl bg-purple-50/30 hover:bg-purple-50 transition-all font-bold text-sm text-purple-900"
+                        className="w-full flex items-center justify-between px-4 py-3.5 border border-gray-200 rounded-xl bg-gray-50/30 hover:bg-gray-50 transition-all font-bold text-sm text-black"
                       >
                         <span className="">{formatDate(startDate)}</span>
-                        <Calendar className="w-4 h-4 text-purple-600" />
+                        <Calendar className="w-4 h-4 text-black" />
                       </button>
                     </div>
                     <div>
-                      <label className="text-[10px] text-purple-400 font-bold uppercase tracking-tight mb-1 block">End date</label>
+                      <label className="text-[10px] text-gray-400 font-bold uppercase tracking-tight mb-1 block">End date</label>
                       <button
                         onClick={() => setShowCalendar(true)}
-                        className="w-full flex items-center justify-between px-4 py-3.5 border border-purple-100 rounded-xl bg-purple-50/30 hover:bg-purple-50 transition-all font-bold text-sm text-purple-900"
+                        className="w-full flex items-center justify-between px-4 py-3.5 border border-gray-200 rounded-xl bg-gray-50/30 hover:bg-gray-50 transition-all font-bold text-sm text-black"
                       >
                         <span className="">{formatDate(endDate)}</span>
-                        <Calendar className="w-4 h-4 text-purple-600" />
+                        <Calendar className="w-4 h-4 text-black" />
                       </button>
                     </div>
                   </div>
@@ -1354,26 +1355,26 @@ export default function ExploreMore() {
 
                 {/* Time Selection */}
                 <div>
-                  <p className="text-xs font-extrabold text-purple-900 mb-3 uppercase tracking-wider">Select times</p>
+                  <p className="text-xs font-extrabold text-black mb-3 uppercase tracking-wider">Select times</p>
                   <div className="space-y-3">
                     <div>
-                      <label className="text-[10px] text-purple-400 font-bold uppercase tracking-tight mb-1 block">Start time</label>
+                      <label className="text-[10px] text-gray-400 font-bold uppercase tracking-tight mb-1 block">Start time</label>
                       <button
                         onClick={() => setShowStartTimePicker(true)}
-                        className="w-full flex items-center justify-between px-4 py-3.5 border border-purple-100 rounded-xl bg-purple-50/30 hover:bg-purple-50 transition-all font-bold text-sm text-purple-900"
+                        className="w-full flex items-center justify-between px-4 py-3.5 border border-gray-200 rounded-xl bg-gray-50/30 hover:bg-gray-50 transition-all font-bold text-sm text-black"
                       >
                         <span className="">{formatTime(startTime)}</span>
-                        <Clock className="w-4 h-4 text-purple-600" />
+                        <Clock className="w-4 h-4 text-black" />
                       </button>
                     </div>
                     <div>
-                      <label className="text-[10px] text-purple-400 font-bold uppercase tracking-tight mb-1 block">End time</label>
+                      <label className="text-[10px] text-gray-400 font-bold uppercase tracking-tight mb-1 block">End time</label>
                       <button
                         onClick={() => setShowEndTimePicker(true)}
-                        className="w-full flex items-center justify-between px-4 py-3.5 border border-purple-100 rounded-xl bg-purple-50/30 hover:bg-purple-50 transition-all font-bold text-sm text-purple-900"
+                        className="w-full flex items-center justify-between px-4 py-3.5 border border-gray-200 rounded-xl bg-gray-50/30 hover:bg-gray-50 transition-all font-bold text-sm text-black"
                       >
                         <span className="">{formatTime(endTime)}</span>
-                        <Clock className="w-4 h-4 text-purple-600" />
+                        <Clock className="w-4 h-4 text-black" />
                       </button>
                     </div>
                   </div>
@@ -1382,7 +1383,7 @@ export default function ExploreMore() {
                 {/* Submit Button */}
                 <button
                   onClick={handleSubmitScheduleOff}
-                  className="w-full bg-purple-600 hover:bg-purple-700 text-white font-extrabold py-4 px-4 rounded-2xl transition-all shadow-md shadow-purple-100 active:scale-95 mt-4"
+                  className="w-full bg-black hover:bg-black/90 text-white font-extrabold py-4 px-4 rounded-2xl transition-all shadow-md active:scale-95 mt-4"
                 >
                   Submit
                 </button>
@@ -1450,13 +1451,13 @@ export default function ExploreMore() {
             >
               <div className="bg-white rounded-2xl shadow-2xl max-w-sm w-full p-6 text-center">
                 <div className="flex justify-center mb-6">
-                  <div className="w-24 h-24 rounded-[2rem] bg-gradient-to-br from-purple-50 to-purple-100 flex items-center justify-center border-2 border-white shadow-[0_8px_30px_rgba(107,33,168,0.1)] relative">
-                    <div className="absolute inset-0 bg-purple-600 blur-[20px] opacity-10" />
-                    <CheckCircle className="w-12 h-12 text-purple-600 relative z-10" strokeWidth={2.5} />
+                  <div className="w-24 h-24 rounded-[2rem] bg-gray-50 flex items-center justify-center border-2 border-white shadow-[0_8px_30px_rgba(0,0,0,0.05)] relative">
+                    <div className="absolute inset-0 bg-black blur-[20px] opacity-10" />
+                    <CheckCircle className="w-12 h-12 text-black relative z-10" strokeWidth={2.5} />
                   </div>
                 </div>
-                <h3 className="text-2xl font-black text-purple-900 mb-2 tracking-tight">Schedule Active</h3>
-                <p className="text-sm text-purple-400 font-bold mb-8 uppercase tracking-widest">
+                <h3 className="text-2xl font-black text-black mb-2 tracking-tight">Schedule Active</h3>
+                <p className="text-sm text-gray-500 font-bold mb-8 uppercase tracking-widest">
                   Outlet is now offline
                 </p>
                 <button
@@ -1468,7 +1469,7 @@ export default function ExploreMore() {
                     setStartTime({ hour: "9", minute: "00", period: "am" })
                     setEndTime({ hour: "5", minute: "00", period: "pm" })
                   }}
-                  className="w-full bg-gradient-to-r from-purple-600 to-purple-800 hover:from-purple-700 hover:to-purple-900 text-white py-4 rounded-2xl font-black text-sm transition-all shadow-xl shadow-purple-200 active:scale-[0.98] uppercase tracking-widest"
+                  className="w-full bg-black hover:bg-black/90 text-white py-4 rounded-2xl font-black text-sm transition-all shadow-xl active:scale-[0.98] uppercase tracking-widest"
                 >
                   Got it
                 </button>
@@ -1506,25 +1507,25 @@ export default function ExploreMore() {
               onClick={(e) => e.stopPropagation()}
             >
               {/* Header */}
-              <div className="flex items-center justify-between px-6 py-5 border-b border-purple-100 sticky top-0 bg-white z-10">
-                <h2 className="text-lg font-extrabold text-purple-900">Schedule off</h2>
+              <div className="flex items-center justify-between px-6 py-5 border-b border-gray-100 sticky top-0 bg-white z-10">
+                <h2 className="text-lg font-extrabold text-black">Schedule off</h2>
                 <button
                   onClick={() => setExistingScheduleOpen(false)}
-                  className="p-2 hover:bg-purple-50 rounded-xl transition-all"
+                  className="p-2 hover:bg-gray-100 rounded-xl transition-all"
                   aria-label="Close"
                 >
-                  <X className="w-5 h-5 text-purple-600" />
+                  <X className="w-5 h-5 text-black" />
                 </button>
               </div>
 
               {/* Content */}
               <div className="px-6 py-6">
                 {/* Status Message */}
-                <div className="mb-6 p-5 bg-purple-50 rounded-3xl border border-purple-100 shadow-sm shadow-purple-50">
-                  <p className="text-base font-extrabold text-purple-900 mb-1">
+                <div className="mb-6 p-5 bg-gray-50 rounded-3xl border border-gray-100 shadow-sm shadow-black/5">
+                  <p className="text-base font-extrabold text-black mb-1">
                     Scheduled Offline
                   </p>
-                  <p className="text-[11px] text-purple-400 font-bold uppercase tracking-wider">
+                  <p className="text-[11px] text-gray-400 font-bold uppercase tracking-wider">
                     Your outlet is currently closed
                   </p>
                 </div>

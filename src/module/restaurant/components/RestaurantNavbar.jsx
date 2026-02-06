@@ -275,18 +275,18 @@ export default function RestaurantNavbar({
   }
 
   return (
-    <div className="w-full bg-white border-b border-purple-100/50 px-4 py-4 flex items-center justify-between shadow-sm">
+    <div className="w-full bg-white border-b border-gray-100 px-4 py-4 flex items-center justify-between shadow-sm">
       {/* Left Side - Restaurant Info */}
       <div className="flex-1 min-w-0 pr-4">
         {/* Restaurant Name */}
-        <h1 className="text-base font-extrabold text-purple-700 truncate">
+        <h1 className="text-base font-extrabold text-black truncate">
           {loading ? "Loading..." : restaurantName}
         </h1>
 
         {/* Location */}
         {!loading && location && location.trim() !== "" && (
           <div className="flex items-center gap-1.5 mt-0.5">
-            <MapPin className="w-3 h-3 text-purple-400 shrink-0" />
+            <MapPin className="w-3 h-3 text-gray-400 shrink-0" />
             <p className="text-[10px] text-gray-500 truncate font-medium" title={location}>
               {location}
             </p>
@@ -301,8 +301,8 @@ export default function RestaurantNavbar({
           <button
             onClick={handleStatusClick}
             className={`flex items-center gap-1.5 px-2.5 py-1.5 border rounded-full hover:opacity-90 transition-all shadow-sm ${status === "Online"
-                ? "bg-green-50 border-green-200 text-green-700"
-                : "bg-gray-50 border-gray-200 text-gray-700"
+              ? "bg-green-50 border-green-200 text-green-700"
+              : "bg-gray-50 border-gray-200 text-gray-700"
               }`}
           >
             <span className={`w-1.5 h-1.5 rounded-full ${status === "Online" ? "bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.4)]" : "bg-gray-400"
@@ -318,10 +318,10 @@ export default function RestaurantNavbar({
         {showSearch && (
           <button
             onClick={handleSearchClick}
-            className="p-2 hover:bg-purple-50 rounded-lg transition-all ml-1"
+            className="p-2 hover:bg-gray-100 rounded-lg transition-all ml-1"
             aria-label="Search"
           >
-            <Search className="w-5 h-5 text-purple-600" />
+            <Search className="w-5 h-5 text-black" />
           </button>
         )}
 
@@ -329,20 +329,20 @@ export default function RestaurantNavbar({
         {showNotifications && (
           <button
             onClick={handleNotificationsClick}
-            className="p-2 hover:bg-purple-50 rounded-lg transition-all ml-1"
+            className="p-2 hover:bg-gray-100 rounded-lg transition-all ml-1"
             aria-label="Notifications"
           >
-            <Bell className="w-5 h-5 text-purple-600" />
+            <Bell className="w-5 h-5 text-black" />
           </button>
         )}
 
         {/* Hamburger Menu Icon */}
         <button
           onClick={handleMenuClick}
-          className="p-2 hover:bg-purple-50 rounded-lg transition-all ml-1"
+          className="p-2 hover:bg-gray-100 rounded-lg transition-all ml-1"
           aria-label="Menu"
         >
-          <Menu className="w-5 h-5 text-purple-600" />
+          <Menu className="w-5 h-5 text-black" />
         </button>
       </div>
     </div>

@@ -1098,30 +1098,30 @@ export default function ToHub() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="bg-white rounded-[2rem] p-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-purple-100/50 space-y-6 relative overflow-hidden"
+          className="bg-white rounded-[2rem] p-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 space-y-6 relative overflow-hidden"
         >
           {/* Background decoration */}
-          <div className="absolute top-0 right-0 w-32 h-32 bg-purple-50/50 rounded-full -mr-16 -mt-16 pointer-events-none" />
+          <div className="absolute top-0 right-0 w-32 h-32 bg-gray-50/50 rounded-full -mr-16 -mt-16 pointer-events-none" />
 
           <div className="flex items-center justify-between relative z-10">
             <div>
-              <p className="text-[10px] font-black text-purple-400 uppercase tracking-[0.2em] mb-1">Performance Overview</p>
-              <h3 className="text-lg font-black text-purple-900">Total sales</h3>
+              <p className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] mb-1">Performance Overview</p>
+              <h3 className="text-lg font-black text-black">Total sales</h3>
             </div>
             <span className="text-[10px] font-black text-green-600 bg-green-50 px-3 py-1 rounded-full uppercase tracking-wider border border-green-100/50">Live</span>
           </div>
 
           <div className="flex items-end justify-between relative z-10">
             <div className="space-y-1">
-              <p className="text-3xl font-black text-purple-900 tracking-tighter">{totalSales}</p>
+              <p className="text-3xl font-black text-black tracking-tighter">{totalSales}</p>
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                <p className="text-xs font-bold text-purple-400 uppercase tracking-widest">Growing</p>
+                <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">Growing</p>
               </div>
             </div>
             <div className="text-right">
-              <p className="text-[10px] font-black text-purple-400 uppercase tracking-widest mb-1">Total Orders</p>
-              <p className="text-xl font-black text-purple-900">{totalOrders}</p>
+              <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Total Orders</p>
+              <p className="text-xl font-black text-black">{totalOrders}</p>
             </div>
           </div>
 
@@ -1134,19 +1134,19 @@ export default function ToHub() {
               <AreaChart data={chartData} margin={{ top: 10, right: 10, left: -15, bottom: 0 }}>
                 <defs>
                   <linearGradient id="totalSalesGradient" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#9333ea" stopOpacity={0.3} />
-                    <stop offset="95%" stopColor="#9333ea" stopOpacity={0} />
+                    <stop offset="5%" stopColor="#000000" stopOpacity={0.1} />
+                    <stop offset="95%" stopColor="#000000" stopOpacity={0} />
                   </linearGradient>
                 </defs>
-                <CartesianGrid strokeDasharray="3 3" stroke="#f3e8ff" vertical={false} />
+                <CartesianGrid strokeDasharray="3 3" stroke="#f3f4f6" vertical={false} />
                 <XAxis
                   dataKey="hour"
-                  tick={{ fontSize: 10, fill: "#a855f7", fontWeight: 700 }}
+                  tick={{ fontSize: 10, fill: "#9ca3af", fontWeight: 700 }}
                   axisLine={false}
                   tickLine={false}
                 />
                 <YAxis
-                  tick={{ fontSize: 10, fill: "#a855f7", fontWeight: 700 }}
+                  tick={{ fontSize: 10, fill: "#9ca3af", fontWeight: 700 }}
                   axisLine={false}
                   tickLine={false}
                 />
@@ -1161,7 +1161,7 @@ export default function ToHub() {
                 <Area
                   type="monotone"
                   dataKey="sales"
-                  stroke="#9333ea"
+                  stroke="#000000"
                   strokeWidth={3}
                   fill="url(#totalSalesGradient)"
                   animationDuration={1500}
@@ -1174,8 +1174,8 @@ export default function ToHub() {
 
       <div className="px-4">
         <div className="flex items-center gap-3 mb-4">
-          <div className="w-1.5 h-6 bg-purple-600 rounded-full" />
-          <h3 className="text-base font-black text-purple-900 uppercase tracking-widest">Quick links</h3>
+          <div className="w-1.5 h-6 bg-black rounded-full" />
+          <h3 className="text-base font-black text-black uppercase tracking-widest">Quick links</h3>
         </div>
         <div className="grid grid-cols-4 gap-4">
           {quickLinks.map((link, index) => {
@@ -1202,13 +1202,13 @@ export default function ToHub() {
                 }}
                 className="group flex flex-col items-center gap-2"
               >
-                <div className="relative w-full aspect-square bg-white rounded-[1.5rem] flex items-center justify-center shadow-[0_8px_20px_-10px_rgb(168,85,247,0.2)] border border-purple-100/50 group-hover:shadow-[0_20px_40px_-12px_rgba(168,85,247,0.25)] group-hover:border-purple-200 transition-all duration-300 overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-br from-purple-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                  <div className="relative z-10 p-3 bg-gradient-to-br from-purple-50 to-purple-100/50 rounded-xl group-hover:from-purple-600 group-hover:to-purple-700 transition-all duration-300">
-                    <Icon className="w-5 h-5 text-purple-600 group-hover:text-white transition-colors" />
+                <div className="relative w-full aspect-square bg-white rounded-[1.5rem] flex items-center justify-center shadow-[0_8px_20px_-10px_rgba(0,0,0,0.1)] border border-gray-100 group-hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.15)] group-hover:border-gray-200 transition-all duration-300 overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-br from-gray-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <div className="relative z-10 p-3 bg-gradient-to-br from-gray-50 to-gray-100/50 rounded-xl group-hover:from-black group-hover:to-gray-900 transition-all duration-300">
+                    <Icon className="w-5 h-5 text-black group-hover:text-white transition-colors" />
                   </div>
                 </div>
-                <span className="text-[10px] font-black text-purple-900 tracking-tight text-center leading-tight">
+                <span className="text-[10px] font-black text-black tracking-tight text-center leading-tight">
                   {link.label}
                 </span>
               </motion.button>
@@ -1230,34 +1230,34 @@ export default function ToHub() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="bg-white rounded-[2rem] p-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-purple-100/50 space-y-6 relative overflow-hidden"
+          className="bg-white rounded-[2rem] p-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 space-y-6 relative overflow-hidden"
         >
           {isDateLoading && (
             <div className="absolute inset-0 z-20 flex items-center justify-center">
               <div className="absolute inset-0 bg-white/60 backdrop-blur-[1px] rounded-[2rem]" />
               <div className="relative flex flex-col items-center gap-2">
-                <div className="w-8 h-8 border-4 border-purple-200 border-t-purple-600 rounded-full animate-spin" />
-                <p className="text-[10px] font-black text-purple-600 uppercase tracking-widest">Refreshing</p>
+                <div className="w-8 h-8 border-4 border-gray-100 border-t-black rounded-full animate-spin" />
+                <p className="text-[10px] font-black text-black uppercase tracking-widest">Refreshing</p>
               </div>
             </div>
           )}
 
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="p-2.5 bg-purple-50 rounded-xl">
-                <BarChart3 className="w-5 h-5 text-purple-600" />
+              <div className="p-2.5 bg-gray-50 rounded-xl">
+                <BarChart3 className="w-5 h-5 text-black" />
               </div>
               <div>
-                <p className="text-base font-black text-purple-900 tracking-tight">Financial Insights</p>
-                <p className="text-[10px] font-bold text-purple-400 uppercase tracking-wider">Last updated: Just now</p>
+                <p className="text-base font-black text-black tracking-tight">Financial Insights</p>
+                <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Last updated: Just now</p>
               </div>
             </div>
             <div className="relative">
               <button
                 onClick={() => setShowLearnMoreButton(showLearnMoreButton === 'sales' ? null : 'sales')}
-                className="p-2 rounded-xl hover:bg-purple-50 transition-colors"
+                className="p-2 rounded-xl hover:bg-gray-50 transition-colors"
               >
-                <MoreVertical className="w-5 h-5 text-purple-400" />
+                <MoreVertical className="w-5 h-5 text-gray-400" />
               </button>
               <AnimatePresence>
                 {showLearnMoreButton === 'sales' && (
@@ -1269,7 +1269,7 @@ export default function ToHub() {
                   >
                     <button
                       onClick={(e) => handleLearnMoreClick('sales', e)}
-                      className="bg-white border border-purple-100 shadow-xl rounded-xl px-6 py-3 text-xs font-black text-purple-900 uppercase tracking-widest hover:bg-purple-50 whitespace-nowrap"
+                      className="bg-white border border-gray-100 shadow-xl rounded-xl px-6 py-3 text-xs font-black text-black uppercase tracking-widest hover:bg-gray-50 whitespace-nowrap"
                     >
                       Know more
                     </button>
@@ -1281,14 +1281,14 @@ export default function ToHub() {
 
           <div className="space-y-6">
             {[
-              { title: "Net sales", value: "₹0 • 0%", dataKey: "sales", color: "#9333ea" },
-              { title: "Orders delivered", value: "0 • 0%", dataKey: "orders", color: "#a855f7" },
-              { title: "Avg. order value", value: "₹0 • 0%", dataKey: "sales", color: "#c084fc" },
+              { title: "Net sales", value: "₹0 • 0%", dataKey: "sales", color: "#000000" },
+              { title: "Orders delivered", value: "0 • 0%", dataKey: "orders", color: "#374151" },
+              { title: "Avg. order value", value: "₹0 • 0%", dataKey: "sales", color: "#6b7280" },
             ].map((section, idx) => (
-              <div key={section.title} className={`${idx < 2 ? "pb-6 border-b border-dashed border-purple-100" : ""} space-y-3`}>
+              <div key={section.title} className={`${idx < 2 ? "pb-6 border-b border-dashed border-gray-100" : ""} space-y-3`}>
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-black text-purple-900 uppercase tracking-wider">{section.title}</span>
-                  <span className="text-sm font-black text-purple-600 font-mono tracking-tighter">{section.value}</span>
+                  <span className="text-xs font-black text-black uppercase tracking-wider">{section.title}</span>
+                  <span className="text-sm font-black text-black/60 font-mono tracking-tighter">{section.value}</span>
                 </div>
                 <div className="h-12 chart-shell-mini opacity-60">
                   <ResponsiveContainer width="100%" height="100%">
@@ -1317,7 +1317,7 @@ export default function ToHub() {
             whileHover={{ scale: 1.02, y: -2 }}
             whileTap={{ scale: 0.98 }}
             onClick={() => setActiveTopTab("sales")}
-            className="w-full bg-gradient-to-r from-purple-600 to-purple-800 text-white py-4 rounded-2xl text-[10px] font-black uppercase tracking-[0.2em] shadow-lg shadow-purple-200 flex items-center justify-center gap-2 group"
+            className="w-full bg-black text-white py-4 rounded-2xl text-[10px] font-black uppercase tracking-[0.2em] shadow-lg shadow-black/5 flex items-center justify-center gap-2 group"
           >
             Get deeper insights
             <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -1330,35 +1330,35 @@ export default function ToHub() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="bg-white rounded-[2rem] p-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-purple-100/50 space-y-6 relative"
+          className="bg-white rounded-[2rem] p-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 space-y-6 relative"
         >
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="p-2.5 bg-purple-50 rounded-xl">
-                <Users className="w-5 h-5 text-purple-600" />
+              <div className="p-2.5 bg-gray-50 rounded-xl">
+                <Users className="w-5 h-5 text-black" />
               </div>
               <div>
-                <p className="text-base font-black text-purple-900 tracking-tight">Customer Analytics</p>
-                <p className="text-[10px] font-bold text-purple-400 uppercase tracking-wider">Active users</p>
+                <p className="text-base font-black text-black tracking-tight">Customer Analytics</p>
+                <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Active users</p>
               </div>
             </div>
           </div>
 
           <div className="space-y-4">
             {customersMetrics.map((metric) => (
-              <div key={metric.title} className="flex items-center justify-between p-4 bg-purple-50/30 rounded-2xl border border-purple-100/50">
+              <div key={metric.title} className="flex items-center justify-between p-4 bg-gray-50 rounded-2xl border border-gray-100">
                 <div className="flex items-center gap-3">
                   <div
                     className="w-1.5 h-10 rounded-full"
-                    style={{ backgroundColor: metric.color }}
+                    style={{ backgroundColor: "#000000" }}
                   />
                   <div className="flex flex-col">
-                    <span className="text-xs font-black text-purple-900 uppercase tracking-wider">{metric.title}</span>
-                    <span className="text-[10px] font-bold text-purple-400 tracking-tight leading-tight">{metric.sub}</span>
+                    <span className="text-xs font-black text-black uppercase tracking-wider">{metric.title}</span>
+                    <span className="text-[10px] font-bold text-gray-400 tracking-tight leading-tight">{metric.sub}</span>
                   </div>
                 </div>
                 <div className="text-right">
-                  <p className="text-xl font-black text-purple-900">{metric.value}</p>
+                  <p className="text-xl font-black text-black">{metric.value}</p>
                   <p className="text-[10px] font-black text-green-600">{metric.change}</p>
                 </div>
               </div>
@@ -1369,7 +1369,7 @@ export default function ToHub() {
             whileHover={{ scale: 1.02, y: -2 }}
             whileTap={{ scale: 0.98 }}
             onClick={() => setActiveTopTab("customers")}
-            className="w-full bg-gradient-to-r from-purple-600 to-purple-800 text-white py-4 rounded-2xl text-[10px] font-black uppercase tracking-[0.2em] shadow-lg shadow-purple-200"
+            className="w-full bg-black text-white py-4 rounded-2xl text-[10px] font-black uppercase tracking-[0.2em] shadow-lg shadow-black/5"
           >
             Get deeper insights
           </motion.button>
@@ -1381,36 +1381,36 @@ export default function ToHub() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="bg-white rounded-[2rem] p-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-purple-100/50 space-y-6 relative"
+          className="bg-white rounded-[2rem] p-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 space-y-6 relative"
         >
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="p-2.5 bg-purple-50 rounded-xl">
-                <CalendarRange className="w-5 h-5 text-purple-600" />
+              <div className="p-2.5 bg-gray-50 rounded-xl">
+                <CalendarRange className="w-5 h-5 text-black" />
               </div>
               <div>
-                <p className="text-base font-black text-purple-900 tracking-tight">Orders by Mealtime</p>
-                <p className="text-[10px] font-bold text-purple-400 uppercase tracking-wider">Peak hour distribution</p>
+                <p className="text-base font-black text-black tracking-tight">Orders by Mealtime</p>
+                <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Peak hour distribution</p>
               </div>
             </div>
           </div>
 
           <div className="space-y-3">
             {mealtimeMetrics.map((slot) => (
-              <div key={slot.title} className="flex items-center justify-between p-3 rounded-2xl bg-purple-50/20 border border-purple-100/30">
+              <div key={slot.title} className="flex items-center justify-between p-3 rounded-2xl bg-gray-50 border border-gray-100/30">
                 <div className="flex items-center gap-3">
                   <div
                     className="w-2 h-2 rounded-full"
-                    style={{ backgroundColor: slot.color }}
+                    style={{ backgroundColor: "#000000" }}
                   />
                   <div className="flex flex-col">
-                    <span className="text-xs font-black text-purple-900 uppercase tracking-wider">{slot.title}</span>
-                    <span className="text-[10px] font-bold text-purple-400 tracking-tight">{slot.window}</span>
+                    <span className="text-xs font-black text-black uppercase tracking-wider">{slot.title}</span>
+                    <span className="text-[10px] font-bold text-gray-400 tracking-tight">{slot.window}</span>
                   </div>
                 </div>
                 <div className="text-right">
-                  <p className="text-sm font-black text-purple-900 tracking-tighter">{slot.value}</p>
-                  <p className="text-[10px] font-bold text-purple-400">{slot.change}</p>
+                  <p className="text-sm font-black text-black tracking-tighter">{slot.value}</p>
+                  <p className="text-[10px] font-bold text-gray-400">{slot.change}</p>
                 </div>
               </div>
             ))}
@@ -1423,29 +1423,29 @@ export default function ToHub() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="bg-white rounded-[2rem] p-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-purple-100/50 space-y-6 relative"
+          className="bg-white rounded-[2rem] p-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 space-y-6 relative"
         >
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="p-2.5 bg-purple-50 rounded-xl">
-                <Wand2 className="w-5 h-5 text-purple-600" />
+              <div className="p-2.5 bg-gray-50 rounded-xl">
+                <Wand2 className="w-5 h-5 text-black" />
               </div>
               <div>
-                <p className="text-base font-black text-purple-900 tracking-tight">Active Offers</p>
-                <p className="text-[10px] font-bold text-purple-400 uppercase tracking-wider">Campaign performance</p>
+                <p className="text-base font-black text-black tracking-tight">Active Offers</p>
+                <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Campaign performance</p>
               </div>
             </div>
           </div>
 
           <div className="grid grid-cols-2 gap-4">
             {offersMetrics.map((metric) => (
-              <div key={metric.title} className="p-4 rounded-2xl bg-purple-50/40 border border-purple-100/50 flex flex-col gap-1">
-                <span className="text-[10px] font-black text-purple-400 uppercase tracking-widest">{metric.title}</span>
+              <div key={metric.title} className="p-4 rounded-2xl bg-gray-50 border border-gray-100 flex flex-col gap-1">
+                <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">{metric.title}</span>
                 <div className="flex items-baseline gap-1.5">
-                  <span className="text-lg font-black text-purple-900 tracking-tighter">{metric.value}</span>
+                  <span className="text-lg font-black text-black tracking-tighter">{metric.value}</span>
                   <span className="text-[10px] font-black text-green-600 font-mono tracking-tight">{metric.change}</span>
                 </div>
-                <span className="text-[10px] font-bold text-purple-300 tracking-tight mt-1">{metric.sub}</span>
+                <span className="text-[10px] font-bold text-gray-400 tracking-tight mt-1">{metric.sub}</span>
               </div>
             ))}
           </div>
@@ -1454,7 +1454,7 @@ export default function ToHub() {
             whileHover={{ scale: 1.02, y: -2 }}
             whileTap={{ scale: 0.98 }}
             onClick={() => setActiveTopTab("offers")}
-            className="w-full bg-gradient-to-r from-purple-600 to-purple-800 text-white py-4 rounded-2xl text-[10px] font-black uppercase tracking-[0.2em] shadow-lg shadow-purple-200"
+            className="w-full bg-black text-white py-4 rounded-2xl text-[10px] font-black uppercase tracking-[0.2em] shadow-lg shadow-black/5"
           >
             Get deeper insights
           </motion.button>
@@ -1525,40 +1525,40 @@ export default function ToHub() {
           <motion.div
             initial={{ opacity: 0, scale: 0.98 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="bg-white rounded-[2rem] p-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-purple-100/50 space-y-6 relative overflow-hidden"
+            className="bg-white rounded-[2rem] p-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 space-y-6 relative overflow-hidden"
           >
             {isDateLoading && (
               <div className="absolute inset-0 z-20 flex items-center justify-center">
                 <div className="absolute inset-0 bg-white/60 backdrop-blur-[1px] rounded-[2rem]" />
                 <div className="relative flex flex-col items-center gap-2">
-                  <div className="w-8 h-8 border-4 border-purple-200 border-t-purple-600 rounded-full animate-spin" />
-                  <p className="text-[10px] font-black text-purple-600 uppercase tracking-widest">Refreshing</p>
+                  <div className="w-8 h-8 border-4 border-gray-100 border-t-black rounded-full animate-spin" />
+                  <p className="text-[10px] font-black text-black uppercase tracking-widest">Refreshing</p>
                 </div>
               </div>
             )}
 
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className="p-2.5 bg-purple-50 rounded-xl">
-                  <BarChart3 className="w-5 h-5 text-purple-600" />
+                <div className="p-2.5 bg-gray-50 rounded-xl">
+                  <BarChart3 className="w-5 h-5 text-black" />
                 </div>
                 <div>
-                  <p className="text-base font-black text-purple-900 tracking-tight">Sales Analysis</p>
-                  <p className="text-[10px] font-bold text-purple-400 uppercase tracking-wider">Metrics Overview</p>
+                  <p className="text-base font-black text-black tracking-tight">Sales Analysis</p>
+                  <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Metrics Overview</p>
                 </div>
               </div>
             </div>
 
             <div className="space-y-6">
               {[
-                { title: "Net sales", value: "₹0 • 0%", dataKey: "sales", color: "#9333ea" },
-                { title: "Orders delivered", value: "0 • 0%", dataKey: "orders", color: "#a855f7" },
-                { title: "Avg. order value", value: "₹0 • 0%", dataKey: "sales", color: "#c084fc" },
+                { title: "Net sales", value: "₹0 • 0%", dataKey: "sales", color: "#000000" },
+                { title: "Orders delivered", value: "0 • 0%", dataKey: "orders", color: "#374151" },
+                { title: "Avg. order value", value: "₹0 • 0%", dataKey: "sales", color: "#6b7280" },
               ].map((section, idx) => (
-                <div key={section.title} className={`${idx < 2 ? "pb-6 border-b border-dashed border-purple-100" : ""} space-y-3`}>
-                  <div className="flex items-center justify-between text-xs font-black text-purple-900 uppercase tracking-wider">
+                <div key={section.title} className={`${idx < 2 ? "pb-6 border-b border-dashed border-gray-100" : ""} space-y-3`}>
+                  <div className="flex items-center justify-between text-xs font-black text-black uppercase tracking-wider">
                     <span>{section.title}</span>
-                    <span className="text-purple-600">{section.value}</span>
+                    <span className="text-black/60">{section.value}</span>
                   </div>
                   <div className="h-12 chart-shell-mini opacity-60">
                     <ResponsiveContainer width="100%" height="100%">
@@ -1590,24 +1590,24 @@ export default function ToHub() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="bg-white rounded-[2rem] p-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-purple-100/50 space-y-6 relative overflow-hidden"
+            className="bg-white rounded-[2rem] p-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 space-y-6 relative overflow-hidden"
           >
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-base font-black text-purple-900 tracking-tight">Sales & Orders</p>
-                <p className="text-[10px] font-bold text-purple-400 uppercase tracking-wider">Correlation Chart</p>
+                <p className="text-base font-black text-black tracking-tight">Sales & Orders</p>
+                <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Correlation Chart</p>
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-6 pb-6 border-b border-dashed border-purple-100">
+            <div className="grid grid-cols-2 gap-6 pb-6 border-b border-dashed border-gray-100">
               <div className="flex flex-col items-center">
-                <p className="text-[10px] font-black text-purple-400 uppercase tracking-widest mb-1">Net sales</p>
-                <p className="text-xl font-black text-purple-900 tracking-tighter">{totalSales || "₹0"}</p>
+                <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Net sales</p>
+                <p className="text-xl font-black text-black tracking-tighter">{totalSales || "₹0"}</p>
                 <p className="text-[10px] font-black text-green-600">- 0%</p>
               </div>
               <div className="flex flex-col items-center">
-                <p className="text-[10px] font-black text-purple-400 uppercase tracking-widest mb-1">Orders</p>
-                <p className="text-xl font-black text-purple-900 tracking-tighter">{totalOrders || "0"}</p>
+                <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Orders</p>
+                <p className="text-xl font-black text-black tracking-tighter">{totalOrders || "0"}</p>
                 <p className="text-[10px] font-black text-green-600">- 0%</p>
               </div>
             </div>
@@ -1617,20 +1617,20 @@ export default function ToHub() {
                 <AreaChart data={chartData} margin={{ top: 10, right: 12, left: -20, bottom: 0 }}>
                   <defs>
                     <linearGradient id="salesLargeGradient" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="5%" stopColor="#9333ea" stopOpacity={0.2} />
-                      <stop offset="95%" stopColor="#9333ea" stopOpacity={0} />
+                      <stop offset="5%" stopColor="#000000" stopOpacity={0.1} />
+                      <stop offset="95%" stopColor="#000000" stopOpacity={0} />
                     </linearGradient>
                   </defs>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#f3e8ff" vertical={false} />
+                  <CartesianGrid strokeDasharray="3 3" stroke="#f3f4f6" vertical={false} />
                   <XAxis
                     dataKey="hour"
-                    tick={{ fontSize: 10, fill: "#a855f7", fontWeight: 700 }}
+                    tick={{ fontSize: 10, fill: "#9ca3af", fontWeight: 700 }}
                     axisLine={false}
                     tickLine={false}
                   />
                   <YAxis
                     yAxisId="left"
-                    tick={{ fontSize: 10, fill: "#a855f7", fontWeight: 700 }}
+                    tick={{ fontSize: 10, fill: "#9ca3af", fontWeight: 700 }}
                     axisLine={false}
                     tickLine={false}
                   />
@@ -1642,10 +1642,10 @@ export default function ToHub() {
                     yAxisId="left"
                     type="monotone"
                     dataKey="sales"
-                    stroke="#9333ea"
+                    stroke="#000000"
                     strokeWidth={3}
                     fill="url(#salesLargeGradient)"
-                    dot={{ r: 4, fill: "#9333ea", stroke: "#fff", strokeWidth: 2 }}
+                    dot={{ r: 4, fill: "#000000", stroke: "#fff", strokeWidth: 2 }}
                     activeDot={{ r: 6 }}
                   />
                 </AreaChart>
@@ -1654,12 +1654,12 @@ export default function ToHub() {
 
             <div className="flex items-center justify-center gap-6">
               <div className="flex items-center gap-2">
-                <div className="w-2.5 h-2.5 rounded-full bg-purple-600 shadow-sm shadow-purple-200" />
-                <span className="text-[10px] font-black text-purple-900 uppercase tracking-widest">Net sales</span>
+                <div className="w-2.5 h-2.5 rounded-full bg-black shadow-sm" />
+                <span className="text-[10px] font-black text-black uppercase tracking-widest">Net sales</span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="w-2.5 h-2.5 rounded-full bg-purple-200/50 border border-purple-300" />
-                <span className="text-[10px] font-bold text-purple-400 uppercase tracking-widest">Target sales</span>
+                <div className="w-2.5 h-2.5 rounded-full bg-gray-100 border border-gray-300" />
+                <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Target sales</span>
               </div>
             </div>
           </motion.div>
@@ -1670,24 +1670,24 @@ export default function ToHub() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="bg-white rounded-[2rem] p-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-purple-100/50 space-y-6 relative overflow-hidden"
+            className="bg-white rounded-[2rem] p-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 space-y-6 relative overflow-hidden"
           >
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className="p-2.5 bg-purple-50 rounded-xl">
-                  <TrendingUp className="w-5 h-5 text-purple-600" />
+                <div className="p-2.5 bg-gray-50 rounded-xl">
+                  <TrendingUp className="w-5 h-5 text-black" />
                 </div>
                 <div>
-                  <p className="text-base font-black text-purple-900 tracking-tight">Avg. Order Value</p>
-                  <p className="text-[10px] font-bold text-purple-400 uppercase tracking-wider">AOV Trends</p>
+                  <p className="text-base font-black text-black tracking-tight">Avg. Order Value</p>
+                  <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">AOV Trends</p>
                 </div>
               </div>
             </div>
 
-            <div className="flex flex-col items-center pb-6 border-b border-dashed border-purple-100">
-              <p className="text-[10px] font-black text-purple-400 uppercase tracking-widest mb-1">Current AOV</p>
+            <div className="flex flex-col items-center pb-6 border-b border-dashed border-gray-100">
+              <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Current AOV</p>
               <div className="flex items-baseline gap-2">
-                <p className="text-3xl font-black text-purple-900 tracking-tighter">₹0</p>
+                <p className="text-3xl font-black text-black tracking-tighter">₹0</p>
                 <p className="text-[10px] font-black text-green-600">- 0%</p>
               </div>
             </div>
@@ -1697,19 +1697,19 @@ export default function ToHub() {
                 <AreaChart data={aovData} margin={{ top: 10, right: 8, left: -20, bottom: 0 }}>
                   <defs>
                     <linearGradient id="aovGradient" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="5%" stopColor="#a855f7" stopOpacity={0.2} />
-                      <stop offset="95%" stopColor="#a855f7" stopOpacity={0} />
+                      <stop offset="5%" stopColor="#374151" stopOpacity={0.15} />
+                      <stop offset="95%" stopColor="#374151" stopOpacity={0} />
                     </linearGradient>
                   </defs>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#f3e8ff" vertical={false} />
+                  <CartesianGrid strokeDasharray="3 3" stroke="#f3f4f6" vertical={false} />
                   <XAxis
                     dataKey="hour"
-                    tick={{ fontSize: 10, fill: "#a855f7", fontWeight: 700 }}
+                    tick={{ fontSize: 10, fill: "#9ca3af", fontWeight: 700 }}
                     axisLine={false}
                     tickLine={false}
                   />
                   <YAxis
-                    tick={{ fontSize: 10, fill: "#a855f7", fontWeight: 700 }}
+                    tick={{ fontSize: 10, fill: "#9ca3af", fontWeight: 700 }}
                     axisLine={false}
                     tickLine={false}
                   />
@@ -1717,10 +1717,10 @@ export default function ToHub() {
                   <Area
                     type="monotone"
                     dataKey="aov"
-                    stroke="#a855f7"
+                    stroke="#374151"
                     strokeWidth={3}
                     fill="url(#aovGradient)"
-                    dot={{ r: 4, fill: "#a855f7", stroke: "#fff", strokeWidth: 2 }}
+                    dot={{ r: 4, fill: "#374151", stroke: "#fff", strokeWidth: 2 }}
                     activeDot={{ r: 6 }}
                   />
                 </AreaChart>
@@ -1799,7 +1799,7 @@ export default function ToHub() {
   )
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-purple-50 flex flex-col overflow-x-hidden">
+    <div className="min-h-screen bg-[#FAFAFA] flex flex-col overflow-x-hidden">
       <style>{`
         .chart-shell *, .chart-shell, .chart-shell-mini *, .chart-shell-mini,
         .recharts-wrapper:focus, .recharts-surface:focus, .recharts-responsive-container:focus {
@@ -1809,15 +1809,15 @@ export default function ToHub() {
       `}</style>
       <div className="">
         {/* Reuse Feedback-like navbar */}
-        <div className="sticky bg-white/80 backdrop-blur-md top-0 z-40 px-4 py-4 border-b border-purple-100/50 flex items-center justify-between shadow-sm">
+        <div className="sticky bg-white/80 backdrop-blur-md top-0 z-40 px-4 py-4 border-b border-gray-100 flex items-center justify-between shadow-sm">
           <div className="pl-1">
-            <p className="text-[10px] tracking-[0.18em] text-purple-400 font-black uppercase">
+            <p className="text-[10px] tracking-[0.18em] text-gray-400 font-black uppercase">
               Showing data for
             </p>
-            <h1 className="text-base font-black text-purple-900 mt-0.5 tracking-tight group flex items-center gap-1.5 cursor-pointer">
+            <h1 className="text-base font-black text-black mt-0.5 tracking-tight group flex items-center gap-1.5 cursor-pointer">
               {loadingRestaurant ? "Loading..." : restaurantData?.name || "Restaurant"}
-              <div className="p-1 bg-purple-50 rounded-lg group-hover:bg-purple-100 transition-colors">
-                <ChevronRight className="w-3.5 h-3.5 text-purple-600" />
+              <div className="p-1 bg-gray-50 rounded-lg group-hover:bg-gray-100 transition-colors">
+                <ChevronRight className="w-3.5 h-3.5 text-black" />
               </div>
             </h1>
           </div>
@@ -1826,26 +1826,26 @@ export default function ToHub() {
             <motion.button
               whileHover={{ scale: 1.1, rotate: 5 }}
               whileTap={{ scale: 0.9 }}
-              className="p-2.5 hover:bg-purple-50 rounded-xl transition-all"
+              className="p-2.5 hover:bg-gray-50 rounded-xl transition-all"
               onClick={() => navigate("/restaurant/notifications")}
             >
-              <BellRing className="w-5 h-5 text-purple-600" />
+              <BellRing className="w-5 h-5 text-black" />
             </motion.button>
             <motion.button
               whileHover={{ scale: 1.1, rotate: -5 }}
               whileTap={{ scale: 0.9 }}
-              className="p-2.5 hover:bg-purple-50 rounded-xl transition-all"
+              className="p-2.5 hover:bg-gray-50 rounded-xl transition-all"
               onClick={() => navigate("/restaurant/help-centre")}
             >
-              <CircleHelp className="w-5 h-5 text-purple-600" />
+              <CircleHelp className="w-5 h-5 text-black" />
             </motion.button>
             <motion.button
               whileHover={{ scale: 1.1, rotate: 10 }}
               whileTap={{ scale: 0.9 }}
-              className="p-2.5 hover:bg-purple-50 rounded-xl transition-all"
+              className="p-2.5 hover:bg-gray-50 rounded-xl transition-all"
               onClick={() => navigate("/restaurant/explore")}
             >
-              <Menu className="w-5 h-5 text-purple-600" />
+              <Menu className="w-5 h-5 text-black" />
             </motion.button>
           </div>
         </div>
@@ -1878,7 +1878,7 @@ export default function ToHub() {
                       setTimeout(() => setIsTransitioning(false), 300)
                     }
                   }}
-                  className={`shrink-0 px-8 py-3.5 rounded-full font-black text-xs uppercase tracking-widest whitespace-nowrap relative overflow-hidden transition-all duration-300 ${isActive ? 'text-white shadow-lg shadow-purple-200' : 'bg-white/50 backdrop-blur-sm text-purple-900 border border-purple-100/50 hover:bg-white'}`}
+                  className={`shrink-0 px-8 py-3.5 rounded-full font-black text-xs uppercase tracking-widest whitespace-nowrap relative overflow-hidden transition-all duration-300 ${isActive ? 'text-white shadow-lg shadow-black/5' : 'bg-white/50 backdrop-blur-sm text-black border border-gray-100 hover:bg-white'}`}
                   animate={{ scale: isActive ? 1.05 : 1, opacity: isActive ? 1 : 0.7 }}
                   transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
                   whileTap={{ scale: 0.95 }}
@@ -1886,7 +1886,7 @@ export default function ToHub() {
                   {isActive && (
                     <motion.div
                       layoutId="hubTopTabActive"
-                      className="absolute inset-0 bg-gradient-to-r from-purple-600 to-purple-800 rounded-full -z-10"
+                      className="absolute inset-0 bg-black rounded-full -z-10"
                       initial={false}
                       transition={{
                         type: "spring",

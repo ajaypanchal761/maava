@@ -685,37 +685,37 @@ export default function Feedback() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-purple-50 flex flex-col">
+    <div className="min-h-screen bg-[#FAFAFA] flex flex-col">
       {/* Header */}
       <div className="">
         {/* Top row - restaurant label + icons */}
-        <div className="sticky bg-white/80 backdrop-blur-md top-0 z-40 px-4 py-4 border-b border-purple-100/50 flex items-center justify-between shadow-sm">
+        <div className="sticky bg-white top-0 z-40 px-4 py-4 border-b border-gray-100 flex items-center justify-between shadow-sm">
           <div>
-            <p className="text-[10px] tracking-[0.15em] text-purple-400 font-bold uppercase">
+            <p className="text-[10px] tracking-[0.15em] text-gray-400 font-bold uppercase">
               Showing data for
             </p>
-            <p className="text-base font-extrabold text-purple-700 mt-0.5">
+            <p className="text-base font-extrabold text-black mt-0.5">
               {isLoadingRestaurant ? "Loading..." : (restaurantData?.name || "Restaurant")}
             </p>
           </div>
           <div className="flex items-center gap-1">
             <button
-              className="p-2.5 hover:bg-purple-50 rounded-xl transition-all"
+              className="p-2.5 hover:bg-gray-100 rounded-xl transition-all"
               onClick={() => navigate("/restaurant/notifications")}
             >
-              <Bell className="w-5 h-5 text-purple-600" />
+              <Bell className="w-5 h-5 text-black" />
             </button>
             <button
-              className="p-2.5 hover:bg-purple-50 rounded-xl transition-all"
+              className="p-2.5 hover:bg-gray-100 rounded-xl transition-all"
               onClick={() => navigate("/restaurant/help-centre")}
             >
-              <HelpCircle className="w-5 h-5 text-purple-600" />
+              <HelpCircle className="w-5 h-5 text-black" />
             </button>
             <button
-              className="p-2.5 hover:bg-purple-50 rounded-xl transition-all"
+              className="p-2.5 hover:bg-gray-100 rounded-xl transition-all"
               onClick={() => navigate("/restaurant/explore")}
             >
-              <Menu className="w-5 h-5 text-purple-600" />
+              <Menu className="w-5 h-5 text-black" />
             </button>
           </div>
         </div>
@@ -729,7 +729,7 @@ export default function Feedback() {
                 key={tab.id}
                 type="button"
                 onClick={() => setActiveTab(tab.id)}
-                className={`px-6 py-3.5 rounded-full text-sm font-bold whitespace-nowrap relative overflow-hidden ${isActive ? "text-white" : "bg-white text-gray-600 border border-purple-100/50 shadow-sm"
+                className={`px-6 py-3.5 rounded-full text-sm font-bold whitespace-nowrap relative overflow-hidden ${isActive ? "text-white" : "bg-white text-gray-600 border border-gray-100 shadow-sm"
                   }`}
                 animate={{
                   scale: isActive ? 1.05 : 1,
@@ -740,7 +740,7 @@ export default function Feedback() {
                 {isActive && (
                   <motion.div
                     layoutId="feedbackTabActive"
-                    className="absolute inset-0 bg-purple-600 rounded-full -z-10"
+                    className="absolute inset-0 bg-black rounded-full -z-10"
                     initial={false}
                     transition={{
                       type: "spring",
@@ -759,11 +759,11 @@ export default function Feedback() {
         {activeTab === "complaints" && (
           <div className="flex items-center gap-2 px-4 pb-2">
             <button
-              className="flex-1 bg-white flex items-center justify-between rounded-xl px-4 py-3 border border-purple-100/50 hover:bg-purple-50 transition-all shadow-sm"
+              className="flex-1 bg-white flex items-center justify-between rounded-xl px-4 py-3 border border-gray-100 hover:bg-gray-50 transition-all shadow-sm"
               onClick={() => setIsDateSelectorOpen(true)}
             >
               <div className="flex flex-col items-start">
-                <span className="text-sm font-bold text-purple-700">
+                <span className="text-sm font-bold text-black">
                   {selectedDateRange === "last5days" ? "Last 5 days" :
                     selectedDateRange === "today" ? "Today so far" :
                       selectedDateRange === "yesterday" ? "Yesterday" :
@@ -775,19 +775,19 @@ export default function Feedback() {
                                   `${formatDateShort(customDateRange.start)} - ${formatDateShort(customDateRange.end)}` :
                                   "Last 5 days"}
                 </span>
-                <span className="text-[10px] text-purple-400 font-medium">
+                <span className="text-[10px] text-gray-400 font-medium">
                   Select your own date range
                 </span>
               </div>
               <div className="flex items-center gap-2">
-                <Calendar className="w-4 h-4 text-purple-600" />
+                <Calendar className="w-4 h-4 text-black" />
               </div>
             </button>
             <button
-              className="w-14 self-stretch rounded-xl bg-white border border-purple-100/50 flex items-center justify-center hover:bg-purple-50 transition-all shadow-sm active:scale-95"
+              className="w-14 self-stretch rounded-xl bg-white border border-gray-100 flex items-center justify-center hover:bg-gray-50 transition-all shadow-sm active:scale-95"
               onClick={() => setIsComplaintsFilterOpen(true)}
             >
-              <SlidersHorizontal className="w-5 h-5 text-purple-600" />
+              <SlidersHorizontal className="w-5 h-5 text-black" />
             </button>
           </div>
         )}
@@ -827,24 +827,24 @@ export default function Feedback() {
                 ) : (
                   <div className="space-y-4 pb-6">
                     {complaints.map((complaint) => (
-                      <div key={complaint._id} className="bg-white rounded-3xl p-5 border border-purple-100/50 shadow-sm">
+                      <div key={complaint._id} className="bg-white rounded-3xl p-5 border border-gray-100 shadow-sm">
                         <div className="flex items-start justify-between mb-3">
                           <div>
-                            <p className="font-extrabold text-purple-900">{complaint.customerName}</p>
-                            <p className="text-[10px] text-purple-400 font-bold uppercase tracking-wider">Order #{complaint.orderNumber}</p>
+                            <p className="font-extrabold text-black">{complaint.customerName}</p>
+                            <p className="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Order #{complaint.orderNumber}</p>
                           </div>
                         </div>
-                        <p className="text-sm font-bold text-purple-700 mb-1">{complaint.subject}</p>
+                        <p className="text-sm font-bold text-black mb-1">{complaint.subject}</p>
                         <p className="text-sm text-gray-600 font-medium leading-relaxed mb-4">{complaint.description}</p>
                         {complaint.restaurantResponse && (
-                          <div className="bg-purple-50 rounded-2xl p-4 mt-3 border border-purple-100/30">
-                            <p className="text-[10px] font-bold text-purple-400 uppercase tracking-widest mb-1.5">Your Response</p>
-                            <p className="text-sm text-purple-900 font-medium">{complaint.restaurantResponse}</p>
+                          <div className="bg-gray-50 rounded-2xl p-4 mt-3 border border-gray-100">
+                            <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1.5">Your Response</p>
+                            <p className="text-sm text-black font-medium">{complaint.restaurantResponse}</p>
                           </div>
                         )}
                         <div className="flex items-center gap-1.5 mt-4">
-                          <Calendar className="w-3 h-3 text-purple-300" />
-                          <p className="text-[10px] text-purple-300 font-bold">
+                          <Calendar className="w-3 h-3 text-gray-300" />
+                          <p className="text-[10px] text-gray-400 font-bold">
                             {new Date(complaint.createdAt).toLocaleDateString('en-IN', {
                               day: 'numeric',
                               month: 'short',
@@ -863,29 +863,29 @@ export default function Feedback() {
               <div className="space-y-2 pb-6">
                 {/* Search + filter */}
                 <div className="flex items-center gap-2 mb-4">
-                  <div className="flex-1 bg-white rounded-xl border border-purple-100/50 p-4 shrink-0 shadow-sm flex items-center gap-3">
-                    <Search className="w-4 h-4 text-purple-400" />
+                  <div className="flex-1 bg-white rounded-xl border border-gray-100 p-4 shrink-0 shadow-sm flex items-center gap-3">
+                    <Search className="w-4 h-4 text-gray-400" />
                     <input
                       type="text"
                       placeholder="Search reviews"
-                      className="flex-1 text-sm text-gray-900 placeholder-purple-300 bg-transparent focus:outline-none"
+                      className="flex-1 text-sm text-gray-900 placeholder-gray-300 bg-transparent focus:outline-none"
                     />
                   </div>
                   <button
-                    className="w-14 self-stretch rounded-xl bg-white border border-purple-100/50 flex items-center justify-center hover:bg-purple-50 transition-all shadow-sm active:scale-95"
+                    className="w-14 self-stretch rounded-xl bg-white border border-gray-100 flex items-center justify-center hover:bg-gray-50 transition-all shadow-sm active:scale-95"
                     onClick={() => setIsFilterOpen(true)}
                   >
-                    <SlidersHorizontal className="w-5 h-5 text-purple-600" />
+                    <SlidersHorizontal className="w-5 h-5 text-black" />
                   </button>
                 </div>
 
                 {/* Reviews heading + info */}
                 <div className="flex items-end justify-between px-1 mt-6 mb-2">
-                  <h2 className="text-base font-extrabold text-purple-700">
+                  <h2 className="text-base font-extrabold text-black">
                     Reviews ({displayedReviews.length})
                   </h2>
-                  <div className="flex items-center gap-1.5 text-[10px] text-purple-400 font-bold uppercase tracking-wider">
-                    <span className="w-4 h-4 rounded-full bg-purple-100 flex items-center justify-center text-[8px]">ⓘ</span>
+                  <div className="flex items-center gap-1.5 text-[10px] text-gray-400 font-bold uppercase tracking-wider">
+                    <span className="w-4 h-4 rounded-full bg-gray-50 flex items-center justify-center text-[8px] border border-gray-100">ⓘ</span>
                     <span>Delivery reviews private to you</span>
                   </div>
                 </div>
@@ -914,15 +914,15 @@ export default function Feedback() {
                     displayedReviews.map((review) => (
                       <div
                         key={review.id}
-                        className="rounded-3xl bg-white p-5 space-y-4 shadow-sm border border-purple-100/20 cursor-pointer"
+                        className="rounded-3xl bg-white p-5 space-y-4 shadow-sm border border-gray-100 cursor-pointer"
                         onClick={() => handleReviewClick(review)}
                       >
                         {/* Order & outlet */}
                         <div className="flex items-center justify-between">
-                          <span className="text-[10px] font-bold text-purple-400 uppercase tracking-widest truncate">
+                          <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest truncate">
                             ORDER #{review.orderNumber}
                           </span>
-                          <span className="text-[10px] font-bold text-purple-300 truncate max-w-[150px]">
+                          <span className="text-[10px] font-bold text-gray-300 truncate max-w-[150px]">
                             {review.outlet}
                           </span>
                         </div>
@@ -933,50 +933,50 @@ export default function Feedback() {
                             <img
                               src={review.userImage}
                               alt={review.userName}
-                              className="h-10 w-10 rounded-full object-cover border-2 border-purple-50 shadow-sm"
+                              className="h-10 w-10 rounded-full object-cover border-2 border-gray-50 shadow-sm"
                             />
                             <div className="absolute -bottom-1 -right-1 bg-white rounded-full p-0.5 shadow-sm">
                               <div className="w-3 h-3 rounded-full bg-green-500 border-2 border-white"></div>
                             </div>
                           </div>
                           <div>
-                            <p className="text-sm font-extrabold text-purple-900">
+                            <p className="text-sm font-extrabold text-black">
                               {review.userName}
                             </p>
-                            <p className="text-[10px] text-purple-400 font-bold uppercase tracking-wider">
+                            <p className="text-[10px] text-gray-400 font-bold uppercase tracking-wider">
                               {review.ordersCount} ORDER{review.ordersCount !== 1 ? 'S' : ''} WITH YOU
                             </p>
                           </div>
                         </div>
 
                         {/* Rating + text card */}
-                        <div className="mt-2 rounded-2xl bg-purple-50 p-4 relative border border-purple-100/30">
+                        <div className="mt-2 rounded-2xl bg-gray-50/50 p-4 relative border border-gray-100/50">
                           {/* Speech bubble tail */}
-                          <div className="absolute -top-2 left-4 w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-b-[8px] border-b-purple-50"></div>
+                          <div className="absolute -top-2 left-4 w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-b-[8px] border-b-gray-50/50"></div>
                           <div className="flex items-center justify-between mb-2">
-                            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple-600 text-white text-[10px] font-extrabold shadow-sm">
+                            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black text-white text-[10px] font-extrabold shadow-sm">
                               {review.rating} ★
                             </span>
-                            <span className="text-[10px] font-bold text-purple-300">
+                            <span className="text-[10px] font-bold text-gray-400">
                               {review.date}
                             </span>
                           </div>
-                          <p className="text-sm text-purple-900 font-medium leading-relaxed">
+                          <p className="text-sm text-black font-medium leading-relaxed">
                             {review.reviewText}
                           </p>
                         </div>
 
                         {/* Reply section - show if reply exists */}
                         {review.reply && (
-                          <div className="mt-2 rounded-2xl bg-white px-4 py-3 relative border border-purple-100">
+                          <div className="mt-2 rounded-2xl bg-white px-4 py-3 relative border border-gray-100">
                             {/* Speech bubble tail for reply */}
                             <div className="absolute -top-2 right-4 w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-b-[8px] border-b-white"></div>
                             <div className="flex items-center justify-between mb-1.5">
-                              <span className="text-[10px] text-purple-400 font-bold uppercase tracking-widest">
+                              <span className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">
                                 Your reply
                               </span>
                             </div>
-                            <p className="text-sm text-purple-800 font-medium">
+                            <p className="text-sm text-gray-800 font-medium">
                               {review.reply}
                             </p>
                           </div>
@@ -985,13 +985,13 @@ export default function Feedback() {
                         {/* Reply link */}
                         <div className="flex justify-end pt-1">
                           <button
-                            className="text-xs font-bold text-purple-600 flex items-center gap-1.5 bg-purple-50 px-4 py-2 rounded-xl transition-all hover:bg-purple-100 active:scale-95"
+                            className="text-xs font-bold text-black border border-gray-100 flex items-center gap-1.5 bg-white px-4 py-2 rounded-xl transition-all hover:bg-gray-50 active:scale-95"
                             onClick={(e) => {
                               e.stopPropagation()
                               handleReviewClick(review)
                             }}
                           >
-                            <Reply className="w-4 h-4" />
+                            <Reply className="w-3.5 h-3.5 text-purple-600" />
                             <span>{review.reply ? "Edit Reply" : "Reply"}</span>
                           </button>
                         </div>
@@ -1028,14 +1028,14 @@ export default function Feedback() {
               onClick={(e) => e.stopPropagation()}
             >
               {/* Header */}
-              <div className="sticky top-0 bg-white border-b border-purple-100 flex items-center gap-3 z-10 px-4 py-4">
+              <div className="sticky top-0 bg-white border-b border-gray-100 flex items-center gap-3 z-10 px-4 py-4">
                 <button
                   onClick={handleCloseModal}
-                  className="p-1.5 hover:bg-purple-50 rounded-xl transition-all"
+                  className="p-1.5 hover:bg-gray-100 rounded-xl transition-all"
                 >
-                  <ChevronLeft className="w-6 h-6 text-purple-700" />
+                  <ChevronLeft className="w-6 h-6 text-black" />
                 </button>
-                <h2 className="text-lg font-extrabold text-purple-900">Review Details</h2>
+                <h2 className="text-lg font-extrabold text-black">Review Details</h2>
               </div>
 
               {/* Content */}
@@ -1050,45 +1050,45 @@ export default function Feedback() {
                   <img
                     src={selectedReview.userImage}
                     alt={selectedReview.userName}
-                    className="h-12 w-12 rounded-full object-cover border-2 border-purple-50 shadow-sm"
+                    className="h-12 w-12 rounded-full object-cover border-2 border-gray-50 shadow-sm"
                   />
                   <div>
-                    <p className="text-base font-extrabold text-purple-900">
+                    <p className="text-base font-extrabold text-black">
                       {selectedReview.userName}
                     </p>
-                    <p className="text-[10px] text-purple-400 font-bold uppercase tracking-wider">
+                    <p className="text-[10px] text-gray-400 font-bold uppercase tracking-wider">
                       {selectedReview.ordersCount} ORDER{selectedReview.ordersCount !== 1 ? 'S' : ''} WITH YOU
                     </p>
                   </div>
                 </div>
 
                 {/* Rating + text card */}
-                <div className="mt-1 rounded-2xl bg-purple-50 px-4 py-3 relative mb-6 border border-purple-100/30">
+                <div className="mt-1 rounded-2xl bg-gray-50 px-4 py-3 relative mb-6 border border-gray-100">
                   {/* Speech bubble tail */}
-                  <div className="absolute -top-2 left-4 w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-b-[8px] border-b-purple-50"></div>
+                  <div className="absolute -top-2 left-4 w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-b-[8px] border-b-gray-50"></div>
                   <div className="flex items-center justify-between mb-2">
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple-600 text-white text-[10px] font-extrabold shadow-sm">
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black text-white text-[10px] font-extrabold shadow-sm">
                       {selectedReview.rating} ★
                     </span>
-                    <span className="text-[10px] font-bold text-purple-300">
+                    <span className="text-[10px] font-bold text-gray-400">
                       {selectedReview.date}
                     </span>
                   </div>
-                  <p className="text-sm text-purple-900 font-medium leading-relaxed">
+                  <p className="text-sm text-black font-medium leading-relaxed">
                     {selectedReview.reviewText}
                   </p>
                 </div>
               </div>
 
               {/* Reply Input Area */}
-              <div className="sticky bottom-0 bg-white border-t border-purple-100 px-4 py-4 pb-8">
+              <div className="sticky bottom-0 bg-white border-t border-gray-100 px-4 py-4 pb-8">
                 <div className="flex items-center gap-2">
                   <input
                     type="text"
                     value={replyText}
                     onChange={(e) => setReplyText(e.target.value)}
                     placeholder="Type your reply"
-                    className="flex-1 px-5 py-3 rounded-xl border border-purple-100 text-sm text-gray-900 placeholder-purple-300 bg-purple-50/30 focus:outline-none focus:ring-2 focus:ring-purple-400/50"
+                    className="flex-1 px-5 py-3 rounded-xl border border-gray-100 text-sm text-gray-900 placeholder-gray-300 bg-gray-50/50 focus:outline-none focus:ring-2 focus:ring-black/5"
                     onKeyPress={(e) => {
                       if (e.key === "Enter" && replyText.trim()) {
                         handleSendReply()
@@ -1099,8 +1099,8 @@ export default function Feedback() {
                     onClick={handleSendReply}
                     disabled={!replyText.trim()}
                     className={`w-12 h-12 rounded-xl flex items-center justify-center transition-all shadow-md active:scale-95 ${replyText.trim()
-                      ? "bg-purple-600 text-white hover:bg-purple-700"
-                      : "bg-purple-100 text-purple-300 cursor-not-allowed shadow-none"
+                      ? "bg-black text-white"
+                      : "bg-gray-100 text-gray-300 cursor-not-allowed shadow-none"
                       }`}
                   >
                     <Send className="w-5 h-5" />
@@ -1136,11 +1136,11 @@ export default function Feedback() {
               onClick={(e) => e.stopPropagation()}
             >
               {/* Header */}
-              <div className="flex items-center justify-between px-4 py-4 border-b border-purple-100/50">
-                <h2 className="text-lg font-extrabold text-purple-900">Filters</h2>
+              <div className="flex items-center justify-between px-4 py-4 border-b border-gray-100">
+                <h2 className="text-lg font-extrabold text-black">Filters</h2>
                 <button
                   onClick={() => setIsFilterOpen(false)}
-                  className="w-10 h-10 bg-purple-600 rounded-full flex items-center justify-center hover:bg-purple-700 transition-colors shadow-md shadow-purple-200"
+                  className="w-10 h-10 bg-black rounded-full flex items-center justify-center hover:bg-black/90 transition-colors shadow-md"
                 >
                   <X className="w-5 h-5 text-white" />
                 </button>
@@ -1149,7 +1149,7 @@ export default function Feedback() {
               {/* Content - Two Column Layout */}
               <div className="flex-1 overflow-hidden flex">
                 {/* Left Column - Filter Categories */}
-                <div className="w-32 bg-purple-50/50 border-r border-purple-100 flex flex-col">
+                <div className="w-32 bg-gray-50 border-r border-gray-100 flex flex-col">
                   {[
                     { id: "duration", label: "Duration" },
                     { id: "sortBy", label: "Sort by" },
@@ -1159,8 +1159,8 @@ export default function Feedback() {
                       key={cat.id}
                       onClick={() => setSelectedFilterCategory(cat.id)}
                       className={`p-5 text-left text-xs font-bold uppercase tracking-widest transition-all ${selectedFilterCategory === cat.id
-                        ? "bg-white text-purple-700 border-l-4 border-purple-600 shadow-sm"
-                        : "text-purple-400 hover:bg-purple-50"
+                        ? "bg-white text-black border-l-4 border-black"
+                        : "text-gray-400 hover:bg-white"
                         }`}
                     >
                       {cat.label}
@@ -1311,7 +1311,7 @@ export default function Feedback() {
                               }))
                             }
                           }}
-                          className="w-5 h-5 text-purple-600 border-purple-200 focus:ring-purple-500 rounded"
+                          className="w-5 h-5 text-black border-gray-100 focus:ring-black rounded"
                         />
                         <span className="text-sm text-gray-900 font-medium">Delivery</span>
                       </label>
@@ -1321,16 +1321,16 @@ export default function Feedback() {
               </div>
 
               {/* Footer - Action Buttons */}
-              <div className="border-t border-purple-100 px-6 py-6 flex gap-4">
+              <div className="border-t border-gray-100 px-6 py-6 flex gap-4">
                 <button
                   onClick={handleFilterReset}
-                  className="flex-1 py-4 text-sm font-extrabold text-purple-600 hover:bg-purple-50 rounded-2xl transition-all border border-purple-100"
+                  className="flex-1 py-4 text-sm font-extrabold text-black hover:bg-gray-50 rounded-2xl transition-all border border-gray-100"
                 >
                   Reset
                 </button>
                 <button
                   onClick={handleFilterApply}
-                  className="flex-1 bg-purple-600 text-white py-4 rounded-2xl font-extrabold shadow-md shadow-purple-200 hover:bg-purple-700 transition-all active:scale-95"
+                  className="flex-1 bg-black text-white py-4 rounded-2xl font-extrabold shadow-md hover:bg-black/90 transition-all active:scale-95"
                 >
                   Apply
                 </button>
@@ -1359,8 +1359,8 @@ export default function Feedback() {
               className="fixed bottom-0 left-0 right-0 bg-white rounded-t-2xl shadow-2xl z-[9999] max-h-[85vh] flex flex-col"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="px-4 py-5 border-b border-purple-100/50">
-                <h2 className="text-lg font-extrabold text-purple-900 text-center">Date Range Selection</h2>
+              <div className="px-4 py-5 border-b border-gray-100">
+                <h2 className="text-lg font-extrabold text-black text-center">Date Range Selection</h2>
               </div>
               <div className="flex-1 overflow-y-auto px-4 py-4">
                 {(() => {
@@ -1383,15 +1383,15 @@ export default function Feedback() {
                           onClick={() => handleDateRangeSelect(option.id)}
                         >
                           <div className="flex flex-col">
-                            <span className="text-sm font-extrabold text-purple-900">{option.label}</span>
-                            <span className="text-[10px] text-purple-400 font-bold uppercase tracking-wider mt-0.5">{option.date}</span>
+                            <span className="text-sm font-extrabold text-black">{option.label}</span>
+                            <span className="text-[10px] text-gray-400 font-bold uppercase tracking-wider mt-0.5">{option.date}</span>
                           </div>
                           <input
                             type="radio"
                             name="dateRange"
                             checked={selectedDateRange === option.id}
                             onChange={() => handleDateRangeSelect(option.id)}
-                            className="w-5 h-5 text-purple-600 border-purple-200 focus:ring-purple-500"
+                            className="w-5 h-5 text-black border-gray-100 focus:ring-black"
                           />
                         </label>
                       ))}
@@ -1400,19 +1400,19 @@ export default function Feedback() {
                         className="w-full flex items-center justify-between py-2 cursor-pointer"
                       >
                         <div className="flex flex-col text-start">
-                          <span className="text-sm font-extrabold text-start text-purple-900">Custom Date</span>
-                          <span className="text-[10px] text-purple-400 font-bold uppercase tracking-wider mt-0.5">Select your own range</span>
+                          <span className="text-sm font-extrabold text-start text-black">Custom Date</span>
+                          <span className="text-[10px] text-gray-400 font-bold uppercase tracking-wider mt-0.5">Select your own range</span>
                         </div>
-                        <ChevronRight className="w-5 h-5 text-purple-300" />
+                        <ChevronRight className="w-5 h-5 text-gray-300" />
                       </button>
                     </div>
                   )
                 })()}
               </div>
-              <div className="border-t border-purple-100 px-6 py-6 flex gap-4">
+              <div className="border-t border-gray-100 px-6 py-6 flex gap-4">
                 <button
                   onClick={() => setIsDateSelectorOpen(false)}
-                  className="flex-1 py-4 text-sm font-extrabold text-purple-600 hover:bg-purple-50 rounded-2xl transition-all border border-purple-100"
+                  className="flex-1 py-4 text-sm font-extrabold text-black hover:bg-gray-50 rounded-2xl transition-all border border-gray-100"
                 >
                   Cancel
                 </button>
@@ -1424,7 +1424,7 @@ export default function Feedback() {
                       setIsComplaintsLoading(false)
                     }, 200)
                   }}
-                  className="flex-1 bg-purple-600 text-white py-4 rounded-2xl font-extrabold shadow-md shadow-purple-200 hover:bg-purple-700 transition-all active:scale-95"
+                  className="flex-1 bg-black text-white py-4 rounded-2xl font-extrabold shadow-md hover:bg-black/90 transition-all active:scale-95"
                 >
                   Apply
                 </button>
@@ -1456,17 +1456,17 @@ export default function Feedback() {
               className="fixed bottom-0 left-0 right-0 bg-white rounded-t-2xl shadow-2xl z-[10000] max-h-[85vh] flex flex-col"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="px-4 py-5 border-b border-purple-100 flex items-center justify-between">
+              <div className="px-4 py-5 border-b border-gray-100 flex items-center justify-between">
                 <button
                   onClick={() => {
                     setIsCustomDateOpen(false)
                     setIsDateSelectorOpen(true)
                   }}
-                  className="p-1.5 hover:bg-purple-50 rounded-xl transition-all"
+                  className="p-1.5 hover:bg-gray-100 rounded-xl transition-all"
                 >
-                  <ChevronLeft className="w-6 h-6 text-purple-700" />
+                  <ChevronLeft className="w-6 h-6 text-black" />
                 </button>
-                <h2 className="text-lg font-extrabold text-purple-900">Custom Date</h2>
+                <h2 className="text-lg font-extrabold text-black">Custom Date</h2>
                 <div className="w-8" />
               </div>
               <div className="flex-1 overflow-y-auto p-4">
@@ -1483,19 +1483,19 @@ export default function Feedback() {
                   }}
                 />
               </div>
-              <div className="border-t border-purple-100 px-6 py-6 flex gap-4">
+              <div className="border-t border-gray-100 px-6 py-6 flex gap-4">
                 <button
                   onClick={() => {
                     setIsCustomDateOpen(false)
                     setIsDateSelectorOpen(true)
                   }}
-                  className="flex-1 py-4 text-sm font-extrabold text-purple-600 hover:bg-purple-50 rounded-2xl transition-all border border-purple-100"
+                  className="flex-1 py-4 text-sm font-extrabold text-black hover:bg-gray-50 rounded-2xl transition-all border border-gray-100"
                 >
                   Cancel
                 </button>
                 <button
                   onClick={handleCustomDateApply}
-                  className="flex-1 bg-purple-600 text-white py-4 rounded-2xl font-extrabold shadow-md shadow-purple-200 hover:bg-purple-700 transition-all active:scale-95"
+                  className="flex-1 bg-black text-white py-4 rounded-2xl font-extrabold shadow-md hover:bg-black/90 transition-all active:scale-95"
                 >
                   Apply
                 </button>
@@ -1524,12 +1524,12 @@ export default function Feedback() {
               className="fixed bottom-0 left-0 right-0 bg-white rounded-t-2xl shadow-2xl z-[9999] h-[65vh] flex flex-col"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="px-4 py-5 border-b border-purple-100/50">
-                <h2 className="text-lg font-extrabold text-purple-900 text-center">Filters</h2>
+              <div className="px-4 py-5 border-b border-gray-100">
+                <h2 className="text-lg font-extrabold text-black text-center">Filters</h2>
               </div>
               <div className="flex-1 overflow-hidden flex">
                 {/* Left Column - Filter Categories */}
-                <div className="w-32 bg-purple-50/50 border-r border-purple-100 flex flex-col">
+                <div className="w-32 bg-gray-50 border-r border-gray-100 flex flex-col">
                   {[
                     { id: "issueType", label: "Issue Type" },
                     { id: "reasons", label: "Reasons" }
@@ -1538,8 +1538,8 @@ export default function Feedback() {
                       key={cat.id}
                       onClick={() => setSelectedComplaintsFilterCategory(cat.id)}
                       className={`p-5 text-left text-xs font-bold uppercase tracking-widest transition-all ${selectedComplaintsFilterCategory === cat.id
-                        ? "bg-white text-purple-700 border-l-4 border-purple-600 shadow-sm"
-                        : "text-purple-400 hover:bg-purple-50"
+                        ? "bg-white text-black border-l-4 border-black"
+                        : "text-gray-400 hover:bg-white"
                         }`}
                     >
                       {cat.label}
@@ -1553,13 +1553,13 @@ export default function Feedback() {
                     <div className="p-4">
                       <div className="mb-4">
                         <div className="relative">
-                          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-purple-400" />
+                          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
                           <input
                             type="text"
                             value={complaintsSearchQuery}
                             onChange={(e) => setComplaintsSearchQuery(e.target.value)}
                             placeholder="Search"
-                            className="w-full pl-10 pr-4 py-3 text-sm text-gray-900 placeholder-purple-300 bg-purple-50/30 border border-purple-100/50 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-400/50"
+                            className="w-full pl-10 pr-4 py-3 text-sm text-gray-900 placeholder-gray-300 bg-gray-50/50 border border-gray-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-black/5"
                           />
                         </div>
                       </div>
@@ -1584,9 +1584,9 @@ export default function Feedback() {
                                   }))
                                 }
                               }}
-                              className="w-5 h-5 text-purple-600 border-purple-200 focus:ring-purple-500 rounded"
+                              className="w-5 h-5 text-black border-gray-100 focus:ring-black rounded"
                             />
-                            <span className="text-sm text-purple-900 font-bold">{option}</span>
+                            <span className="text-sm text-black font-bold">{option}</span>
                           </label>
                         ))}
                       </div>
@@ -1597,13 +1597,13 @@ export default function Feedback() {
                     <div className="p-4">
                       <div className="mb-4">
                         <div className="relative">
-                          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-purple-400" />
+                          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
                           <input
                             type="text"
                             value={complaintsSearchQuery}
                             onChange={(e) => setComplaintsSearchQuery(e.target.value)}
                             placeholder="Search"
-                            className="w-full pl-10 pr-4 py-3 text-sm text-gray-900 placeholder-purple-300 bg-purple-50/30 border border-purple-100/50 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-400/50"
+                            className="w-full pl-10 pr-4 py-3 text-sm text-gray-900 placeholder-gray-300 bg-gray-50/50 border border-gray-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-black/5"
                           />
                         </div>
                       </div>
@@ -1635,9 +1635,9 @@ export default function Feedback() {
                                   }))
                                 }
                               }}
-                              className="w-5 h-5 text-purple-600 border-purple-200 focus:ring-purple-500 rounded"
+                              className="w-5 h-5 text-black border-gray-100 focus:ring-black rounded"
                             />
-                            <span className="text-sm text-purple-900 font-bold">{option}</span>
+                            <span className="text-sm text-black font-bold">{option}</span>
                           </label>
                         ))}
                       </div>
@@ -1647,16 +1647,16 @@ export default function Feedback() {
               </div>
 
               {/* Footer - Action Buttons */}
-              <div className="border-t border-purple-100 px-6 py-6 flex gap-4">
+              <div className="border-t border-gray-100 px-6 py-6 flex gap-4">
                 <button
                   onClick={handleComplaintsFilterReset}
-                  className="flex-1 py-4 text-sm font-extrabold text-purple-600 hover:bg-purple-50 rounded-2xl transition-all border border-purple-100"
+                  className="flex-1 py-4 text-sm font-extrabold text-black hover:bg-gray-50 rounded-2xl transition-all border border-gray-100"
                 >
                   Clear all
                 </button>
                 <button
                   onClick={handleComplaintsFilterApply}
-                  className="flex-1 bg-purple-600 text-white py-4 rounded-2xl font-extrabold shadow-md shadow-purple-200 hover:bg-purple-700 transition-all active:scale-95"
+                  className="flex-1 bg-black text-white py-4 rounded-2xl font-extrabold shadow-md hover:bg-black/90 transition-all active:scale-95"
                 >
                   Apply
                 </button>
