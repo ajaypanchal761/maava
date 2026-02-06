@@ -275,8 +275,8 @@ export const sidebarMenuData = [
       },
       {
         type: "link",
-        label: "Dining Management",
-        path: "/admin/dining-management",
+        label: "In Mart Management",
+        path: "/admin/inmart-management",
         icon: "UtensilsCrossed",
       },
     ],

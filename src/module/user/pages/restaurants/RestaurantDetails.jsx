@@ -1681,8 +1681,8 @@ export default function RestaurantDetails() {
                                   initial={{ opacity: 0, scale: 0.8 }}
                                   animate={{ opacity: 1, scale: 1 }}
                                   className={`absolute -bottom-2 left-1/2 -translate-x-1/2 bg-white border font-bold px-4 py-1.5 rounded-lg shadow-md flex items-center gap-1 ${shouldShowGrayscale
-                                      ? 'border-gray-300 text-gray-400 cursor-not-allowed opacity-50'
-                                      : 'border-green-600 text-green-600 hover:bg-green-50'
+                                    ? 'border-gray-300 text-gray-400 cursor-not-allowed opacity-50'
+                                    : 'border-green-600 text-green-600 hover:bg-green-50'
                                     }`}
                                 >
                                   <button
@@ -1725,8 +1725,8 @@ export default function RestaurantDetails() {
                                   }}
                                   disabled={shouldShowGrayscale}
                                   className={`absolute -bottom-2 left-1/2 -translate-x-1/2 bg-white border font-bold px-6 py-1.5 rounded-lg shadow-md flex items-center gap-1 transition-colors ${shouldShowGrayscale
-                                      ? 'border-gray-300 text-gray-400 cursor-not-allowed opacity-50'
-                                      : 'border-green-600 text-green-600 hover:bg-green-50'
+                                    ? 'border-gray-300 text-gray-400 cursor-not-allowed opacity-50'
+                                    : 'border-green-600 text-green-600 hover:bg-green-50'
                                     }`}
                                 >
                                   ADD <Plus size={14} className="stroke-[3px]" />
@@ -1893,8 +1893,8 @@ export default function RestaurantDetails() {
                                             initial={{ opacity: 0, scale: 0.8 }}
                                             animate={{ opacity: 1, scale: 1 }}
                                             className={`absolute -bottom-2 left-1/2 -translate-x-1/2 bg-white border font-bold px-4 py-1.5 rounded-lg shadow-md flex items-center gap-1 ${shouldShowGrayscale
-                                                ? 'border-gray-300 text-gray-400 cursor-not-allowed opacity-50'
-                                                : 'border-green-600 text-green-600 hover:bg-green-50'
+                                              ? 'border-gray-300 text-gray-400 cursor-not-allowed opacity-50'
+                                              : 'border-green-600 text-green-600 hover:bg-green-50'
                                               }`}
                                           >
                                             <button
@@ -1937,8 +1937,8 @@ export default function RestaurantDetails() {
                                             }}
                                             disabled={shouldShowGrayscale}
                                             className={`absolute -bottom-2 left-1/2 -translate-x-1/2 bg-white border font-bold px-6 py-1.5 rounded-lg shadow-md flex items-center gap-1 transition-colors ${shouldShowGrayscale
-                                                ? 'border-gray-300 text-gray-400 cursor-not-allowed opacity-50'
-                                                : 'border-green-600 text-green-600 hover:bg-green-50'
+                                              ? 'border-gray-300 text-gray-400 cursor-not-allowed opacity-50'
+                                              : 'border-green-600 text-green-600 hover:bg-green-50'
                                               }`}
                                           >
                                             ADD <Plus size={14} className="stroke-[3px]" />
@@ -2614,8 +2614,8 @@ export default function RestaurantDetails() {
                     <div className="flex items-center gap-4">
                       {/* Quantity Selector */}
                       <div className={`flex items-center gap-3 border-2 rounded-lg px-3 h-[44px] bg-white dark:bg-[#2a2a2a] ${shouldShowGrayscale
-                          ? 'border-gray-300 dark:border-gray-700 opacity-50'
-                          : 'border-gray-300 dark:border-gray-700'
+                        ? 'border-gray-300 dark:border-gray-700 opacity-50'
+                        : 'border-gray-300 dark:border-gray-700'
                         }`}>
                         <button
                           onClick={(e) => {
@@ -2625,15 +2625,15 @@ export default function RestaurantDetails() {
                           }}
                           disabled={(quantities[selectedItem.id] || 0) === 0 || shouldShowGrayscale}
                           className={`${shouldShowGrayscale
-                              ? 'text-gray-300 dark:text-gray-600 cursor-not-allowed'
-                              : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white disabled:text-gray-300 dark:disabled:text-gray-600 disabled:cursor-not-allowed'
+                            ? 'text-gray-300 dark:text-gray-600 cursor-not-allowed'
+                            : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white disabled:text-gray-300 dark:disabled:text-gray-600 disabled:cursor-not-allowed'
                             }`}
                         >
                           <Minus className="h-5 w-5" />
                         </button>
                         <span className={`text-lg font-semibold min-w-[2rem] text-center ${shouldShowGrayscale
-                            ? 'text-gray-400 dark:text-gray-600'
-                            : 'text-gray-900 dark:text-white'
+                          ? 'text-gray-400 dark:text-gray-600'
+                          : 'text-gray-900 dark:text-white'
                           }`}>
                           {quantities[selectedItem.id] || 0}
                         </span>
@@ -2656,8 +2656,8 @@ export default function RestaurantDetails() {
                       {/* Add Item Button */}
                       <Button
                         className={`flex-1 h-[44px] rounded-lg font-semibold flex items-center justify-center gap-2 ${shouldShowGrayscale
-                            ? 'bg-gray-300 dark:bg-gray-700 text-gray-500 dark:text-gray-600 cursor-not-allowed opacity-50'
-                            : 'bg-red-500 hover:bg-red-600 text-white'
+                          ? 'bg-gray-300 dark:bg-gray-700 text-gray-500 dark:text-gray-600 cursor-not-allowed opacity-50'
+                          : 'bg-red-500 hover:bg-red-600 text-white'
                           }`}
                         onClick={(e) => {
                           if (!shouldShowGrayscale) {

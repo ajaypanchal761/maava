@@ -369,7 +369,7 @@ export default function LandingPageManagement() {
     if (!restaurantSearchQuery.trim()) return true
     const query = restaurantSearchQuery.toLowerCase()
     return restaurant.name?.toLowerCase().includes(query) ||
-           restaurant.restaurantId?.toLowerCase().includes(query)
+      restaurant.restaurantId?.toLowerCase().includes(query)
   })
 
   // ==================== CATEGORIES ====================
@@ -1384,7 +1384,7 @@ export default function LandingPageManagement() {
                             </button>
                           </div>
                           <div className="flex items-center gap-2 flex-wrap">
-                            <button 
+                            <button
                               onClick={() => {
                                 setSelectedBannerId(banner._id)
                                 setSelectedRestaurantIds(banner.linkedRestaurants?.map(r => r._id || r) || [])
@@ -1674,11 +1674,10 @@ export default function LandingPageManagement() {
                     <button
                       key={tab.id}
                       onClick={() => setExploreMoreSubTab(tab.id)}
-                      className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-colors whitespace-nowrap ${
-                        exploreMoreSubTab === tab.id
+                      className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-colors whitespace-nowrap ${exploreMoreSubTab === tab.id
                           ? 'bg-blue-500 text-white'
                           : 'text-slate-600 hover:bg-slate-100'
-                      }`}
+                        }`}
                     >
                       <Icon className="w-4 h-4" />
                       {tab.label}
@@ -1725,8 +1724,8 @@ export default function LandingPageManagement() {
                         className="mt-1"
                       />
                     </div>
-                    <Button 
-                      onClick={handleAddTop10Restaurant} 
+                    <Button
+                      onClick={handleAddTop10Restaurant}
                       disabled={!selectedRestaurantTop10 || !selectedRank}
                       className="bg-blue-500 hover:bg-blue-600 text-white"
                     >
@@ -1822,8 +1821,8 @@ export default function LandingPageManagement() {
                           ))}
                       </select>
                     </div>
-                    <Button 
-                      onClick={handleAddGourmetRestaurant} 
+                    <Button
+                      onClick={handleAddGourmetRestaurant}
                       disabled={!selectedRestaurantGourmet}
                       className="bg-blue-500 hover:bg-blue-600 text-white"
                     >
@@ -1852,16 +1851,16 @@ export default function LandingPageManagement() {
                           const coverImages = item.restaurant?.coverImages && item.restaurant.coverImages.length > 0
                             ? item.restaurant.coverImages.map(img => img.url || img).filter(Boolean)
                             : []
-                          
+
                           const menuImages = item.restaurant?.menuImages && item.restaurant.menuImages.length > 0
                             ? item.restaurant.menuImages.map(img => img.url || img).filter(Boolean)
                             : []
-                          
+
                           const restaurantImage = coverImages.length > 0
                             ? coverImages[0]
                             : (menuImages.length > 0
-                                ? menuImages[0]
-                                : (item.restaurant?.profileImage?.url || "https://via.placeholder.com/400"))
+                              ? menuImages[0]
+                              : (item.restaurant?.profileImage?.url || "https://via.placeholder.com/400"))
 
                           return (
                             <div key={item._id} className="border border-slate-200 rounded-lg overflow-hidden">
@@ -1913,7 +1912,7 @@ export default function LandingPageManagement() {
                 Select restaurants that will be linked to this banner. When users click on this banner, they will be redirected to the selected restaurants.
               </DialogDescription>
             </DialogHeader>
-            
+
             <div className="flex-1 overflow-hidden flex flex-col">
               {/* Search Bar and Selected Count */}
               <div className="px-6 pt-4 pb-3 space-y-3 bg-slate-50 border-b border-slate-200">
@@ -1964,15 +1963,14 @@ export default function LandingPageManagement() {
                     {filteredRestaurantsForModal.map((restaurant) => {
                       const isSelected = selectedRestaurantIds.includes(restaurant._id)
                       const profileImageUrl = restaurant.profileImage?.url || restaurant.profileImage || null
-                      
+
                       return (
                         <div
                           key={restaurant._id}
-                          className={`px-6 py-4 transition-all cursor-pointer ${
-                            isSelected 
-                              ? 'bg-blue-50 border-l-4 border-l-blue-500' 
+                          className={`px-6 py-4 transition-all cursor-pointer ${isSelected
+                              ? 'bg-blue-50 border-l-4 border-l-blue-500'
                               : 'hover:bg-slate-50'
-                          }`}
+                            }`}
                           onClick={() => toggleRestaurantSelection(restaurant._id)}
                         >
                           <div className="flex items-center gap-4">
@@ -1984,7 +1982,7 @@ export default function LandingPageManagement() {
                                 className="w-5 h-5"
                               />
                             </div>
-                            
+
                             {/* Restaurant Image */}
                             <div className="flex-shrink-0">
                               {profileImageUrl ? (
@@ -1998,20 +1996,18 @@ export default function LandingPageManagement() {
                                   }}
                                 />
                               ) : null}
-                              <div 
-                                className={`w-16 h-16 rounded-xl bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white font-bold text-lg ${
-                                  profileImageUrl ? 'hidden' : 'flex'
-                                }`}
+                              <div
+                                className={`w-16 h-16 rounded-xl bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white font-bold text-lg ${profileImageUrl ? 'hidden' : 'flex'
+                                  }`}
                               >
                                 {restaurant.name?.charAt(0)?.toUpperCase() || 'R'}
                               </div>
                             </div>
-                            
+
                             {/* Restaurant Info */}
                             <div className="flex-1 min-w-0">
-                              <h3 className={`font-semibold text-base mb-1 ${
-                                isSelected ? 'text-blue-900' : 'text-slate-900'
-                              }`}>
+                              <h3 className={`font-semibold text-base mb-1 ${isSelected ? 'text-blue-900' : 'text-slate-900'
+                                }`}>
                                 {restaurant.name || 'Unnamed Restaurant'}
                               </h3>
                               <p className="text-sm text-slate-500 truncate">
@@ -2024,7 +2020,7 @@ export default function LandingPageManagement() {
                                 </div>
                               )}
                             </div>
-                            
+
                             {/* Selected Indicator */}
                             {isSelected && (
                               <div className="flex-shrink-0">

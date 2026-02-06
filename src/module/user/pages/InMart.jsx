@@ -1,5 +1,5 @@
 import { useState, useCallback, useEffect, useMemo } from "react"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
 import { motion, AnimatePresence } from "framer-motion"
 import {
   Search,
@@ -13,7 +13,8 @@ import {
   Sparkles,
   Shirt,
   ChevronRight,
-  Heart
+  Heart,
+  Mic
 } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import AnimatedPage from "../components/AnimatedPage"
@@ -116,6 +117,139 @@ const bestSellers = [
     originalPrice: 285,
     discount: "14%",
     image: "https://cdn.zeptonow.com/production/tr:w-640,ar-1-1,f-auto,q-70/inventory/product/94916a2d-8068-450f-9080-60fcf14a1e9c.png"
+  }
+];
+
+const groceryKitchenItems = [
+  {
+    id: 1,
+    name: "Fresh Vegetables",
+    slug: "fresh-vegetables",
+    image: "https://instamart-media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_200/NI_CATALOG/IMAGES/CIW/2025/10/8/323b2564-9fa9-43dd-9755-b5df299797d7_a7f60fc5-47fa-429d-9fd1-5f0644c0d4e3"
+  },
+  {
+    id: 2,
+    name: "Fresh Fruits",
+    slug: "fresh-fruits",
+    image: "https://instamart-media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_200/NI_CATALOG/IMAGES/CIW/2025/12/5/13a82fb6-aac6-4a94-af24-3a9522876d76_a27e7cc7-8e5f-4264-b978-c51531625dde"
+  },
+  {
+    id: 3,
+    name: "Dairy, Bread and Eggs",
+    slug: "dairy-bread-eggs",
+    image: "https://instamart-media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_200/NI_CATALOG/IMAGES/CIW/2025/12/24/ceb53190-72a3-466b-a892-8989615788c9_fe00456c-3b5a-4e74-80e2-c274a4c9f818.png"
+  },
+  {
+    id: 4,
+    name: "Meat and Seafood",
+    slug: "meat-seafood",
+    image: "https://instamart-media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_200/NI_CATALOG/IMAGES/CIW/2025/10/8/9c48b537-eef1-4047-becb-ddb7e79c373d_72aac542-4cef-4cf9-a9dd-5f1b862165c1"
+  }
+];
+
+const beautyWellnessItems = [
+  {
+    id: 1,
+    name: "Bath and Body",
+    image: "https://instamart-media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_200/NI_CATALOG/IMAGES/CIW/2025/10/8/46b1b550-1e5f-423e-967b-e1cf3a608bb8_13bc4f93-eab7-4263-a592-54f144d0eec6"
+  },
+  {
+    id: 2,
+    name: "Hair Care",
+    image: "https://instamart-media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_200/NI_CATALOG/IMAGES/CIW/2025/10/8/73dd2be1-fd81-4540-8286-02db395de0e5_5da6d646-978e-4b00-bfd4-63cbe897c0b2"
+  },
+  {
+    id: 3,
+    name: "Skincare",
+    image: "https://instamart-media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_200/NI_CATALOG/IMAGES/CIW/2025/10/8/d6930a4e-6a3c-44c9-8b6b-86f63e20434a_0c08d4e2-6423-4a9e-ad4b-35b339a149b0"
+  },
+  {
+    id: 4,
+    name: "Makeup",
+    image: "https://instamart-media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_200/NI_CATALOG/IMAGES/CIW/2025/10/8/7c05fd2b-1ea8-4ce4-9b9e-0ba402d3f698_b802ea7a-3d08-44f0-ac8e-4793e4806f67"
+  },
+  {
+    id: 5,
+    name: "Oral Care",
+    image: "https://instamart-media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_200/NI_CATALOG/IMAGES/CIW/2025/12/5/d753ff8d-4cdb-4548-bba2-b10e480cc6b2_28cfcd55-1e7f-4333-a5d5-15c023b8b58d"
+  },
+  {
+    id: 6,
+    name: "Grooming",
+    image: "https://instamart-media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_200/NI_CATALOG/IMAGES/CIW/2025/10/8/6fd76e5f-016b-4810-94fd-252eab4245a6_2edc9535-9e14-49cf-a05e-25fa4ca45cb8"
+  },
+  {
+    id: 7,
+    name: "Baby Care",
+    image: "https://instamart-media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_200/NI_CATALOG/IMAGES/CIW/2025/10/8/838ef0d0-8687-447a-8520-95b6700b70f6_a08f1496-3e1f-425f-bdd5-90d1e2bfce5d"
+  },
+  {
+    id: 8,
+    name: "Fragrances",
+    image: "https://instamart-media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_200/NI_CATALOG/IMAGES/CIW/2025/10/8/d0f1c0f3-5dc4-422e-9120-222c0afc4043_2588dd56-663e-43f0-a14b-1a537b8301a9"
+  }
+];
+
+const householdLifestyleItems = [
+  {
+    id: 1,
+    name: "Home and Furnishing",
+    image: "https://instamart-media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_200/NI_CATALOG/IMAGES/CIW/2025/10/8/28f9da5d-40d0-4791-9ad7-824e041320ff_dbef4796-189f-4a9f-86f7-f896aa5fddb2"
+  },
+  {
+    id: 2,
+    name: "Kitchen and Dining",
+    image: "https://instamart-media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_200/NI_CATALOG/IMAGES/CIW/2025/10/8/66ea9503-f944-4f5f-bb44-8608a0355e3a_ee7d3d13-c857-4e5a-96b1-3c79da306b9e"
+  },
+  {
+    id: 3,
+    name: "Cleaning Essentials",
+    image: "https://instamart-media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_200/NI_CATALOG/IMAGES/CIW/2025/10/8/b332fa4a-4a15-4c32-8bb8-f46b34ef13d5_ff40260d-3a00-40e7-b019-69ecebed8a91"
+  },
+  {
+    id: 4,
+    name: "Clothing",
+    image: "https://instamart-media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_200/NI_CATALOG/IMAGES/CIW/2025/10/8/93cce7bf-96cc-4ff6-adfc-a248c2a8cb94_783cd072-3e52-4daf-996a-4652d000d943"
+  },
+  {
+    id: 5,
+    name: "Mobiles and Electronics",
+    image: "https://instamart-media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_200/NI_CATALOG/IMAGES/CIW/2025/11/6/7b165e34-9f50-4dc8-ae7d-85f85aadad7a_e6d790c1-88b0-4922-901c-1584d65cf264"
+  },
+  {
+    id: 6,
+    name: "Appliances",
+    image: "https://instamart-media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_200/NI_CATALOG/IMAGES/CIW/2025/11/6/78c66d7c-517c-4b60-b879-bca877df5850_68de0373-8d3b-4945-8e81-60b93b732cc8"
+  },
+  {
+    id: 7,
+    name: "Books and Stationery",
+    image: "https://instamart-media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_200/NI_CATALOG/IMAGES/CIW/2025/10/8/e1e37212-1b34-4711-927e-bce563247de7_60934c30-e762-4a81-ba56-8bf6f30b6766"
+  },
+  {
+    id: 8,
+    name: "Jewellery and Accessories",
+    image: "https://instamart-media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_200/NI_CATALOG/IMAGES/CIW/2025/10/8/8e5a7ca9-0291-4e6a-8691-1c1bddb4e642_da8cf6a8-0e6d-4fb4-8e7d-9e1688b9cd07"
+  },
+  {
+    id: 9,
+    name: "Puja",
+    image: "https://instamart-media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_200/NI_CATALOG/IMAGES/CIW/2025/10/8/965c898a-bc67-4fe8-8fd4-d13e1eb79772_c38285f9-727d-422b-ad77-e1e22d4d251d"
+  },
+  {
+    id: 10,
+    name: "Toys and Games",
+    image: "https://instamart-media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_200/NI_CATALOG/IMAGES/CIW/2025/10/8/79f943d8-2977-4753-bab0-1a74f582d6b8_7a341dcf-099f-4617-a44f-d28c55de560a"
+  },
+  {
+    id: 11,
+    name: "Sports and Fitness",
+    image: "https://instamart-media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_200/NI_CATALOG/IMAGES/CIW/2025/10/8/06414bae-6149-4a26-8ca5-a5afffb3f753_171a212b-1edd-4a68-a424-46e240270a3b"
+  },
+  {
+    id: 12,
+    name: "Pet Supplies",
+    image: "https://instamart-media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_200/NI_CATALOG/IMAGES/CIW/2025/10/8/b936925b-340a-4d1a-a423-0ecbc989d8ee_f70daa6c-8b2f-45d5-86e5-ced16b437ce4"
   }
 ];
 
@@ -314,7 +448,7 @@ export default function InMart() {
         </div>
 
         {/* Hero Section with Search */}
-        <section className="relative z-20 w-full px-4 sm:px-6 lg:px-8 xl:px-12 mt-4 sm:mt-6 md:mt-8 py-4 sm:py-8">
+        <section className="relative z-20 w-full px-4 sm:px-6 lg:px-8 xl:px-12 mt-1 sm:mt-2 py-2 sm:py-4">
           <div className="max-w-7xl lg:max-w-[1400px] xl:max-w-[1600px] mx-auto">
             <div className="relative w-full overflow-hidden">
               <div className="flex items-center gap-3 sm:gap-4 md:gap-5 lg:gap-6">
@@ -324,11 +458,12 @@ export default function InMart() {
                   onClick={openSearch}
                 >
                   <Search className="absolute left-4 sm:left-5 top-1/2 -translate-y-1/2 text-gray-400 group-hover:text-[#8B5CF6] transition-colors w-5 h-5 sm:w-6 sm:h-6" strokeWidth={2.5} />
-                  <div className="w-full h-12 sm:h-14 md:h-16 bg-white dark:bg-[#1a1a1a] border-2 border-transparent group-hover:border-[#E7D1FF] rounded-2xl sm:rounded-[1.25rem] pl-12 sm:pl-14 pr-4 flex items-center shadow-[0_4px_20px_rgba(0,0,0,0.04)] transition-all">
+                  <div className="w-full h-12 sm:h-14 md:h-16 bg-white dark:bg-[#1a1a1a] border-2 border-transparent group-hover:border-[#E7D1FF] rounded-2xl sm:rounded-[1.25rem] pl-12 sm:pl-14 pr-12 flex items-center shadow-[0_4px_20px_rgba(0,0,0,0.04)] transition-all text-black">
                     <span className="text-gray-400 dark:text-gray-500 text-sm sm:text-base md:text-lg font-medium select-none truncate">
                       {placeholderItems[placeholderIndex]}
                     </span>
                   </div>
+                  <Mic className="absolute right-4 sm:right-5 top-1/2 -translate-y-1/2 text-gray-400 group-hover:text-[#8B5CF6] transition-colors w-5 h-5 sm:w-6 sm:h-6" strokeWidth={2.5} />
                 </div>
 
                 {/* Trending Deals Toggle - Hidden on mobile, shown on md+ */}
@@ -351,10 +486,10 @@ export default function InMart() {
         </section>
 
         {/* Categories Section */}
-        <section className="relative z-20 w-full mt-2 sm:mt-4 md:mt-6 pb-6 px-0 overflow-hidden">
+        <section className="relative z-20 w-full mt-1 sm:mt-2 pb-2 px-0 overflow-hidden">
           <div className="max-w-7xl lg:max-w-[1400px] xl:max-w-[1600px] mx-auto">
             <div
-              className="flex items-center gap-6 sm:gap-10 md:gap-14 overflow-x-auto scrollbar-hide pb-3 px-4 sm:px-6 lg:px-8 xl:px-12"
+              className="flex items-center gap-6 sm:gap-10 md:gap-14 overflow-x-auto scrollbar-hide pb-1 px-4 sm:px-6 lg:px-8 xl:px-12"
               style={{
                 scrollbarWidth: 'none',
                 msOverflowStyle: 'none',
@@ -368,22 +503,24 @@ export default function InMart() {
                   <button
                     key={cat.id}
                     onClick={() => setActiveCategory(cat.name)}
-                    className="flex items-center gap-2 sm:gap-3 group relative pb-2 px-1 transition-all hover:translate-y-[-2px]"
+                    className="flex flex-col items-center gap-1 sm:gap-2 group relative pb-3 px-1 transition-all hover:translate-y-[-2px] min-w-[60px] sm:min-w-[80px]"
                   >
-                    <Icon
-                      className="w-5 h-5 sm:w-7 sm:h-7 md:w-8 md:h-8"
-                      color="black"
-                      strokeWidth={isActive ? 3 : 2.5}
-                    />
+                    <div className={`p-2 sm:p-3 rounded-xl transition-all ${isActive ? 'bg-black/5' : 'group-hover:bg-black/5'}`}>
+                      <Icon
+                        className="w-6 h-6 sm:w-8 sm:h-8 md:w-9 md:h-9"
+                        color="black"
+                        strokeWidth={isActive ? 3 : 2.5}
+                      />
+                    </div>
                     <span
-                      className={`text-sm sm:text-lg md:text-xl font-bold transition-colors whitespace-nowrap text-black ${isActive ? 'opacity-100' : 'opacity-60 group-hover:opacity-100'}`}
+                      className={`text-[10px] sm:text-sm md:text-base font-bold transition-colors whitespace-nowrap text-black text-center ${isActive ? 'opacity-100' : 'opacity-60 group-hover:opacity-100'}`}
                     >
                       {cat.name}
                     </span>
                     {isActive && (
                       <motion.div
                         layoutId="activeIndicator"
-                        className="absolute bottom-0 left-0 right-0 h-1.5 bg-black rounded-full"
+                        className="absolute bottom-0 left-0 right-0 h-1 bg-black rounded-full"
                         style={{ width: '100%' }}
                         transition={{ type: "spring", stiffness: 300, damping: 30 }}
                       />
@@ -564,6 +701,97 @@ export default function InMart() {
           products={bestSellers}
           onSeeAll={() => { }}
         />
+
+        {/* Grocery & Kitchen Section */}
+        <section className="mb-12">
+          <div className="bg-white dark:bg-white/5 rounded-[2rem] sm:rounded-[3rem] p-6 sm:p-7 md:p-8 lg:p-10 shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-gray-100/50 dark:border-white/5">
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-extrabold text-gray-900 dark:text-white tracking-tight mb-8 px-1">
+              Grocery & Kitchen
+            </h2>
+            <div className="grid grid-cols-4 gap-2 sm:gap-4 md:gap-6 lg:gap-8">
+              {groceryKitchenItems.map((item) => (
+                <Link key={item.id} to={`/in-mart/products/${item.slug}`}>
+                  <motion.div
+                    whileHover={{ y: -3 }}
+                    className="flex flex-col items-center gap-1 group cursor-pointer"
+                  >
+                    <div className="w-full aspect-square bg-[#F5F9FF] dark:bg-white/5 rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden p-0 flex items-center justify-center transition-all group-hover:shadow-sm">
+                      <img
+                        src={item.image}
+                        alt={item.name}
+                        className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105"
+                        style={{ background: 'transparent' }}
+                      />
+                    </div>
+                    <span className="text-[10px] sm:text-xs md:text-sm lg:text-base font-bold text-gray-800 dark:text-gray-200 text-center leading-tight pt-1 px-1">
+                      {item.name}
+                    </span>
+                  </motion.div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Beauty & Wellness Section */}
+        <section className="mb-12">
+          <div className="bg-white dark:bg-white/5 rounded-[2rem] sm:rounded-[3rem] p-6 sm:p-7 md:p-8 lg:p-10 shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-gray-100/50 dark:border-white/5">
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-extrabold text-gray-900 dark:text-white tracking-tight mb-8 px-1">
+              Beauty & Wellness
+            </h2>
+            <div className="grid grid-cols-4 gap-2 sm:gap-4 md:gap-6 lg:gap-8 transition-all">
+              {beautyWellnessItems.map((item) => (
+                <motion.div
+                  key={item.id}
+                  whileHover={{ y: -3 }}
+                  className="flex flex-col items-center gap-1 group cursor-pointer"
+                >
+                  <div className="w-full aspect-square bg-[#FFF5F7] dark:bg-white/5 rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden p-0 flex items-center justify-center transition-all group-hover:shadow-sm">
+                    <img
+                      src={item.image}
+                      alt={item.name}
+                      className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105"
+                      style={{ background: 'transparent' }}
+                    />
+                  </div>
+                  <span className="text-[10px] sm:text-xs md:text-sm lg:text-base font-bold text-gray-800 dark:text-gray-200 text-center leading-tight pt-1 px-1">
+                    {item.name}
+                  </span>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Household & Lifestyle Section */}
+        <section className="mb-12">
+          <div className="bg-white dark:bg-white/5 rounded-[2rem] sm:rounded-[3rem] p-6 sm:p-7 md:p-8 lg:p-10 shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-gray-100/50 dark:border-white/5">
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-extrabold text-gray-900 dark:text-white tracking-tight mb-8 px-1">
+              Household & Lifestyle
+            </h2>
+            <div className="grid grid-cols-4 gap-2 sm:gap-4 md:gap-6 lg:gap-8 transition-all">
+              {householdLifestyleItems.map((item) => (
+                <motion.div
+                  key={item.id}
+                  whileHover={{ y: -3 }}
+                  className="flex flex-col items-center gap-1 group cursor-pointer"
+                >
+                  <div className="w-full aspect-square bg-[#F8F9FF] dark:bg-white/5 rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden p-0 flex items-center justify-center transition-all group-hover:shadow-sm">
+                    <img
+                      src={item.image}
+                      alt={item.name}
+                      className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105"
+                      style={{ background: 'transparent' }}
+                    />
+                  </div>
+                  <span className="text-[10px] sm:text-xs md:text-sm lg:text-base font-bold text-gray-800 dark:text-gray-200 text-center leading-tight pt-1 px-1">
+                    {item.name}
+                  </span>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
       </div>
     </AnimatedPage>
   )
