@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 import { ChevronUp } from "lucide-react"
 import { useCart } from "../context/CartContext"
 import { motion, AnimatePresence } from "framer-motion"
@@ -7,8 +7,27 @@ import { useScrollDirection } from "../hooks/useScrollDirection"
 export default function CartSummaryBar() {
     const { cart, itemCount } = useCart()
     const scrollDirection = useScrollDirection()
+    const location = useLocation()
 
     if (itemCount === 0) return null
+
+    // Check cart type and page type
+    const isHibermartCart = cart[0]?.restaurantId === 'hibermart-id' || cart[0]?.restaurant === 'Hibermart'
+    const isHibermartPage = location.pathname.startsWith("/in-mart") || location.pathname.startsWith("/user/in-mart")
+    const isSearchPage = location.pathname.includes("/search")
+
+    // Logic: 
+    // 1. Hide Hibermart cart on non-Hibermart pages (like Home, Under 250)
+    // 2. Hide Food cart on Hibermart pages.
+    // 3. Search page can show either.
+    if (!isSearchPage) {
+        if (isHibermartCart && !isHibermartPage) return null
+        if (!isHibermartCart && isHibermartPage) return null
+    }
+
+    // Dynamic colors
+    const themeColor = isHibermartCart ? "text-blue-600" : "text-green-600"
+    const buttonColor = isHibermartCart ? "bg-blue-600 hover:bg-blue-700" : "bg-green-600 hover:bg-green-700"
 
     // Calculate total savings
     const totalSavings = cart.reduce((sum, item) => {
@@ -52,7 +71,7 @@ export default function CartSummaryBar() {
                                 <span className="font-bold text-gray-900 dark:text-white text-sm">
                                     {itemCount} {itemCount === 1 ? 'Item' : 'Items'}
                                 </span>
-                                <ChevronUp size={16} className="text-blue-600" />
+                                <ChevronUp size={16} className={themeColor} />
                             </div>
                             {totalSavings > 0 && (
                                 <span className="text-green-600 text-xs font-bold">
@@ -65,7 +84,7 @@ export default function CartSummaryBar() {
                     {/* View Cart Button */}
                     <Link
                         to="/user/cart"
-                        className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-xl font-bold text-sm transition-colors shadow-sm"
+                        className={`${buttonColor} text-white px-6 py-2.5 rounded-xl font-bold text-sm transition-colors shadow-sm`}
                     >
                         View Cart
                     </Link>

@@ -1,26 +1,5 @@
-import { useState, useMemo } from "react"
-import { useNavigate, useParams } from "react-router-dom"
-import { motion } from "framer-motion"
-import { ArrowLeft, Search, Plus, SlidersHorizontal, ChevronDown } from "lucide-react"
-import AnimatedPage from "../components/AnimatedPage"
-import { Button } from "@/components/ui/button"
-
-const scrollbarStyles = `
-  .custom-vertical-scrollbar::-webkit-scrollbar {
-    width: 4px;
-  }
-  .custom-vertical-scrollbar::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 10px;
-  }
-  .custom-vertical-scrollbar::-webkit-scrollbar-thumb {
-    background: #ccc;
-    border-radius: 10px;
-  }
-  .custom-vertical-scrollbar::-webkit-scrollbar-thumb:hover {
-    background: #999;
-  }
-`;
+import { useParams } from "react-router-dom"
+import ProductCategoryView from "../components/ProductCategoryView"
 
 const sidebarCategories = [
     { id: 1, name: "Fresh Vegetables", icon: "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_96/NI_CATALOG/IMAGES/CIW/2025/3/19/b2676f05-a400-41d7-9972-bc7a182c9a57_6d253ad3-aa89-460e-adce-3e20698c008f" },
@@ -358,139 +337,12 @@ const vegetableProducts = [
 ]
 
 export default function InMartProductCategory() {
-    const navigate = useNavigate()
-    const { categorySlug } = useParams()
-    const [activeCategory, setActiveCategory] = useState("Fresh Vegetables")
-
     return (
-        <AnimatedPage className="bg-white" style={{ minHeight: '100vh', paddingBottom: '80px' }}>
-            <style>{scrollbarStyles}</style>
-            {/* Top Header */}
-            <header className="sticky top-0 z-50 flex items-center justify-between px-4 h-14 bg-white border-b border-gray-100">
-                <div className="flex items-center gap-4">
-                    <button onClick={() => navigate(-1)} className="p-1 -ml-1">
-                        <ArrowLeft className="w-6 h-6 text-gray-800" />
-                    </button>
-                    <h1 className="text-lg font-extrabold text-gray-900 tracking-tight">Fresh Vegetables</h1>
-                </div>
-                <button className="p-1">
-                    <Search className="w-6 h-6 text-gray-800" />
-                </button>
-            </header>
-
-            <div className="flex w-full">
-                {/* Left Sidebar */}
-                <aside className="w-[95px] sm:w-[110px] border-r border-gray-100 h-[calc(100vh-56px)] sticky top-14 bg-[#F9F9F9] overflow-y-auto custom-vertical-scrollbar transition-all">
-                    {sidebarCategories.map((cat) => {
-                        const isActive = activeCategory === cat.name;
-                        return (
-                            <button
-                                key={cat.id}
-                                onClick={() => setActiveCategory(cat.name)}
-                                className={`flex flex-col items-center py-5 px-1 w-full transition-all relative group ${isActive ? 'bg-white' : 'hover:bg-gray-50'}`}
-                            >
-                                <div className={`w-14 h-14 sm:w-16 sm:h-16 rounded-2xl overflow-hidden mb-2 flex items-center justify-center transition-all ${isActive ? 'ring-[3.5px] ring-slate-900 scale-105 shadow-xl bg-white' : 'bg-[#EBF4FF] opacity-80 group-hover:opacity-100 ring-1 ring-slate-100'}`}>
-                                    <img
-                                        src={cat.icon}
-                                        alt={cat.name}
-                                        className="w-[85%] h-[85%] object-contain"
-                                    />
-                                </div>
-                                <span className={`text-[10px] sm:text-[11px] leading-[1.1] font-bold text-center px-1 break-words max-w-[90px] transition-colors ${isActive ? 'text-slate-900' : 'text-slate-500 font-semibold'}`}>
-                                    {cat.name}
-                                </span>
-                            </button>
-                        );
-                    })}
-                </aside>
-
-                {/* Main Content */}
-                <main className="flex-1 bg-white h-[calc(100vh-56px)] overflow-y-auto custom-vertical-scrollbar">
-                    {/* Quick Filters */}
-                    <div className="sticky top-0 z-40 bg-white/80 backdrop-blur-md py-3 px-4 flex flex-col gap-3 border-b border-gray-50">
-                        <div className="flex items-center gap-2 overflow-x-auto scrollbar-hide">
-                            <Button variant="outline" className="rounded-xl h-8 px-3 border-gray-200 text-[10px] sm:text-xs font-bold gap-1.5 flex-shrink-0">
-                                Filters <SlidersHorizontal size={12} strokeWidth={3} />
-                            </Button>
-                            <Button variant="outline" className="rounded-xl h-8 px-4 border-gray-200 text-[10px] sm:text-xs font-bold flex-shrink-0">
-                                Gourmet
-                            </Button>
-                            <Button variant="outline" className="rounded-xl h-8 px-3 border-gray-200 text-[10px] sm:text-xs font-bold gap-1.5 flex-shrink-0">
-                                Sort By <ChevronDown size={12} strokeWidth={3} />
-                            </Button>
-                        </div>
-
-                        <div className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mt-1 px-1">Quick filters</div>
-
-                        <div className="flex items-center gap-2 overflow-x-auto scrollbar-hide">
-                            {["Vegetables", "Leafy and Seasonings", "Exotic Vegetables", "Organic"].map((filter, i) => (
-                                <button
-                                    key={i}
-                                    className={`px-3 py-1.5 rounded-full border text-[10px] sm:text-xs font-bold whitespace-nowrap transition-all ${i === 0 ? 'bg-white border-gray-900 text-gray-900' : 'bg-white border-gray-100 text-gray-500'}`}
-                                >
-                                    {filter}
-                                </button>
-                            ))}
-                        </div>
-                    </div>
-
-                    {/* Product Grid */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 p-4 gap-y-10 gap-x-6 sm:gap-x-8">
-                        {vegetableProducts.map((product) => (
-                            <div key={product.id} className="flex flex-col group relative max-w-[280px] mx-auto w-full">
-                                {/* Image Container */}
-                                <div className="relative aspect-square w-full rounded-2xl overflow-hidden mb-3 bg-[#F8F8F8] border border-gray-50">
-                                    <img src={product.image} alt={product.name} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
-
-                                    {/* Add Button */}
-                                    <Button
-                                        className="absolute top-2 right-2 w-8 h-8 rounded-lg bg-white shadow-md border border-gray-100 p-0 hover:bg-white active:scale-95 transition-all z-10"
-                                        variant="ghost"
-                                    >
-                                        <Plus className="w-5 h-5 text-blue-600" strokeWidth={3} />
-                                    </Button>
-
-                                    {/* Ad Tag & Veg Icon */}
-                                    <div className="absolute bottom-2 left-2 flex items-center gap-2 bg-white/60 backdrop-blur-md rounded px-1.5 py-0.5">
-                                        {product.isAd && <span className="text-[9px] font-extrabold text-gray-700 uppercase tracking-tighter">Ad</span>}
-                                        {product.isVeg && (
-                                            <div className="w-2.5 h-2.5 border border-green-600 flex items-center justify-center p-[1px] bg-white rounded-sm">
-                                                <div className="w-full h-full bg-green-600 rounded-full" />
-                                            </div>
-                                        )}
-                                    </div>
-                                </div>
-
-                                {/* Info Container */}
-                                <div className="space-y-1.5">
-                                    <div className="text-[9px] font-extrabold text-gray-400 uppercase tracking-wider">{product.deliveryTime}</div>
-                                    <h3 className="text-sm font-extrabold text-gray-800 line-clamp-2 leading-tight tracking-tight min-h-[40px] group-hover:text-blue-600 transition-colors">
-                                        {product.name}
-                                    </h3>
-                                    {product.desc && (
-                                        <p className="text-[11px] text-gray-400 line-clamp-2 leading-tight h-[30px]">
-                                            {product.desc}
-                                        </p>
-                                    )}
-                                    <div className="text-[11px] font-bold text-gray-500 mt-1">{product.weight}</div>
-
-                                    <div className="pt-2 flex flex-col gap-1">
-                                        <div className="text-[10px] font-black text-green-600 uppercase italic tracking-tighter self-start bg-green-50 px-1.5 py-0.5 rounded">
-                                            {product.discount}
-                                        </div>
-                                        <div className="flex items-center gap-2">
-                                            <span className="text-base font-black text-gray-900">₹{product.price}</span>
-                                            {product.originalPrice && (
-                                                <span className="text-xs text-gray-400 line-through font-medium">₹{product.originalPrice}</span>
-                                            )}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </main>
-            </div>
-        </AnimatedPage>
+        <ProductCategoryView
+            title="Fresh Vegetables"
+            sidebarCategories={sidebarCategories}
+            products={vegetableProducts}
+            activeCategory="Fresh Vegetables"
+        />
     )
 }
