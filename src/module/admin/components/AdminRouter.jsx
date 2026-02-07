@@ -2,6 +2,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import ProtectedRoute from "./ProtectedRoute";
 import AdminLayout from "./AdminLayout";
 import AdminHome from "../pages/AdminHome";
+import HibermartAdminHome from "../pages/HibermartAdminHome";
 import PointOfSale from "../pages/PointOfSale";
 import AdminProfile from "../pages/AdminProfile";
 import AdminSettings from "../pages/AdminSettings";
@@ -130,6 +131,7 @@ export default function AdminRouter() {
       >
         {/* Dashboard */}
         <Route path="/" element={<AdminHome />} />
+        <Route path="/hibermart/*" element={<HibermartAdminHome />} />
 
 
         <Route path="/point-of-sale" element={<PointOfSale />} />

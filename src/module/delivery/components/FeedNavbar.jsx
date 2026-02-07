@@ -367,7 +367,7 @@ export default function FeedNavbar({ className = "" }) {
 
   return (
     <>
-      <div className={`bg-white px-4 py-3 flex items-center justify-between sticky top-0 z-50 border-b border-purple-100/50 shadow-sm ${className}`}>
+      <div className={`bg-white px-4 py-3 flex items-center justify-between sticky top-0 z-50 border-b border-gray-100 shadow-sm ${className}`}>
         {/* Online/Offline Toggle */}
         <div className="relative" style={{ zIndex: 100 }}>
           <button
@@ -379,9 +379,9 @@ export default function FeedNavbar({ className = "" }) {
             aria-checked={isOnline}
             style={{ pointerEvents: "auto", zIndex: 100, WebkitTapHighlightColor: "transparent" }}
           >
-            <div className={`relative w-20 h-8 rounded-full transition-colors duration-300 ${isOnline ? "bg-green-500 shadow-[0_0_10px_rgba(34,197,94,0.3)]" : "bg-purple-100"}`}>
+            <div className={`relative w-20 h-8 rounded-full transition-colors duration-300 ${isOnline ? "bg-green-500 shadow-[0_0_10px_rgba(34,197,94,0.3)]" : "bg-gray-100"}`}>
               <span
-                className={`text-[11px] font-bold absolute top-1/2 -translate-y-1/2 whitespace-nowrap transition-all duration-300 ${isOnline ? "left-2 text-white" : "right-2 text-purple-700"
+                className={`text-[11px] font-bold absolute top-1/2 -translate-y-1/2 whitespace-nowrap transition-all duration-300 ${isOnline ? "left-2 text-white" : "right-2 text-gray-700"
                   }`}
                 style={{ opacity: 1, zIndex: 2, pointerEvents: "none" }}
               >
@@ -412,14 +412,14 @@ export default function FeedNavbar({ className = "" }) {
           {/* Help */}
           <button
             onClick={() => setShowHelpPopup(true)}
-            className="w-10 h-10 rounded-full bg-purple-50 flex items-center justify-center hover:bg-purple-100 transition-colors shadow-sm"
+            className="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center hover:bg-gray-100 transition-colors shadow-sm"
             title="Help"
           >
-            <CircleHelp className="w-5 h-5 text-purple-600" />
+            <CircleHelp className="w-5 h-5 text-gray-600" />
           </button>
 
           {/* Profile */}
-          <button onClick={handleProfileClick} className="w-9 h-9 rounded-full overflow-hidden ring-2 ring-purple-200 flex items-center justify-center bg-purple-50" title="Profile">
+          <button onClick={handleProfileClick} className="w-9 h-9 rounded-full overflow-hidden ring-2 ring-gray-200 flex items-center justify-center bg-gray-50" title="Profile">
             {profileImage && !imageError ? (
               <img
                 src={profileImage}
@@ -430,7 +430,7 @@ export default function FeedNavbar({ className = "" }) {
                 }}
               />
             ) : (
-              <User className="w-5 h-5 text-purple-400" />
+              <User className="w-5 h-5 text-gray-400" />
             )}
           </button>
         </div>

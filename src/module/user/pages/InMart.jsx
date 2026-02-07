@@ -865,6 +865,16 @@ export default function InMart() {
             </div>
           </div>
         </section>
+
+        {/* Hibermart Branding Section */}
+        <section className="mt-12 mb-8 py-12 sm:py-16 md:py-20 flex flex-col items-center bg-gray-50/40 dark:bg-white/5 border-t border-b border-gray-100/50 dark:border-white/5 select-none">
+          <h2 className="text-[56px] sm:text-[80px] md:text-[100px] lg:text-[120px] font-black tracking-tighter leading-none italic bg-clip-text text-transparent bg-gradient-to-r from-[#16A34A] via-[#15803D] to-[#166534]">
+            hibermart
+          </h2>
+          <p className="text-sm sm:text-lg md:text-xl font-bold text-gray-400 dark:text-gray-500 uppercase tracking-[0.2em] mt-4">
+            Freshness at your doorstep
+          </p>
+        </section>
       </div>
     </AnimatedPage>
   )

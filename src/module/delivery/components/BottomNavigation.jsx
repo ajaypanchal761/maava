@@ -16,11 +16,11 @@ export default function BottomNavigation() {
   }
 
   const TabIcon = (active, Icon) => {
-    return <Icon className={`w-6 h-6 transition-colors duration-300 ${active ? "text-purple-700 stroke-[2.5]" : "text-gray-400 stroke-[2]"}`} />
+    return <Icon className={`w-6 h-6 transition-colors duration-300 ${active ? "text-black stroke-[2.5]" : "text-gray-400 stroke-[2]"}`} />
   }
 
   const TabLabel = (active, label) => (
-    <span className={`text-[10px] font-bold transition-colors duration-300 ${active ? "text-purple-700" : "text-gray-500"}`}>
+    <span className={`text-[10px] font-bold transition-colors duration-300 ${active ? "text-black" : "text-gray-500"}`}>
       {label}
     </span>
   )
@@ -71,58 +71,62 @@ export default function BottomNavigation() {
   ]
 
   return (
-    <div className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-purple-100/50 shadow-[0_-5px_20px_rgba(126,34,206,0.05)] z-50 px-2">
-      <div className="flex items-center justify-around py-2">
-        {navItems.map((item) => {
-          const active = isActive(item.path)
-          return (
-            <button
-              key={item.id}
-              onClick={() => navigate(item.path)}
-              className="flex flex-col items-center gap-1.5 p-2 relative group flex-1"
-            >
-              {/* Active Pill Background */}
-              {active && (
-                <motion.div
-                  layoutId="deliveryBottomNavActive"
-                  className="absolute inset-0 bg-purple-100/60 rounded-xl -z-10"
-                  initial={false}
-                  transition={{
-                    type: "spring",
-                    stiffness: 500,
-                    damping: 35
-                  }}
-                />
-              )}
+    <div className="md:hidden fixed bottom-6 left-0 right-0 z-50 px-4">
+      <div className="bg-black/90 backdrop-blur-lg border border-white/10 rounded-full py-2 px-1 shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
+        <div className="flex items-center justify-around relative">
+          {navItems.map((item) => {
+            const active = isActive(item.path)
+            return (
+              <button
+                key={item.id}
+                onClick={() => navigate(item.path)}
+                className="flex flex-col items-center gap-1 px-4 py-2 relative group flex-1"
+              >
+                {/* Active Pill Background */}
+                {active && (
+                  <motion.div
+                    layoutId="deliveryBottomNavActive"
+                    className="absolute inset-0 bg-white rounded-full -z-10"
+                    initial={false}
+                    transition={{
+                      type: "spring",
+                      stiffness: 500,
+                      damping: 35
+                    }}
+                  />
+                )}
 
-              {item.id === 'profile' ? (
-                <div className="relative">
-                  {profileImage && !imageError ? (
-                    <img
-                      src={profileImage}
-                      alt="Profile"
-                      className={`w-7 h-7 rounded-full border-2 object-cover transition-all duration-300 ${active ? "border-purple-600 scale-110" : "border-gray-200"
-                        }`}
-                      onError={() => {
-                        setImageError(true)
-                      }}
-                    />
-                  ) : (
-                    <div className={`w-7 h-7 rounded-full border-2 flex items-center justify-center bg-gray-100 transition-all duration-300 ${active ? "border-purple-600 scale-110" : "border-gray-200"
-                      }`}>
-                      <User className={`w-4 h-4 ${active ? "text-purple-600" : "text-gray-400"}`} />
-                    </div>
-                  )}
-                </div>
-              ) : (
-                <div className={`transition-transform duration-300 ${active ? "scale-110" : "group-active:scale-95"}`}>
-                  {TabIcon(active, item.icon)}
-                </div>
-              )}
-              {TabLabel(active, item.label)}
-            </button>
-          )
-        })}
+                {item.id === 'profile' ? (
+                  <div className="relative">
+                    {profileImage && !imageError ? (
+                      <img
+                        src={profileImage}
+                        alt="Profile"
+                        className={`w-5 h-5 rounded-full border-2 object-cover transition-all duration-300 ${active ? "border-black scale-110" : "border-white/20"
+                          }`}
+                        onError={() => {
+                          setImageError(true)
+                        }}
+                      />
+                    ) : (
+                      <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center bg-gray-800 transition-all duration-300 ${active ? "border-black scale-110" : "border-white/20"
+                        }`}>
+                        <User className={`w-3 h-3 ${active ? "text-black" : "text-gray-400"}`} />
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <div className={`transition-transform duration-300 ${active ? "scale-110" : "group-hover:scale-105 active:scale-95"}`}>
+                    <item.icon className={`w-5 h-5 transition-colors duration-300 ${active ? "text-black stroke-[2.5]" : "text-gray-400 stroke-[2]"}`} />
+                  </div>
+                )}
+                <span className={`text-[11px] font-bold transition-colors duration-300 ${active ? "text-black" : "text-gray-400"}`}>
+                  {item.label}
+                </span>
+              </button>
+            )
+          })}
+        </div>
       </div>
     </div>
   )

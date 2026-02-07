@@ -14,6 +14,28 @@ export const sidebarMenuData = [
   },
   {
     type: "section",
+    label: "HIBERMART MANAGEMENT",
+    items: [
+      {
+        type: "link",
+        label: "Store Overview",
+        path: "/admin/hibermart",
+        icon: "LayoutDashboard",
+      },
+      {
+        type: "expandable",
+        label: "Store Assets",
+        icon: "Image",
+        subItems: [
+          { label: "Category Management", path: "/admin/hibermart" },
+          { label: "Banner Campaigns", path: "/admin/hibermart" },
+          { label: "Sale Collections", path: "/admin/hibermart" },
+        ],
+      },
+    ],
+  },
+  {
+    type: "section",
     label: "FOOD MANAGEMENT",
     items: [
       {
